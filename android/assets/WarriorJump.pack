@@ -1,0 +1,66 @@
+
+WarriorJump.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+highkick0
+  rotate: false
+  xy: 1, 403
+  size: 500, 400
+  orig: 500, 400
+  offset: 0, 0
+  index: -1
+highkick1
+  rotate: false
+  xy: 1, 1
+  size: 500, 400
+  orig: 500, 400
+  offset: 0, 0
+  index: -1
+highkick2
+  rotate: false
+  xy: 503, 403
+  size: 500, 400
+  orig: 500, 400
+  offset: 0, 0
+  index: -1
+highkick3
+  rotate: false
+  xy: 503, 1
+  size: 500, 400
+  orig: 500, 400
+  offset: 0, 0
+  index: -1
+
+WarriorJump2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+highkick4
+  rotate: false
+  xy: 1, 403
+  size: 500, 400
+  orig: 500, 400
+  offset: 0, 0
+  index: -1
+highkick5
+  rotate: false
+  xy: 1, 1
+  size: 500, 400
+  orig: 500, 400
+  offset: 0, 0
+  index: -1
+highkick6
+  rotate: false
+  xy: 503, 403
+  size: 500, 400
+  orig: 500, 400
+  offset: 0, 0
+  index: -1
+highkick7
+  rotate: false
+  xy: 503, 1
+  size: 500, 400
+  orig: 500, 400
+  offset: 0, 0
+  index: -1

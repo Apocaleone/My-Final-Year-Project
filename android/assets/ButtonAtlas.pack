@@ -1,0 +1,33 @@
+
+ButtonAtlas.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+bottomleft
+  rotate: false
+  xy: 1, 57
+  size: 314, 54
+  orig: 314, 54
+  offset: 0, 0
+  index: -1
+bottomright
+  rotate: false
+  xy: 1, 1
+  size: 314, 54
+  orig: 314, 54
+  offset: 0, 0
+  index: -1
+topleft
+  rotate: false
+  xy: 317, 57
+  size: 314, 54
+  orig: 314, 54
+  offset: 0, 0
+  index: -1
+topright
+  rotate: false
+  xy: 317, 1
+  size: 314, 54
+  orig: 314, 54
+  offset: 0, 0
+  index: -1

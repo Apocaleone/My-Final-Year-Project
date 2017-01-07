@@ -1,0 +1,19 @@
+
+MenuButtons.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+startbuttondown
+  rotate: false
+  xy: 1, 1
+  size: 300, 87
+  orig: 300, 87
+  offset: 0, 0
+  index: -1
+startbutton
+  rotate: false
+  xy: 303, 3
+  size: 300, 85
+  orig: 300, 85
+  offset: 0, 0
+  index: -1

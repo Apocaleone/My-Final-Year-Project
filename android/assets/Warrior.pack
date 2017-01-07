@@ -1,0 +1,145 @@
+
+Warrior.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+lowkick5
+  rotate: false
+  xy: 1, 782
+  size: 200, 192
+  orig: 200, 192
+  offset: 0, 0
+  index: -1
+lowkick4
+  rotate: false
+  xy: 203, 804
+  size: 208, 170
+  orig: 208, 170
+  offset: 0, 0
+  index: -1
+running0
+  rotate: false
+  xy: 1, 595
+  size: 189, 185
+  orig: 189, 185
+  offset: 0, 0
+  index: -1
+highkick6
+  rotate: false
+  xy: 1, 410
+  size: 185, 183
+  orig: 185, 183
+  offset: 0, 0
+  index: -1
+running1
+  rotate: false
+  xy: 1, 209
+  size: 154, 199
+  orig: 154, 199
+  offset: 0, 0
+  index: -1
+highkick7
+  rotate: false
+  xy: 1, 2
+  size: 145, 205
+  orig: 145, 205
+  offset: 0, 0
+  index: -1
+lowkick3
+  rotate: false
+  xy: 413, 849
+  size: 223, 125
+  orig: 223, 125
+  offset: 0, 0
+  index: -1
+lowkick1
+  rotate: false
+  xy: 638, 851
+  size: 178, 123
+  orig: 178, 123
+  offset: 0, 0
+  index: -1
+highkick2
+  rotate: false
+  xy: 818, 838
+  size: 165, 136
+  orig: 165, 136
+  offset: 0, 0
+  index: -1
+running2
+  rotate: false
+  xy: 157, 197
+  size: 115, 211
+  orig: 115, 211
+  offset: 0, 0
+  index: -1
+highkick5
+  rotate: false
+  xy: 148, 1
+  size: 127, 194
+  orig: 127, 194
+  offset: 0, 0
+  index: -1
+highkick3
+  rotate: false
+  xy: 188, 410
+  size: 147, 183
+  orig: 147, 183
+  offset: 0, 0
+  index: -1
+running4
+  rotate: false
+  xy: 274, 215
+  size: 148, 193
+  orig: 148, 193
+  offset: 0, 0
+  index: -1
+running5
+  rotate: false
+  xy: 277, 25
+  size: 152, 188
+  orig: 152, 188
+  offset: 0, 0
+  index: -1
+lowkick0
+  rotate: false
+  xy: 413, 680
+  size: 155, 167
+  orig: 155, 167
+  offset: 0, 0
+  index: -1
+highkick0
+  rotate: false
+  xy: 570, 660
+  size: 136, 187
+  orig: 136, 187
+  offset: 0, 0
+  index: -1
+highkick4
+  rotate: false
+  xy: 708, 677
+  size: 108, 172
+  orig: 108, 172
+  offset: 0, 0
+  index: -1
+highkick1
+  rotate: false
+  xy: 818, 683
+  size: 153, 153
+  orig: 153, 153
+  offset: 0, 0
+  index: -1
+running3
+  rotate: false
+  xy: 337, 466
+  size: 115, 212
+  orig: 115, 212
+  offset: 0, 0
+  index: -1
+lowkick2
+  rotate: false
+  xy: 203, 686
+  size: 121, 116
+  orig: 121, 116
+  offset: 0, 0
+  index: -1
