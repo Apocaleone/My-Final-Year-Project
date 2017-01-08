@@ -114,7 +114,7 @@ public class Warrior extends Sprite {
     public Move getMove(){
         if(hero.getLinearVelocity().y!=0)
             return Move.Highkick;
-        else if(hero.getLinearVelocity().x!=0&&hero.getLinearVelocity().y==0)
+        else if((hero.getLinearVelocity().x>2||hero.getLinearVelocity().x<0)&&hero.getLinearVelocity().y==0)
             return Move.Lowkick;
         else
             return Move.Running;

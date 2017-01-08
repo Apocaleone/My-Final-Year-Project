@@ -122,12 +122,14 @@ public class Play_State implements Screen {
             }
         });
 
+
     }
     public void update(float dt){
 
         world.step(1/45f,6,2);
         warrior.update(dt);
         renderer.setView(gamecam);
+        warrior.hero.applyForceToCenter(2,0,true);
 
     }
 
@@ -139,6 +141,9 @@ public class Play_State implements Screen {
 
         time+=delta;
 
+        gamecam.position.set(warrior.getX()+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
+        gamecam.update();
+
 
         renderer.render();
 
@@ -148,6 +153,8 @@ public class Play_State implements Screen {
         game.batch.begin();
         warrior.draw(game.batch);
         game.batch.end();
+
+
 
 
         game.batch.setProjectionMatrix(hud.stage.getCamera().combined);
