@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="50" height="30" tilewidth="16" tileheight="16" nextobjectid="8">
+ <tileset firstgid="1" name="ground" tilewidth="16" tileheight="16" tilecount="1024" columns="32">
+  <image source="Tiles_64x64.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="1025" name="bg" tilewidth="800" tileheight="480" tilecount="1" columns="1">
+  <image source="bg2.jpg" width="853" height="480"/>
+ </tileset>
+ <tileset firstgid="1026" name="grass" tilewidth="16" tileheight="16" tilecount="4" columns="4">
+  <image source="vegetation_grass_card_03.png" width="64" height="16"/>
+ </tileset>
+ <tileset firstgid="1030" name="clouds" tilewidth="16" tileheight="16" tilecount="1120" columns="28">
+  <image source="Clouds1.png" width="453" height="640"/>
+ </tileset>
+ <tileset firstgid="2150" name="stars" tilewidth="16" tileheight="16" tilecount="1" columns="1">
+  <image source="star16.png" width="16" height="16"/>
+ </tileset>
+ <layer name="ground" width="50" height="30">
+  <data encoding="base64" compression="zlib">
+   eJztzjEOgCAQRUGCWCj3vy9bUJBIq8Qwk7xi85tNCQAAAABgL7n8syMq0dnvKz+rQ7P96+5Jq396qwbdTwWK
+  </data>
+ </layer>
+ <layer name="clouds" width="50" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt1klOAkEUgOFa2I0iKsoFGBUF9XoCIh5CmeQQghOHQEHhEDKJA+qWf+2iNSHVTcX3J9+qk86rSnfylJIkPR1ZSmWQRQ7HyOMEBZxaXk/4t86Y8xxFlFBGBVVcoGbIOS6Zs44GrnCNG9ziDk1DztFizns8oI0OHvGELnoO53jh2QSveMM7PjDFJ77wbcA9+G2lVhHAGtaxgSA2sYWQ7fWUv7fNjDtIYhd7SCGNfRzg0IBz/Mee+U/6GGCIEcYG/Ds/W+L7smDDh2WsaPrmdN5ZmJkjiCKGOBKazuHmnTk1747hdGdu7i86dww39xedO4ab+8s8O4aX75YkSZIkSZIWqxmsJmI4
+  </data>
+ </layer>
+ <layer name="stars" width="50" height="30">
+  <data encoding="base64" compression="zlib">
+   eJzt0jESABEQRFGhk7r/EaQShUHpGf/FG7Q/mxK8KPn1gj7lbepohxb/Qzzc1G6n3enu3PENa3fuNfZjo9tv9tLUy86oFPorbIiMvn0rbWa+pTUAVRV1uAiZ
+  </data>
+ </layer>
+ <objectgroup name="platform">
+  <object id="5" x="1" y="441" width="799" height="39"/>
+ </objectgroup>
+</map>

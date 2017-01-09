@@ -40,10 +40,8 @@ public class Play_State implements Screen {
     private TextureAtlas atlas;
 
     private OrthographicCamera gamecam;
-    private Viewport gamePort;
-    private TmxMapLoader backgroundloader;
-    private TiledMap bg;
-    private OrthogonalTiledMapRenderer renderer;
+    private OrthographicCamera bgcam;
+    private Viewport gamePort,bgPort;
 
       private World world;
     private Box2DDebugRenderer b2dr;
@@ -68,20 +66,19 @@ public class Play_State implements Screen {
 
 
         gamecam=new OrthographicCamera();
+        bgcam=new OrthographicCamera();
         gamePort=new StretchViewport(Lone_Warrior1.V_Width/Lone_Warrior1.PPM,Lone_Warrior1.V_Height/Lone_Warrior1.PPM,gamecam);
+        bgPort=new StretchViewport(Lone_Warrior1.V_Width/Lone_Warrior1.PPM,Lone_Warrior1.V_Height/Lone_Warrior1.PPM,bgcam);
 
         hud=new Hud(game.batch);
         buttons=new Buttons();
 
-        backgroundloader= new TmxMapLoader();
-        bg=backgroundloader.load("background.tmx");
-        renderer=new OrthogonalTiledMapRenderer(bg,1/Lone_Warrior1.PPM);
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2,0);
+        bgcam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2,0);
 
         world=new World(new Vector2(0,-9.81f),true);
         b2dr=new Box2DDebugRenderer();
-
-        new NightWorld(world,bg);
+        new NightWorld(world);
 
         warrior=new Warrior(world,this);
     }
@@ -128,7 +125,8 @@ public class Play_State implements Screen {
 
         world.step(1/45f,6,2);
         warrior.update(dt);
-        renderer.setView(gamecam);
+        NightWorld.renderer.setView(gamecam);
+        NightWorld.renderer2.setView(bgcam);
         warrior.hero.applyForceToCenter(2,0,true);
 
     }
@@ -136,7 +134,7 @@ public class Play_State implements Screen {
     @Override
     public void render(float delta) {
         update(delta);
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         time+=delta;
@@ -144,8 +142,9 @@ public class Play_State implements Screen {
         gamecam.position.set(warrior.getX()+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
         gamecam.update();
 
+        NightWorld.renderer2.render();
+        NightWorld.renderer.render();
 
-        renderer.render();
 
         b2dr.render(world, gamecam.combined);
 
@@ -169,7 +168,9 @@ public class Play_State implements Screen {
 
     @Override
     public void resize(int width, int height) {
+        bgPort.update(width, height);
         gamePort.update(width,height);
+
 
     }
 
@@ -190,8 +191,8 @@ public class Play_State implements Screen {
 
     @Override
     public void dispose() {
-        bg.dispose();
-        renderer.dispose();
+        NightWorld.bg.dispose();
+        NightWorld.renderer.dispose();
         world.dispose();
         b2dr.dispose();
         hud.dispose();
