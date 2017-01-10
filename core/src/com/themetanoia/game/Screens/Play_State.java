@@ -139,7 +139,7 @@ public class Play_State implements Screen {
 
         time+=delta;
 
-        gamecam.position.set(warrior.getX()+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
+        gamecam.position.set(warrior.hero.getPosition().x+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
         gamecam.update();
 
         NightWorld.renderer2.render();
