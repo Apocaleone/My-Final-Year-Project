@@ -26,13 +26,15 @@ public class Warrior extends Sprite {
     public Move currentState;
     public Move previousState;
     public World world;
-    public Body hero;
+    public static Body hero;
     public Animation running,highkick,lowkick;
     private float time;
     private TextureRegion warriorinit;
 
     boolean rightside;
+    public int posture=0;
     LoadState loading;
+
 
     public Warrior(World world, Play_State state){
         super(state.getAtlas().findRegion("running0"));
@@ -77,7 +79,7 @@ public class Warrior extends Sprite {
     }
 
     public TextureRegion getFrame(float dt){
-        currentState=getMove();
+        currentState=getMove(posture);
 
         TextureRegion region;
         switch (currentState){
@@ -95,7 +97,7 @@ public class Warrior extends Sprite {
                 break;
         }
 
-        if((hero.getLinearVelocity().x<0||!rightside)&&!region.isFlipX())
+        /*if((hero.getLinearVelocity().x<0||!rightside)&&!region.isFlipX())
         {
             region.flip(true,false);
             rightside=false;
@@ -103,7 +105,7 @@ public class Warrior extends Sprite {
         else if((hero.getLinearVelocity().x>0||rightside)&& region.isFlipX()){
             region.flip(true,false);
             rightside=true;
-        }
+        }*/
 
         time=currentState==previousState ? time+dt : 0;
         previousState=currentState;
@@ -111,10 +113,10 @@ public class Warrior extends Sprite {
     }
 
 
-    public Move getMove(){
-        if(hero.getLinearVelocity().y!=0)
+    public Move getMove(int posture){
+        if(posture==1)
             return Move.Highkick;
-        else if((hero.getLinearVelocity().x>2||hero.getLinearVelocity().x<0)&&hero.getLinearVelocity().y==0)
+        else if(posture==2)
             return Move.Lowkick;
         else
             return Move.Running;
@@ -124,7 +126,7 @@ public class Warrior extends Sprite {
 
     public void defineWarrior(){
     BodyDef bdef=new BodyDef();
-     bdef.position.set(100/ Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
+     bdef.position.set(Lone_Warrior1.x,Lone_Warrior1.y);
      bdef.type=BodyDef.BodyType.DynamicBody;
      hero=world.createBody(bdef);
 
@@ -133,9 +135,8 @@ public class Warrior extends Sprite {
      War.setAsBox(50/Lone_Warrior1.PPM,45/Lone_Warrior1.PPM);
 
      fdef.shape=War;
-     fdef.restitution=0.4f;
-     hero.createFixture(fdef);
+     hero.createFixture(fdef).setUserData("warrior");
+        hero.setUserData(this);
 
-
- }
+    }
 }

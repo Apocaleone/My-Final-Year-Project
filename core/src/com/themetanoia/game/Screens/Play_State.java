@@ -2,29 +2,20 @@ package com.themetanoia.game.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
-import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
-import com.badlogic.gdx.maps.tiled.TiledMap;
-import com.badlogic.gdx.maps.tiled.TmxMapLoader;
-import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
-import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
-import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Skin;
-import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Characters.Warrior;
-import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Screen_Elements.Buttons;
 import com.themetanoia.game.Screen_Elements.Hud;
 import com.themetanoia.game.Lone_Warrior1;
@@ -43,7 +34,7 @@ public class Play_State implements Screen {
     private OrthographicCamera bgcam;
     private Viewport gamePort,bgPort;
 
-      private World world;
+      public static World world;
     private Box2DDebugRenderer b2dr;
 
     public ShapeRenderer sR;
@@ -51,6 +42,7 @@ public class Play_State implements Screen {
     Buttons buttons;
 
     private float time=0;
+    public static Array<Body> bodiesToRemove;
 
 
 
@@ -81,6 +73,8 @@ public class Play_State implements Screen {
         new NightWorld(world);
 
         warrior=new Warrior(world,this);
+
+        bodiesToRemove=new Array<Body>();
     }
 
     public TextureAtlas getAtlas(){
@@ -93,14 +87,18 @@ public class Play_State implements Screen {
         buttons.button1.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Star Clicked");
-                warrior.hero.applyForceToCenter(-100,300,true);
+                if(warrior.posture==0)
+                    warrior.posture=1;
+                bodiesToRemove.add(warrior.hero);
+
                 return true;
             }
         });
         buttons.button2.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Clicked");
-                warrior.hero.applyForceToCenter(100,300,true);
+                warrior.posture=2;
+                warrior.defineWarrior();
                 return true;
             }
         });
@@ -125,6 +123,14 @@ public class Play_State implements Screen {
 
         world.step(1/45f,6,2);
         warrior.update(dt);
+        for(int i=0;i<bodiesToRemove.size;i++)
+        {
+            Lone_Warrior1.x=warrior.hero.getPosition().x;
+            Lone_Warrior1.y=warrior.hero.getPosition().y;
+            Body b=bodiesToRemove.get(i);
+            world.destroyBody(b);
+        }
+        bodiesToRemove.clear();
         NightWorld.renderer.setView(gamecam);
         NightWorld.renderer2.setView(bgcam);
         warrior.hero.applyForceToCenter(2,0,true);

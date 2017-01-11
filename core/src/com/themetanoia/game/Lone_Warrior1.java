@@ -13,6 +13,7 @@ public class Lone_Warrior1 extends Game {
 	public static final int V_Width=800;
 	public static final int V_Height=416;
 	public static final float PPM=100;
+	public static float x=100/PPM,y=200/PPM;
 
 	
 	@Override
