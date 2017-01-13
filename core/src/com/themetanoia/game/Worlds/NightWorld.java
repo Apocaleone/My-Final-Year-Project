@@ -50,6 +50,8 @@ public class NightWorld {
 
             shape.setAsBox((rect.getWidth()/2)/Lone_Warrior1.PPM,(rect.getHeight()/2)/Lone_Warrior1.PPM);
             fdef.shape=shape;
+            fdef.filter.categoryBits=Lone_Warrior1.BIT_GROUND;
+            fdef.filter.maskBits=Lone_Warrior1.BIT_RUN|Lone_Warrior1.BIT_A;
             body.createFixture(fdef);
         }
 

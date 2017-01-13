@@ -26,9 +26,9 @@ public class Warrior extends Sprite {
     public Move currentState;
     public Move previousState;
     public World world;
-    public static Body hero;
+    public static Body hero,heroattack;
     public Animation running,highkick,lowkick;
-    private float time;
+    public static float time;
     private TextureRegion warriorinit;
 
     boolean rightside;
@@ -68,6 +68,8 @@ public class Warrior extends Sprite {
         lowkick=new Animation(0.1f,frames);
         frames.clear();
         defineWarrior();
+        if(posture==1)
+        defineHeroAttack();
         warriorinit=new TextureRegion(state.getAtlas().findRegion("running0"));
         setBounds(0,0,100/Lone_Warrior1.PPM,100/Lone_Warrior1.PPM);
         setRegion(warriorinit);
@@ -75,11 +77,15 @@ public class Warrior extends Sprite {
 
     public void update(float dt){
         setPosition(hero.getPosition().x-getWidth()/2,hero.getPosition().y-getHeight()/2);
+        if(posture==1)
+        setPosition(heroattack.getPosition().x-getWidth()/2,heroattack.getPosition().y-getHeight()/2);
+
         setRegion(getFrame(dt));
     }
 
     public TextureRegion getFrame(float dt){
         currentState=getMove(posture);
+
 
         TextureRegion region;
         switch (currentState){
@@ -91,6 +97,8 @@ public class Warrior extends Sprite {
                 break;
             case Lowkick:
                 region=lowkick.getKeyFrame(time);
+                if(lowkick.isAnimationFinished(time))
+                    posture=0;
                 break;
             default:
                 region=running.getKeyFrame(time,true);
@@ -126,7 +134,7 @@ public class Warrior extends Sprite {
 
     public void defineWarrior(){
     BodyDef bdef=new BodyDef();
-     bdef.position.set(Lone_Warrior1.x,Lone_Warrior1.y);
+     bdef.position.set(Lone_Warrior1.x,Lone_Warrior1.y );
      bdef.type=BodyDef.BodyType.DynamicBody;
      hero=world.createBody(bdef);
 
@@ -135,8 +143,25 @@ public class Warrior extends Sprite {
      War.setAsBox(50/Lone_Warrior1.PPM,45/Lone_Warrior1.PPM);
 
      fdef.shape=War;
+        fdef.filter.categoryBits=Lone_Warrior1.BIT_RUN;
+        fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_APPROACHING;
      hero.createFixture(fdef).setUserData("warrior");
         hero.setUserData(this);
 
+    }
+
+    public void defineHeroAttack(){
+        BodyDef bdef=new BodyDef();
+        bdef.position.set(hero.getPosition().x,hero.getPosition().y );
+        bdef.type=BodyDef.BodyType.DynamicBody;
+        heroattack=world.createBody(bdef);
+
+        FixtureDef fdef=new FixtureDef();
+        PolygonShape War=new PolygonShape();
+        War.setAsBox(50/Lone_Warrior1.PPM,45/Lone_Warrior1.PPM);
+
+        fdef.shape=War;
+        fdef.filter.categoryBits=Lone_Warrior1.BIT_ATTACK;
+        heroattack.createFixture(fdef).setUserData("warrior1");
     }
 }

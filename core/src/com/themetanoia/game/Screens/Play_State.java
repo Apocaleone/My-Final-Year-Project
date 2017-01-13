@@ -15,6 +15,7 @@ import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
+import com.themetanoia.game.Characters.Enemies;
 import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Screen_Elements.Buttons;
 import com.themetanoia.game.Screen_Elements.Hud;
@@ -39,10 +40,12 @@ public class Play_State implements Screen {
 
     public ShapeRenderer sR;
     Warrior warrior;
+    Enemies enemies;
     Buttons buttons;
 
     private float time=0;
     public static Array<Body> bodiesToRemove;
+    boolean ongoingmove=false;
 
 
 
@@ -73,6 +76,7 @@ public class Play_State implements Screen {
         new NightWorld(world);
 
         warrior=new Warrior(world,this);
+        enemies=new Enemies(world,this);
 
         bodiesToRemove=new Array<Body>();
     }
@@ -87,10 +91,13 @@ public class Play_State implements Screen {
         buttons.button1.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Star Clicked");
-                if(warrior.posture==0)
-                    warrior.posture=1;
-                bodiesToRemove.add(warrior.hero);
-
+                if(ongoingmove==false) {
+                    ongoingmove = true;
+                    warrior.posture = 1;
+                    bodiesToRemove.add(warrior.hero);
+                    warrior.defineHeroAttack();
+                    warrior.heroattack.applyForceToCenter(100,200, true);
+                }
                 return true;
             }
         });
@@ -98,7 +105,6 @@ public class Play_State implements Screen {
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Clicked");
                 warrior.posture=2;
-                warrior.defineWarrior();
                 return true;
             }
         });
@@ -123,6 +129,17 @@ public class Play_State implements Screen {
 
         world.step(1/45f,6,2);
         warrior.update(dt);
+        enemies.update(dt);
+        if(warrior.posture==1&&ongoingmove==true){
+            if(warrior.heroattack.getLinearVelocity().x==0){
+                ongoingmove=false;
+            warrior.posture=0;
+                bodiesToRemove.add(warrior.heroattack);
+                warrior.defineWarrior();
+            }
+
+
+        }
         for(int i=0;i<bodiesToRemove.size;i++)
         {
             Lone_Warrior1.x=warrior.hero.getPosition().x;
@@ -134,6 +151,7 @@ public class Play_State implements Screen {
         NightWorld.renderer.setView(gamecam);
         NightWorld.renderer2.setView(bgcam);
         warrior.hero.applyForceToCenter(2,0,true);
+        enemies.berserker.applyForceToCenter(-2,0,true);
 
     }
 
@@ -157,6 +175,7 @@ public class Play_State implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         warrior.draw(game.batch);
+        enemies.draw(game.batch);
         game.batch.end();
 
 
