@@ -20,6 +20,7 @@ import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Screen_Elements.Buttons;
 import com.themetanoia.game.Screen_Elements.Hud;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Tools.MyContactListener;
 import com.themetanoia.game.Worlds.NightWorld;
 
 /**
@@ -72,6 +73,7 @@ public class Play_State implements Screen {
         bgcam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2,0);
 
         world=new World(new Vector2(0,-9.81f),true);
+        world.setContactListener(new MyContactListener());
         b2dr=new Box2DDebugRenderer();
         new NightWorld(world);
 
@@ -85,6 +87,9 @@ public class Play_State implements Screen {
         return atlas;
     }
 
+
+
+
     @Override
     public void show() {
 
@@ -96,7 +101,7 @@ public class Play_State implements Screen {
                     warrior.posture = 1;
                     bodiesToRemove.add(warrior.hero);
                     warrior.defineHeroAttack();
-                    warrior.heroattack.applyForceToCenter(100,200, true);
+                    warrior.heroattack.applyForceToCenter(200,0, true);
                 }
                 return true;
             }
@@ -122,9 +127,8 @@ public class Play_State implements Screen {
                 return true;
             }
         });
-
-
     }
+
     public void update(float dt){
 
         world.step(1/45f,6,2);
@@ -150,7 +154,7 @@ public class Play_State implements Screen {
         bodiesToRemove.clear();
         NightWorld.renderer.setView(gamecam);
         NightWorld.renderer2.setView(bgcam);
-        warrior.hero.applyForceToCenter(2,0,true);
+        warrior.hero.applyForceToCenter(3,0,true);
         enemies.berserker.applyForceToCenter(-2,0,true);
 
     }
@@ -206,7 +210,6 @@ public class Play_State implements Screen {
 
     @Override
     public void resume() {
-
     }
 
     @Override

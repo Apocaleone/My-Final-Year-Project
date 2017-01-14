@@ -26,7 +26,7 @@ public class Warrior extends Sprite {
     public Move currentState;
     public Move previousState;
     public World world;
-    public static Body hero,heroattack;
+    public static Body hero,heroattack,heroretreating;
     public Animation running,highkick,lowkick;
     public static float time;
     private TextureRegion warriorinit;
@@ -146,7 +146,6 @@ public class Warrior extends Sprite {
         fdef.filter.categoryBits=Lone_Warrior1.BIT_RUN;
         fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_APPROACHING;
      hero.createFixture(fdef).setUserData("warrior");
-        hero.setUserData(this);
 
     }
 
@@ -162,6 +161,23 @@ public class Warrior extends Sprite {
 
         fdef.shape=War;
         fdef.filter.categoryBits=Lone_Warrior1.BIT_ATTACK;
+        fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_APPROACHING;
         heroattack.createFixture(fdef).setUserData("warrior1");
+    }
+
+    public void defineHeroRetreating(){
+        BodyDef bdef=new BodyDef();
+        bdef.position.set(heroattack.getPosition().x,heroattack.getPosition().y );
+        bdef.type=BodyDef.BodyType.DynamicBody;
+        heroretreating=world.createBody(bdef);
+
+        FixtureDef fdef=new FixtureDef();
+        PolygonShape War=new PolygonShape();
+        War.setAsBox(50/Lone_Warrior1.PPM,45/Lone_Warrior1.PPM);
+
+        fdef.shape=War;
+        fdef.filter.categoryBits=Lone_Warrior1.BIT_RUN;
+        fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_APPROACHING;
+        heroretreating.createFixture(fdef).setUserData("warriorreturn");
     }
 }

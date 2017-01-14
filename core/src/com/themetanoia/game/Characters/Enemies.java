@@ -75,9 +75,8 @@ public class Enemies extends Sprite {
 
         fdef.shape=War;
         fdef.filter.categoryBits=Lone_Warrior1.BIT_APPROACHING;
-        fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_RUN;
+        fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_RUN|Lone_Warrior1.BIT_ATTACK;
         berserker.createFixture(fdef).setUserData("berserker");
-        berserker.setUserData(this);
 
     }
 
