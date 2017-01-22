@@ -46,7 +46,7 @@ public class Play_State implements Screen {
 
     private float time=0;
     public static Array<Body> bodiesToRemove;
-    boolean ongoingmove=false;
+    public static boolean ongoingmove=false, retreat=false,flag=false;
 
 
 
@@ -135,23 +135,41 @@ public class Play_State implements Screen {
         warrior.update(dt);
         enemies.update(dt);
         if(warrior.posture==1&&ongoingmove==true){
-            if(warrior.heroattack.getLinearVelocity().x==0){
-                ongoingmove=false;
-            warrior.posture=0;
+            if(warrior.heroattack.getLinearVelocity().x==0) {
                 bodiesToRemove.add(warrior.heroattack);
-                warrior.defineWarrior();
+                retreat=true;
+                flag=true;
             }
 
 
         }
         for(int i=0;i<bodiesToRemove.size;i++)
         {
-            Lone_Warrior1.x=warrior.hero.getPosition().x;
-            Lone_Warrior1.y=warrior.hero.getPosition().y;
+           if(retreat==false) { //save the state of warrior running state position after body being removed.
+               Lone_Warrior1.x = warrior.hero.getPosition().x;
+               Lone_Warrior1.y = warrior.hero.getPosition().y;}
+            if(retreat==true)
+            {Lone_Warrior1.x1=warrior.heroattack.getPosition().x;
+            Lone_Warrior1.y1=warrior.heroattack.getPosition().y;}
             Body b=bodiesToRemove.get(i);
             world.destroyBody(b);
         }
         bodiesToRemove.clear();
+        if(retreat==true){
+            if(flag==true){
+            warrior.defineHeroRetreating();
+            flag=false;}
+            warrior.heroretreating.applyForceToCenter(-6,0,true);
+            if (warrior.heroretreating.getPosition().x < Lone_Warrior1.x) {
+                bodiesToRemove.add(warrior.heroretreating);
+                ongoingmove=false;
+                warrior.posture=0;
+                warrior.defineWarrior();
+                retreat=false;
+            }
+
+
+        }
         NightWorld.renderer.setView(gamecam);
         NightWorld.renderer2.setView(bgcam);
         warrior.hero.applyForceToCenter(3,0,true);
@@ -227,4 +245,5 @@ public class Play_State implements Screen {
         buttons.dispose();
 
     }
+
 }

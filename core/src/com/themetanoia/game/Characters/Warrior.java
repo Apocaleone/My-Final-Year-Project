@@ -33,6 +33,7 @@ public class Warrior extends Sprite {
 
     boolean rightside;
     public int posture=0;
+    public static boolean fallback=false;
     LoadState loading;
 
 
@@ -68,18 +69,16 @@ public class Warrior extends Sprite {
         lowkick=new Animation(0.1f,frames);
         frames.clear();
         defineWarrior();
-        if(posture==1)
-        defineHeroAttack();
         warriorinit=new TextureRegion(state.getAtlas().findRegion("running0"));
         setBounds(0,0,100/Lone_Warrior1.PPM,100/Lone_Warrior1.PPM);
         setRegion(warriorinit);
     }
 
     public void update(float dt){
+        if(posture==0)
         setPosition(hero.getPosition().x-getWidth()/2,hero.getPosition().y-getHeight()/2);
         if(posture==1)
         setPosition(heroattack.getPosition().x-getWidth()/2,heroattack.getPosition().y-getHeight()/2);
-
         setRegion(getFrame(dt));
     }
 
@@ -87,7 +86,7 @@ public class Warrior extends Sprite {
         currentState=getMove(posture);
 
 
-        TextureRegion region;
+        TextureRegion region = null;
         switch (currentState){
             case Running:
                 region=running.getKeyFrame(time,true);
@@ -146,12 +145,11 @@ public class Warrior extends Sprite {
         fdef.filter.categoryBits=Lone_Warrior1.BIT_RUN;
         fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_APPROACHING;
      hero.createFixture(fdef).setUserData("warrior");
-
     }
 
     public void defineHeroAttack(){
         BodyDef bdef=new BodyDef();
-        bdef.position.set(hero.getPosition().x,hero.getPosition().y );
+        bdef.position.set(hero.getPosition().x,hero.getPosition().y);
         bdef.type=BodyDef.BodyType.DynamicBody;
         heroattack=world.createBody(bdef);
 
@@ -167,7 +165,7 @@ public class Warrior extends Sprite {
 
     public void defineHeroRetreating(){
         BodyDef bdef=new BodyDef();
-        bdef.position.set(heroattack.getPosition().x,heroattack.getPosition().y );
+        bdef.position.set(Lone_Warrior1.x1,Lone_Warrior1.y1);
         bdef.type=BodyDef.BodyType.DynamicBody;
         heroretreating=world.createBody(bdef);
 

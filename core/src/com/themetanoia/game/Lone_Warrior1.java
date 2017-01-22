@@ -17,7 +17,7 @@ public class Lone_Warrior1 extends Game {
 	public static final int V_Width=800;
 	public static final int V_Height=416;
 	public static final float PPM=100;
-	public static float x=100/PPM,y=50/PPM;
+	public static float x=100/PPM,y=50/PPM,x1=0,y1=0;
 	public static final short BIT_GROUND=1;
 	public static final short BIT_RUN=2;
 	public static final short BIT_ATTACK=4;

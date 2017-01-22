@@ -18,34 +18,34 @@ public class MyContactListener implements ContactListener {
         Fixture fb=contact.getFixtureB();
 
         if(fb.getUserData()!=null&&fb.getUserData().equals("warrior1")){
-            System.out.println("fb attack");
+            System.out.println("warrior attacks");
             if(fa.getUserData()!=null&&fa.getUserData().equals("berserker")){
-                System.out.println("fa Attacked!");
+                System.out.println("berserker Attacked!");
                 Enemies.berserker.applyForceToCenter(500,0,true);
             }
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("warrior")){
-            System.out.println("fa attacked by enemy");
             if(fb.getUserData()!=null&&fb.getUserData().equals("berserker")){
-                System.out.println("fa Attack!");
+                System.out.println("warrior attacked by enemy");
+                System.out.println("berserker Attacks!");
                 Warrior.hero.applyForceToCenter(-500,0,true);
             }
         }
 
         if(fb.getUserData()!=null&&fb.getUserData().equals("warrior")){
-            System.out.println("fb attacked by enemy");
             if(fa.getUserData()!=null&&fa.getUserData().equals("berserker")){
-                System.out.println("fa Attack!");
+                System.out.println("warrior attacked by enemy");
+                System.out.println("Berserker Attacks!");
                 Warrior.hero.applyForceToCenter(-500,0,true);
             }
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("warriorreturn")){
-            System.out.println("Warriorreturned");
+            System.out.println("Warriorreturning");
         }
         if(fb.getUserData()!=null&&fb.getUserData().equals("warriorreturn")){
-            System.out.println("Warriorreturned");
+            System.out.println("Warriorreturning");
         }
 
 
