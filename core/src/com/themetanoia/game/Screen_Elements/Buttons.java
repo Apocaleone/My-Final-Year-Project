@@ -1,5 +1,6 @@
 package com.themetanoia.game.Screen_Elements;
 
+import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -21,7 +22,7 @@ import com.themetanoia.game.Screens.Play_State;
 /**
  * Created by MITHUN on 10-11-2016.
  */
-public class Buttons {
+public class Buttons implements ApplicationListener {
     public Stage stage;
     private BitmapFont font;
     private TextButton.TextButtonStyle button1Style,button2Style,button3Style,button4Style;
@@ -91,6 +92,35 @@ public class Buttons {
         table.add(button4).expandX().padTop(30).width(200).height(50).right();
 
         stage.addActor(table);
+
+    }
+
+    public void update(){
+
+    }
+
+    @Override
+    public void create() {
+
+    }
+
+    @Override
+    public void resize(int width, int height) {
+
+    }
+
+    @Override
+    public void render() {
+
+    }
+
+    @Override
+    public void pause() {
+
+    }
+
+    @Override
+    public void resume() {
 
     }
 

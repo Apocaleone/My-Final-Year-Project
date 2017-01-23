@@ -106,6 +106,7 @@ public class Play_State implements Screen {
                 return true;
             }
         });
+
         buttons.button2.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Clicked");
@@ -135,7 +136,7 @@ public class Play_State implements Screen {
         warrior.update(dt);
         enemies.update(dt);
         if(warrior.posture==1&&ongoingmove==true){
-            if(warrior.heroattack.getLinearVelocity().x==0) {
+            if(warrior.heroattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
                 bodiesToRemove.add(warrior.heroattack);
                 retreat=true;
                 flag=true;
@@ -143,20 +144,20 @@ public class Play_State implements Screen {
 
 
         }
-        for(int i=0;i<bodiesToRemove.size;i++)
+        for(int i=0;i<bodiesToRemove.size;i++)//list that destroys the body
         {
            if(retreat==false) { //save the state of warrior running state position after body being removed.
                Lone_Warrior1.x = warrior.hero.getPosition().x;
                Lone_Warrior1.y = warrior.hero.getPosition().y;}
-            if(retreat==true)
+            if(retreat==true)//only checks for the position of the body if warrior is in attack position
             {Lone_Warrior1.x1=warrior.heroattack.getPosition().x;
             Lone_Warrior1.y1=warrior.heroattack.getPosition().y;}
             Body b=bodiesToRemove.get(i);
             world.destroyBody(b);
         }
         bodiesToRemove.clear();
-        if(retreat==true){
-            if(flag==true){
+        if(retreat==true){//defines the retreating body right after an attack. Phew!
+            if(flag==true){//defines the retreating body of the hero just once.
             warrior.defineHeroRetreating();
             flag=false;}
             warrior.heroretreating.applyForceToCenter(-6,0,true);
