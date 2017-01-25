@@ -20,7 +20,7 @@ import com.themetanoia.game.Lone_Warrior1;
  * Created by MITHUN on 28-11-2016.
  */
 public class MenuScreen extends Game implements Screen {
-    public Stage stage;
+    private Stage stage;
     private BitmapFont font;
     private TextButton.TextButtonStyle startbuttonStyle;
     public TextButton startbutton;
@@ -28,7 +28,7 @@ public class MenuScreen extends Game implements Screen {
 
     LoadState loading;
 
-    Lone_Warrior1 game;
+    private Lone_Warrior1 game;
 
     public MenuScreen(Lone_Warrior1 game){
         loading=new LoadState();
@@ -41,7 +41,7 @@ public class MenuScreen extends Game implements Screen {
         font.setColor(Color.BLACK);
         font.getData().setScale(3);
         skin=new Skin();
-        skin.addRegions(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));
+        skin.addRegions(loading.assets.manager.get("ButtonAtlas.pack",TextureAtlas.class));
 
         Table table=new Table();
         table.center();
@@ -51,8 +51,8 @@ public class MenuScreen extends Game implements Screen {
 
 
         startbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
-        startbuttonStyle.up= skin.getDrawable("startbutton");
-        startbuttonStyle.down= skin.getDrawable("startbuttondown");
+        startbuttonStyle.up= skin.getDrawable("topleft");
+        startbuttonStyle.down= skin.getDrawable("bottomleft");
         startbuttonStyle.font=font;
         startbutton= new TextButton(" ",startbuttonStyle);
 
@@ -69,7 +69,7 @@ public class MenuScreen extends Game implements Screen {
         startbutton.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
-                setScreen(new Play_State(game));
+                game.setScreen(new Play_State(game));
                 return true;
             }
         });

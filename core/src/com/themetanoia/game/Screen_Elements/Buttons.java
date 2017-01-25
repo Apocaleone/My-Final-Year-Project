@@ -3,7 +3,9 @@ package com.themetanoia.game.Screen_Elements;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.World;
@@ -13,6 +15,9 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Load_Screens.PlayStateAssetmanager;
@@ -23,22 +28,24 @@ import com.themetanoia.game.Screens.Play_State;
  * Created by MITHUN on 10-11-2016.
  */
 public class Buttons implements ApplicationListener {
+    private Viewport viewport;
     public Stage stage;
     private BitmapFont font;
     private TextButton.TextButtonStyle button1Style,button2Style,button3Style,button4Style;
     public TextButton button1,button2,button3,button4;
     private Skin skin;
+    private boolean b1check=false;
 
     LoadState loading;
 
 
 
 
-    public Buttons(){
+    public Buttons(SpriteBatch sb){
         loading=new LoadState();
 
-
-        stage=new Stage();
+        viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
+        stage=new Stage(viewport,sb);
         font=new BitmapFont();
         font.setColor(Color.BLACK);
         font.getData().setScale(3);
@@ -95,12 +102,50 @@ public class Buttons implements ApplicationListener {
 
     }
 
-    public void update(){
-
-    }
-
     @Override
     public void create() {
+        button1.addListener(new ClickListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                b1check=true;
+                return true;
+            }
+
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                b1check=false;
+                System.out.println("Star Clicked");
+            }
+        });
+
+
+
+        button2.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                if(b1check==true) {
+                    if(Play_State.ongoingmove==false) {
+                        Play_State.ongoingmove = true;
+                        Warrior.posture = 1;
+                        Play_State.bodiesToRemove.add(Warrior.hero);
+                        Warrior.defineHeroAttack();
+                        Warrior.heroattack.applyForceToCenter(200,0, true);
+                    }
+                }
+                return true;
+            }
+        });
+        button3.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                System.out.println("button3 Clicked");
+                Warrior.hero.applyForceToCenter(-100,0,true);
+                return true;
+            }
+        });
+        button4.addListener(new InputListener(){
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                System.out.println("button4 Clicked");
+                Warrior.hero.applyForceToCenter(100,0,true);
+                return true;
+            }
+        });
 
     }
 

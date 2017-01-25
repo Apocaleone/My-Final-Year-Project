@@ -25,14 +25,14 @@ public class Warrior extends Sprite {
     public enum Move{Running,Highkick,Lowkick};
     public Move currentState;
     public Move previousState;
-    public World world;
+    public static World world;
     public static Body hero,heroattack,heroretreating;
     public Animation running,highkick,lowkick;
     public static float time;
     private TextureRegion warriorinit;
 
     boolean rightside;
-    public int posture=0;
+    public static int posture=0;
     public static boolean fallback=false;
     LoadState loading;
 
@@ -75,20 +75,20 @@ public class Warrior extends Sprite {
     }
 
     public void update(float dt){
-        if(posture==0)
+        if(posture==0)//run animation follows body only if posture=0
         setPosition(hero.getPosition().x-getWidth()/2,hero.getPosition().y-getHeight()/2);
-        if(posture==1)
+        if(posture==1)//flying kick animation follows body only if posture=1
         setPosition(heroattack.getPosition().x-getWidth()/2,heroattack.getPosition().y-getHeight()/2);
-        setRegion(getFrame(dt));
+        setRegion(getFrame(dt));//set the texture region of animation to the sprite which is the entire class
     }
 
-    public TextureRegion getFrame(float dt){
-        currentState=getMove(posture);
+    public TextureRegion getFrame(float dt){//determines the animation to be executed.
+        currentState=getMove(posture);//get the type of move that is being called
 
 
-        TextureRegion region = null;
-        switch (currentState){
-            case Running:
+        TextureRegion region = null;//default value of the texture region in case running animation fails
+        switch (currentState){//switch between different animation states.
+            case Running://the real default value i.e. running animation
                 region=running.getKeyFrame(time,true);
                 break;
             case Highkick:
@@ -96,10 +96,8 @@ public class Warrior extends Sprite {
                 break;
             case Lowkick:
                 region=lowkick.getKeyFrame(time);
-                if(lowkick.isAnimationFinished(time))
-                    posture=0;
                 break;
-            default:
+            default://is not needed, or the case running is not needed. Needs to be checked
                 region=running.getKeyFrame(time,true);
                 break;
         }
@@ -114,13 +112,13 @@ public class Warrior extends Sprite {
             rightside=true;
         }*/
 
-        time=currentState==previousState ? time+dt : 0;
+        time=currentState==previousState ? time+dt : 0;//I don't know why I put it here but the tutorial said so, to swap between different states of animation.
         previousState=currentState;
-        return region;
+        return region;//return the region to the called position
     }
 
 
-    public Move getMove(int posture){
+    public Move getMove(int posture){//the actual function that determines the move to be executed.
         if(posture==1)
             return Move.Highkick;
         else if(posture==2)
@@ -131,7 +129,7 @@ public class Warrior extends Sprite {
 
 
 
-    public void defineWarrior(){
+    public static void defineWarrior(){
     BodyDef bdef=new BodyDef();
      bdef.position.set(Lone_Warrior1.x,Lone_Warrior1.y );
      bdef.type=BodyDef.BodyType.DynamicBody;
@@ -147,7 +145,7 @@ public class Warrior extends Sprite {
      hero.createFixture(fdef).setUserData("warrior");
     }
 
-    public void defineHeroAttack(){
+    public static void defineHeroAttack(){
         BodyDef bdef=new BodyDef();
         bdef.position.set(hero.getPosition().x,hero.getPosition().y);
         bdef.type=BodyDef.BodyType.DynamicBody;
@@ -163,7 +161,7 @@ public class Warrior extends Sprite {
         heroattack.createFixture(fdef).setUserData("warrior1");
     }
 
-    public void defineHeroRetreating(){
+    public static void defineHeroRetreating(){
         BodyDef bdef=new BodyDef();
         bdef.position.set(Lone_Warrior1.x1,Lone_Warrior1.y1);
         bdef.type=BodyDef.BodyType.DynamicBody;

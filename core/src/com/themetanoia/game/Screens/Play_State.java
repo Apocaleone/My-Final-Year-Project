@@ -29,24 +29,24 @@ import com.themetanoia.game.Worlds.NightWorld;
 public class Play_State implements Screen {
 
     private Lone_Warrior1 game;
-    private Hud hud;
+    private Hud hud;//for heads up display
     private TextureAtlas atlas;
 
-    private OrthographicCamera gamecam;
-    private OrthographicCamera bgcam;
-    private Viewport gamePort,bgPort;
+    private OrthographicCamera gamecam;//for the camera that follows the warrior
+    private OrthographicCamera bgcam;//for the camera that follows the background, which is mostly stationary
+    private Viewport gamePort,bgPort;//to determine the viewports that make the view uniform across all devices
 
-      public static World world;
-    private Box2DDebugRenderer b2dr;
+      public static World world;//to create a box2d world
+    private Box2DDebugRenderer b2dr;//to render the debug lines for box2d
 
-    public ShapeRenderer sR;
-    Warrior warrior;
+    public ShapeRenderer sR;//to render the shapes
+    Warrior warrior;//object for the warrior class
     Enemies enemies;
     Buttons buttons;
 
     private float time=0;
-    public static Array<Body> bodiesToRemove;
-    public static boolean ongoingmove=false, retreat=false,flag=false;
+    public static Array<Body> bodiesToRemove;//an array that takes care of removing the bodies in the array after each update
+    public static boolean ongoingmove=false, retreat=false,flag=false;//variables that determine the state of warrior
 
 
 
@@ -63,11 +63,11 @@ public class Play_State implements Screen {
 
         gamecam=new OrthographicCamera();
         bgcam=new OrthographicCamera();
-        gamePort=new StretchViewport(Lone_Warrior1.V_Width/Lone_Warrior1.PPM,Lone_Warrior1.V_Height/Lone_Warrior1.PPM,gamecam);
+        gamePort=new StretchViewport(Lone_Warrior1.V_Width/Lone_Warrior1.PPM,Lone_Warrior1.V_Height/Lone_Warrior1.PPM,gamecam);//making the view constant for all devices
         bgPort=new StretchViewport(Lone_Warrior1.V_Width/Lone_Warrior1.PPM,Lone_Warrior1.V_Height/Lone_Warrior1.PPM,bgcam);
 
         hud=new Hud(game.batch);
-        buttons=new Buttons();
+        buttons=new Buttons(game.batch);
 
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2,0);
         bgcam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2,0);
@@ -93,41 +93,7 @@ public class Play_State implements Screen {
     @Override
     public void show() {
 
-        buttons.button1.addListener(new InputListener(){           //Button properties!
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("Star Clicked");
-                if(ongoingmove==false) {
-                    ongoingmove = true;
-                    warrior.posture = 1;
-                    bodiesToRemove.add(warrior.hero);
-                    warrior.defineHeroAttack();
-                    warrior.heroattack.applyForceToCenter(200,0, true);
-                }
-                return true;
-            }
-        });
-
-        buttons.button2.addListener(new InputListener(){
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("Clicked");
-                warrior.posture=2;
-                return true;
-            }
-        });
-        buttons.button3.addListener(new InputListener(){
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("button3 Clicked");
-                warrior.hero.applyForceToCenter(-100,0,true);
-                return true;
-            }
-        });
-        buttons.button4.addListener(new InputListener(){
-            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("button4 Clicked");
-                warrior.hero.applyForceToCenter(100,0,true);
-                return true;
-            }
-        });
+     buttons.create();
     }
 
     public void update(float dt){
