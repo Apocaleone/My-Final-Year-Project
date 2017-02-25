@@ -14,6 +14,7 @@ public class PlayStateAssetmanager {
     public void load(){
         manager.load("ButtonAtlas.pack", TextureAtlas.class);
         manager.load("WarriorJump.pack", TextureAtlas.class);
+        manager.load("MenuButtons.pack", TextureAtlas.class);
     }
 
     public void dispose(){

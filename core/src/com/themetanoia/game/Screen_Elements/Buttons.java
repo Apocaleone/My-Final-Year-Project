@@ -7,8 +7,6 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -20,7 +18,6 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Load_Screens.LoadState;
-import com.themetanoia.game.Load_Screens.PlayStateAssetmanager;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
 
@@ -120,14 +117,14 @@ public class Buttons implements ApplicationListener {
 
         button2.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                if(b1check==true) {
+                //if(b1check==true) {
                     if(Play_State.ongoingmove==false) {
                         Play_State.ongoingmove = true;
                         Warrior.posture = 1;
                         Play_State.bodiesToRemove.add(Warrior.hero);
-                        Warrior.defineHeroAttack();
-                        Warrior.heroattack.applyForceToCenter(200,0, true);
-                    }
+                        Warrior.defineHighkick();
+                        Warrior.highkickattack.applyForceToCenter(100,0, true);
+                   // }
                 }
                 return true;
             }
@@ -142,7 +139,15 @@ public class Buttons implements ApplicationListener {
         button4.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("button4 Clicked");
-                Warrior.hero.applyForceToCenter(100,0,true);
+                //if(b1check==true) {
+                    if(Play_State.ongoingmove==false) {
+                        Play_State.ongoingmove = true;
+                        Warrior.posture = 2;
+                        Play_State.bodiesToRemove.add(Warrior.hero);
+                        Warrior.defineLowkick();
+                        Warrior.lowkickattack.applyForceToCenter(100,0, true);
+                        // }
+                    }
                 return true;
             }
         });

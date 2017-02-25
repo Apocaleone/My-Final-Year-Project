@@ -1,19 +1,19 @@
 
-MenuButtons.png
+falling.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-startbuttondown
+falling0
   rotate: false
   xy: 1, 1
-  size: 300, 87
-  orig: 300, 87
+  size: 424, 429
+  orig: 424, 429
   offset: 0, 0
   index: -1
-startbutton
+falling1
   rotate: false
-  xy: 303, 7
-  size: 296, 81
-  orig: 296, 81
+  xy: 427, 24
+  size: 424, 406
+  orig: 424, 406
   offset: 0, 0
   index: -1

@@ -15,7 +15,7 @@ import aurelienribon.tweenengine.TweenManager;
 
 public class Lone_Warrior1 extends Game {
 	public SpriteBatch batch;//common sprite batch for all rendering because batch functions are heavy
-	public static final int V_Width=800;//global variable for screen resolution
+	public static final int V_Width=900;//global variable for screen resolution
 	public static final int V_Height=416;
 	public static final float PPM=100;//to reduce box2d bodies to 100 meters per pixel instead of 1 meter per pixel
 	public static float x=100/PPM,y=50/PPM,x1=0,y1=0;//to save the positions of the player and enemy bodies when they get destroyed
@@ -23,6 +23,7 @@ public class Lone_Warrior1 extends Game {
 	public static final short BIT_RUN=2;
 	public static final short BIT_ATTACK=4;
 	public static final short BIT_APPROACHING=8;
+	public static final short BIT_DEFEATED=16;
 
 
 	public static TweenManager tweenManager;//for animation manipulation

@@ -5,6 +5,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -13,6 +14,8 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.utils.viewport.StretchViewport;
+import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Lone_Warrior1;
 
@@ -21,6 +24,7 @@ import com.themetanoia.game.Lone_Warrior1;
  */
 public class MenuScreen extends Game implements Screen {
     private Stage stage;
+    private Viewport viewport;
     private BitmapFont font;
     private TextButton.TextButtonStyle startbuttonStyle;
     public TextButton startbutton;
@@ -35,13 +39,15 @@ public class MenuScreen extends Game implements Screen {
 
         this.game=game;
 
+        viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
 
-        stage=new Stage();
+
+        stage=new Stage(viewport,game.batch);
         font=new BitmapFont();
         font.setColor(Color.BLACK);
         font.getData().setScale(3);
         skin=new Skin();
-        skin.addRegions(loading.assets.manager.get("ButtonAtlas.pack",TextureAtlas.class));
+        skin.addRegions(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));
 
         Table table=new Table();
         table.center();
@@ -51,12 +57,12 @@ public class MenuScreen extends Game implements Screen {
 
 
         startbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
-        startbuttonStyle.up= skin.getDrawable("topleft");
-        startbuttonStyle.down= skin.getDrawable("bottomleft");
+        startbuttonStyle.up= skin.getDrawable("startbuttondown");
+        startbuttonStyle.down= skin.getDrawable("startbutton");
         startbuttonStyle.font=font;
         startbutton= new TextButton(" ",startbuttonStyle);
 
-        table.add(startbutton).expandX().padTop(100).width(200).height(50).center();
+        table.add(startbutton).expandX().padBottom(100).width(200).height(50).center();
 
         stage.addActor(table);
 
@@ -68,9 +74,11 @@ public class MenuScreen extends Game implements Screen {
     public void show() {
         startbutton.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
                 game.setScreen(new Play_State(game));
-                return true;
             }
         });
 
@@ -78,7 +86,7 @@ public class MenuScreen extends Game implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1, 0, 0, 1);
+        Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act();

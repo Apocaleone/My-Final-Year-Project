@@ -1,0 +1,48 @@
+
+berserker.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+berserker0
+  rotate: false
+  xy: 1, 1
+  size: 900, 600
+  orig: 900, 600
+  offset: 0, 0
+  index: -1
+
+berserker2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+berserker1
+  rotate: false
+  xy: 1, 1
+  size: 900, 600
+  orig: 900, 600
+  offset: 0, 0
+  index: -1
+
+berserker3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+berserker2
+  rotate: false
+  xy: 1, 1
+  size: 900, 600
+  orig: 900, 600
+  offset: 0, 0
+  index: -1
+
+berserker4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+berserker3
+  rotate: false
+  xy: 1, 1
+  size: 900, 600
+  orig: 900, 600
+  offset: 0, 0
+  index: -1

@@ -22,26 +22,22 @@ public class NightWorld {
     public TmxMapLoader backgroundloader;
     public static TiledMap bg;
     public TiledMap bg2;
-    public TiledMap bg3;
     public static OrthogonalTiledMapRenderer renderer;
     public static OrthogonalTiledMapRenderer renderer2;
-    public OrthogonalTiledMapRenderer renderer3;
 
     public NightWorld(World world){
         backgroundloader= new TmxMapLoader();
         bg=backgroundloader.load("background2.tmx");
         bg2=backgroundloader.load("bg.tmx");
-        bg3=backgroundloader.load("background2.tmx");
         renderer=new OrthogonalTiledMapRenderer(bg,1/Lone_Warrior1.PPM);
         renderer2=new OrthogonalTiledMapRenderer(bg2,1/Lone_Warrior1.PPM);
-        renderer3=new OrthogonalTiledMapRenderer(bg,1/Lone_Warrior1.PPM);
 
         BodyDef bdef=new BodyDef();
         PolygonShape shape=new PolygonShape();
         FixtureDef fdef=new FixtureDef();
         Body body;
 
-        for(MapObject object : bg.getLayers().get(3).getObjects().getByType(RectangleMapObject.class)){
+        for(MapObject object : bg.getLayers().get(2).getObjects().getByType(RectangleMapObject.class)){
             Rectangle rect= ((RectangleMapObject) object).getRectangle();
 
             bdef.type=BodyDef.BodyType.StaticBody;

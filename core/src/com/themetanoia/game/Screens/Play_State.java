@@ -10,12 +10,11 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
-import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.themetanoia.game.Characters.Enemies;
+import com.themetanoia.game.Characters.Berserker;
+import com.themetanoia.game.Characters.Spearman;
 import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Screen_Elements.Buttons;
 import com.themetanoia.game.Screen_Elements.Hud;
@@ -41,12 +40,13 @@ public class Play_State implements Screen {
 
     public ShapeRenderer sR;//to render the shapes
     Warrior warrior;//object for the warrior class
-    Enemies enemies;
+    Berserker berserker;
+    Spearman spearman;
     Buttons buttons;
 
     private float time=0;
     public static Array<Body> bodiesToRemove;//an array that takes care of removing the bodies in the array after each update
-    public static boolean ongoingmove=false, retreat=false,flag=false;//variables that determine the state of warrior
+    public static boolean ongoingmove=false, retreat=false,flag=false,flag2=false;//variables that determine the state of warrior
 
 
 
@@ -78,7 +78,12 @@ public class Play_State implements Screen {
         new NightWorld(world);
 
         warrior=new Warrior(world,this);
-        enemies=new Enemies(world,this);
+        berserker =new Berserker(world,this);
+        spearman=new Spearman(world);
+
+
+        berserker.defineBerserker();
+        spearman.defineSpearman();
 
         bodiesToRemove=new Array<Body>();
     }
@@ -100,24 +105,34 @@ public class Play_State implements Screen {
 
         world.step(1/45f,6,2);
         warrior.update(dt);
-        enemies.update(dt);
+        berserker.update(dt);
+        spearman.update(dt);
         if(warrior.posture==1&&ongoingmove==true){
-            if(warrior.heroattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
-                bodiesToRemove.add(warrior.heroattack);
+            if(warrior.highkickattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
+                bodiesToRemove.add(warrior.highkickattack);
                 retreat=true;
                 flag=true;
             }
+        }
 
-
+        if(warrior.posture==2&&ongoingmove==true){
+            if(warrior.lowkickattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
+                bodiesToRemove.add(warrior.lowkickattack);
+                retreat=true;
+                flag=true;
+            }
         }
         for(int i=0;i<bodiesToRemove.size;i++)//list that destroys the body
         {
            if(retreat==false) { //save the state of warrior running state position after body being removed.
                Lone_Warrior1.x = warrior.hero.getPosition().x;
                Lone_Warrior1.y = warrior.hero.getPosition().y;}
-            if(retreat==true)//only checks for the position of the body if warrior is in attack position
-            {Lone_Warrior1.x1=warrior.heroattack.getPosition().x;
-            Lone_Warrior1.y1=warrior.heroattack.getPosition().y;}
+            if(retreat==true&&warrior.posture==1)//only checks for the position of the body if warrior is in attack position
+            {Lone_Warrior1.x1=warrior.highkickattack.getPosition().x;
+            Lone_Warrior1.y1=warrior.highkickattack.getPosition().y;}
+            if(retreat==true&&warrior.posture==2)//only checks for the position of the body if warrior is in attack position
+            {Lone_Warrior1.x1=warrior.lowkickattack.getPosition().x;
+                Lone_Warrior1.y1=warrior.lowkickattack.getPosition().y;}
             Body b=bodiesToRemove.get(i);
             world.destroyBody(b);
         }
@@ -139,8 +154,11 @@ public class Play_State implements Screen {
         }
         NightWorld.renderer.setView(gamecam);
         NightWorld.renderer2.setView(bgcam);
-        warrior.hero.applyForceToCenter(3,0,true);
-        enemies.berserker.applyForceToCenter(-2,0,true);
+        warrior.hero.applyForceToCenter(2.2f,0,true);
+        if(berserker.berserkerstate==0)
+        berserker.berserker.applyForceToCenter(-2.3f,0,true);
+        if(spearman.spearmanstate==0)
+        spearman.spearman.applyForceToCenter(-2.3f,0,true);
 
     }
 
@@ -164,7 +182,10 @@ public class Play_State implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         warrior.draw(game.batch);
-        enemies.draw(game.batch);
+        if(berserker.berserkerstate!=-1)
+        berserker.draw(game.batch);
+        if(spearman.spearmanstate!=-1)
+        spearman.draw(game.batch);
         game.batch.end();
 
 

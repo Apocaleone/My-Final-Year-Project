@@ -5,7 +5,8 @@ import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
 import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.Manifold;
-import com.themetanoia.game.Characters.Enemies;
+import com.themetanoia.game.Characters.Berserker;
+import com.themetanoia.game.Characters.Spearman;
 import com.themetanoia.game.Characters.Warrior;
 
 /**
@@ -17,13 +18,23 @@ public class MyContactListener implements ContactListener {
         Fixture fa=contact.getFixtureA();
         Fixture fb=contact.getFixtureB();
 
-        if(fb.getUserData()!=null&&fb.getUserData().equals("warrior1")){
+        if(fb.getUserData()!=null&&fb.getUserData().equals("warriorhighkick")){
             System.out.println("warrior attacks");
             if(fa.getUserData()!=null&&fa.getUserData().equals("berserker")){
                 System.out.println("berserker Attacked!");
-                Enemies.berserker.applyForceToCenter(500,0,true);
+                Berserker.berserker.applyForceToCenter(300,100,true);
             }
         }
+
+        if(fa.getUserData()!=null&&fa.getUserData().equals("warriorlowkick")) {
+            System.out.println("warrior attacks");
+            if (fb.getUserData() != null && fb.getUserData().equals("spearman")) {
+                System.out.println("spearman Attacked!");
+                Spearman.spearman.applyForceToCenter(300, 100, true);
+            }
+
+        }
+
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("warrior")){
             if(fb.getUserData()!=null&&fb.getUserData().equals("berserker")){
@@ -31,13 +42,10 @@ public class MyContactListener implements ContactListener {
                 System.out.println("berserker Attacks!");
                 Warrior.hero.applyForceToCenter(-500,0,true);
             }
-        }
+            if (fb.getUserData() != null && fb.getUserData().equals("spearman")){
+                System.out.println("warrior attacked by spearman");
+                Warrior.hero.applyForceToCenter(-300,0,true);
 
-        if(fb.getUserData()!=null&&fb.getUserData().equals("warrior")){
-            if(fa.getUserData()!=null&&fa.getUserData().equals("berserker")){
-                System.out.println("warrior attacked by enemy");
-                System.out.println("Berserker Attacks!");
-                Warrior.hero.applyForceToCenter(-500,0,true);
             }
         }
 
