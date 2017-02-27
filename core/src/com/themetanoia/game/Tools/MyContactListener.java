@@ -20,11 +20,21 @@ public class MyContactListener implements ContactListener {
 
         if(fb.getUserData()!=null&&fb.getUserData().equals("warriorhighkick")){
             System.out.println("warrior attacks");
-            if(fa.getUserData()!=null&&fa.getUserData().equals("berserker")){
+            if(fa.getUserData()!=null&&fa.getUserData().equals("berserker1")){
                 System.out.println("berserker Attacked!");
-                Berserker.berserker.applyForceToCenter(300,100,true);
+                Berserker.berserker1.applyForceToCenter(300,100,true);
             }
         }
+
+        if(fa.getUserData()!=null&&fa.getUserData().equals("warriorhighkick")){
+            System.out.println("warrior attacks");
+            if(fb.getUserData()!=null&&fb.getUserData().equals("berserker1")){
+                System.out.println("berserker Attacked!");
+                Berserker.berserker1.applyForceToCenter(300,100,true);
+            }
+        }
+
+
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("warriorlowkick")) {
             System.out.println("warrior attacks");
@@ -37,12 +47,24 @@ public class MyContactListener implements ContactListener {
 
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("warrior")){
-            if(fb.getUserData()!=null&&fb.getUserData().equals("berserker")){
+            if(fb.getUserData()!=null&&fb.getUserData().equals("berserker1")){
                 System.out.println("warrior attacked by enemy");
                 System.out.println("berserker Attacks!");
                 Warrior.hero.applyForceToCenter(-500,0,true);
             }
             if (fb.getUserData() != null && fb.getUserData().equals("spearman")){
+                System.out.println("warrior attacked by spearman");
+                Warrior.hero.applyForceToCenter(-300,0,true);
+
+            }
+        }
+        if(fb.getUserData()!=null&&fb.getUserData().equals("warrior")){
+            if(fa.getUserData()!=null&&fa.getUserData().equals("berserker1")){
+                System.out.println("warrior attacked by enemy");
+                System.out.println("berserker Attacks!");
+                Warrior.hero.applyForceToCenter(-500,0,true);
+            }
+            if (fa.getUserData() != null && fa.getUserData().equals("spearman")){
                 System.out.println("warrior attacked by spearman");
                 Warrior.hero.applyForceToCenter(-300,0,true);
 

@@ -17,8 +17,7 @@ import com.themetanoia.game.Screens.Play_State;
  * Created by MITHUN on 12-01-2017.
  */
 public class Berserker extends Sprite {
-    public static World world;
-    public static Body berserker,berserkerdefeated;
+    public static Body berserker1,berserkerdefeated,berserker2;
     private TextureAtlas atlas;
     public Animation approaching,defeated;
     public static float time;
@@ -26,10 +25,8 @@ public class Berserker extends Sprite {
 
     public static int berserkerstate=0;
 
-    public Berserker(World world, Play_State state){
-        this.world=world;
+    public Berserker(){
         atlas=new TextureAtlas("berserker.pack");
-
         time=0;
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
@@ -55,16 +52,15 @@ public class Berserker extends Sprite {
 
     public void update(float dt){
         if(berserkerstate!=-1){
-        setPosition(berserker.getPosition().x-(getWidth()/2)+0.5f,berserker.getPosition().y-((getHeight()/2)+0.1f));
-        if(berserkerstate==0&&berserker.getLinearVelocity().x>0)
+        setPosition(berserker1.getPosition().x-(getWidth()/2)+0.5f,berserker1.getPosition().y-((getHeight()/2)+0.1f));
+        if(berserkerstate==0&&berserker1.getLinearVelocity().x>0)
             berserkerstate=1;
-        if(berserkerstate==1&&berserker.getLinearVelocity().x==0){
-            Play_State.bodiesToRemove.add(berserker);
+        if(berserkerstate==1&&berserker1.getLinearVelocity().x==0){
+            Play_State.bodiesToRemove.add(berserker1);
             berserkerstate=-1;
         }
        /* else{
         berserkerstate=0;}*/
-
         setRegion(getFrame(dt));
         }
     }
@@ -80,11 +76,11 @@ public class Berserker extends Sprite {
 
     }
 
-    public void defineBerserker(){
+    public void defineBerserker1(int i){
         BodyDef bdef=new BodyDef();
-        bdef.position.set((Lone_Warrior1.V_Width/Lone_Warrior1.PPM)*3,100/Lone_Warrior1.PPM );
+        bdef.position.set((Lone_Warrior1.V_Width/Lone_Warrior1.PPM)*i,100/Lone_Warrior1.PPM );
         bdef.type=BodyDef.BodyType.DynamicBody;
-        berserker=world.createBody(bdef);
+        berserker1=Play_State.world.createBody(bdef);
 
         FixtureDef fdef=new FixtureDef();
         PolygonShape War=new PolygonShape();
@@ -94,15 +90,15 @@ public class Berserker extends Sprite {
         fdef.restitution=0.2f;
         fdef.filter.categoryBits=Lone_Warrior1.BIT_APPROACHING;
         fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_RUN|Lone_Warrior1.BIT_ATTACK;
-        berserker.createFixture(fdef).setUserData("berserker");
+        berserker1.createFixture(fdef).setUserData("berserker1");
 
     }
 
-    public static void defeatedBerserker(){
+    public static void defeatedBerserker2(){
         BodyDef bdef=new BodyDef();
-        bdef.position.set(berserker.getPosition().x,berserker.getPosition().y );
+        bdef.position.set(berserker1.getPosition().x,berserker1.getPosition().y );
         bdef.type=BodyDef.BodyType.DynamicBody;
-        berserkerdefeated=world.createBody(bdef);
+        berserkerdefeated=Play_State.world.createBody(bdef);
 
         FixtureDef fdef=new FixtureDef();
         PolygonShape War=new PolygonShape();
