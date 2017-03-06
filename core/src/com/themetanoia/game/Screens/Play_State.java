@@ -14,12 +14,14 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Characters.Berserker;
+import com.themetanoia.game.Characters.Enemies;
 import com.themetanoia.game.Characters.Spearman;
 import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Screen_Elements.Buttons;
 import com.themetanoia.game.Screen_Elements.Hud;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Tools.MyContactListener;
+import com.themetanoia.game.Tools.Spawner;
 import com.themetanoia.game.Worlds.NightWorld;
 
 /**
@@ -39,12 +41,14 @@ public class Play_State implements Screen {
     private Box2DDebugRenderer b2dr;//to render the debug lines for box2d
 
     public ShapeRenderer sR;//to render the shapes
+    private Spawner spawn;
     Warrior warrior;//object for the warrior class
-    Berserker berserker;
-    Spearman spearman;
+    //Berserker berserker;
+    //Spearman spearman;
     Buttons buttons;
 
     private float time=0;
+    int j=0;
     public static Array<Body> bodiesToRemove;//an array that takes care of removing the bodies in the array after each update
     public static boolean ongoingmove=false, retreat=false,flag=false,flag2=false;//variables that determine the state of warrior
 
@@ -78,11 +82,11 @@ public class Play_State implements Screen {
         new NightWorld(world);
         //character initialization
         warrior=new Warrior(world,this);
-        berserker =new Berserker();
-        spearman=new Spearman(world);
+        spawn=new Spawner(this);
+        //berserker =new Berserker(this,(Lone_Warrior1.V_Width/Lone_Warrior1.PPM)*3f,100/Lone_Warrior1.PPM );
+        //spearman=new Spearman(this);
         //character body creation
-        berserker.defineBerserker1(3);
-        spearman.defineSpearman();
+        //spearman.defineEnemy();
 
         bodiesToRemove=new Array<Body>();
     }
@@ -162,18 +166,25 @@ public class Play_State implements Screen {
         game.batch.setProjectionMatrix(gamecam.combined);
         game.batch.begin();
         warrior.draw(game.batch);
-        if(berserker.berserkerstate!=-1)
-            berserker.draw(game.batch);
-        if(spearman.spearmanstate!=-1)
-            spearman.draw(game.batch);
+        for(Enemies enemy: spawn.getEnemies()) {
+            if(enemy.check())
+                enemy.draw(game.batch);
+
+        }
+        //if(berserker.berserkerstate!=-1)
+           // berserker.draw(game.batch);
+        //if(spearman.spearmanstate!=-1)
+            //spearman.draw(game.batch);
         game.batch.end();
 
     }
 
     public void updatingCharacterClasses(float dt){//update method for individual character classes
         warrior.update(dt);
-        berserker.update(dt);
-        spearman.update(dt);
+        for(Enemies enemy: spawn.getEnemies())
+            enemy.update(dt);
+        //berserker.update(dt);
+        //spearman.update(dt);
     }
 
     public void checkForMoves(){
@@ -232,10 +243,8 @@ public class Play_State implements Screen {
 
     public void forceApplicationFunction(){
         warrior.hero.applyForceToCenter(2.2f,0,true);
-        if(berserker.berserkerstate==0)
-            berserker.berserker1.applyForceToCenter(-2.3f,0,true);
-        if(spearman.spearmanstate==0)
-            spearman.spearman.applyForceToCenter(-2.3f,0,true);
+        //if(spearman.spearmanstate==0)
+           // spearman.spearman1.applyForceToCenter(-2.3f,0,true);
 
     }
 
