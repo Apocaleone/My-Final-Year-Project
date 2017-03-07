@@ -121,7 +121,7 @@ public class Play_State implements Screen {
 
         time+=delta;
 
-        gamecam.position.set(warrior.hero.getPosition().x+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
+        gamecam.position.set(Lone_Warrior1.x+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
         gamecam.update();
 
         NightWorld.renderer2.render();
@@ -209,9 +209,9 @@ public class Play_State implements Screen {
     public void bodyDestructor(){
         for(int i=0;i<bodiesToRemove.size;i++)//list that destroys the body
         {
-            if(retreat==false) { //save the state of warrior running state position after body being removed.
+           /* if(retreat==false) { //save the state of warrior running state position after body being removed.
                 Lone_Warrior1.x = warrior.hero.getPosition().x;
-                Lone_Warrior1.y = warrior.hero.getPosition().y;}
+                Lone_Warrior1.y = warrior.hero.getPosition().y;}*/
             if(retreat==true&&warrior.posture==1)//only checks for the position of the body if warrior is in attack position
             {Lone_Warrior1.x1=warrior.highkickattack.getPosition().x;
                 Lone_Warrior1.y1=warrior.highkickattack.getPosition().y;}

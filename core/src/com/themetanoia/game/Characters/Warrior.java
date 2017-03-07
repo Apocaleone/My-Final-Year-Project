@@ -71,7 +71,9 @@ public class Warrior extends Sprite {
 
     public void update(float dt){
         if(posture==0)//run animation follows body only if posture=0
-        setPosition(hero.getPosition().x-getWidth()/2,hero.getPosition().y-getHeight()/2);
+        {setPosition(hero.getPosition().x-getWidth()/2,hero.getPosition().y-getHeight()/2);
+            Lone_Warrior1.x=hero.getPosition().x;
+            Lone_Warrior1.y=hero.getPosition().y;}
         if(posture==1)//flying kick animation follows body only if posture=1
         setPosition(highkickattack.getPosition().x-getWidth()/2, highkickattack.getPosition().y-getHeight()/2);
         if(posture==2)

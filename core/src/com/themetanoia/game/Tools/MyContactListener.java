@@ -1,5 +1,6 @@
 package com.themetanoia.game.Tools;
 
+import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
 import com.badlogic.gdx.physics.box2d.ContactListener;
@@ -22,7 +23,8 @@ public class MyContactListener implements ContactListener {
             System.out.println("warrior attacks");
             if(fa.getUserData()!=null&&fa.getUserData().equals("berserker1")){
                 System.out.println("berserker Attacked!");
-                Spawner.berserkers.get(0).berserker1.applyForceToCenter(300,100,true);
+                //Spawner.berserkers.get(0).berserker1.applyForceToCenter(300,100,true);
+                fa.getBody().applyForceToCenter(300,100,true);
             }
         }
 
@@ -30,7 +32,8 @@ public class MyContactListener implements ContactListener {
             System.out.println("warrior attacks");
             if(fb.getUserData()!=null&&fb.getUserData().equals("berserker1")){
                 System.out.println("berserker Attacked!");
-                Spawner.berserkers.get(0).berserker1.applyForceToCenter(300,100,true);
+                //Spawner.berserkers.get(0).berserker1.applyForceToCenter(300,100,true);
+                fb.getBody().applyForceToCenter(300,100,true);
             }
         }
 
@@ -40,10 +43,21 @@ public class MyContactListener implements ContactListener {
             System.out.println("warrior attacks");
             if (fb.getUserData() != null && fb.getUserData().equals("spearman1")) {
                 System.out.println("spearman1 Attacked!");
-                Spawner.spearman.get(0).spearman1.applyForceToCenter(300,100,true);
+                //Spawner.spearman.get(0).spearman1.applyForceToCenter(300,100,true);
+                fb.getBody().applyForceToCenter(300,100,true);
             }
 
         }
+        if(fb.getUserData()!=null&&fb.getUserData().equals("warriorlowkick")) {
+            System.out.println("warrior attacks");
+            if (fa.getUserData() != null && fa.getUserData().equals("spearman1")) {
+                System.out.println("spearman1 Attacked!");
+                //Spawner.spearman.get(0).spearman1.applyForceToCenter(300,100,true);
+                fa.getBody().applyForceToCenter(300,100,true);
+            }
+
+        }
+
 
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("warrior")){
