@@ -24,6 +24,7 @@ public class Spearman extends Enemies {
 
     public int spearmanstate=0;
 
+
     public Spearman(Play_State state,float x, float y){
         super(state,x,y);
         atlas=new TextureAtlas("Warrior.pack");
@@ -50,6 +51,7 @@ public class Spearman extends Enemies {
                 spearmanstate=1;
             if (spearmanstate==1 && spearman1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(spearman1);
+                Play_State.flag2=true;
                 spearmanstate = -1;
 
             }
@@ -93,5 +95,9 @@ public class Spearman extends Enemies {
         fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_RUN|Lone_Warrior1.BIT_ATTACK;
         spearman1.createFixture(fdef).setUserData("spearman1");
 
+    }
+
+    public Body getSpearman1() {
+        return spearman1;
     }
 }

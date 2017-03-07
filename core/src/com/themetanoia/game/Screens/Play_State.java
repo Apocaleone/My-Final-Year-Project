@@ -219,6 +219,10 @@ public class Play_State implements Screen {
             {Lone_Warrior1.x1=warrior.lowkickattack.getPosition().x;
                 Lone_Warrior1.y1=warrior.lowkickattack.getPosition().y;}
             Body b=bodiesToRemove.get(i);
+            if(flag2){
+                System.out.println("enemy destroyed");
+                spawn.spawn();
+            flag2=false;}
             world.destroyBody(b);
         }
         bodiesToRemove.clear();
@@ -247,6 +251,7 @@ public class Play_State implements Screen {
            // spearman.spearman1.applyForceToCenter(-2.3f,0,true);
 
     }
+
 
 
 }

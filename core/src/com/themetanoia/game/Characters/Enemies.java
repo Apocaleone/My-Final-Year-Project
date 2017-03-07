@@ -12,6 +12,9 @@ import com.themetanoia.game.Screens.Play_State;
 public abstract class Enemies extends Sprite {
     World world;
     Body b2body;
+    public Enemies(){
+
+    }
     public Enemies(Play_State screen,float x, float y){
         this.world=screen.world;
         setPosition(x,y);
