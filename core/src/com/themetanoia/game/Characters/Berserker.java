@@ -21,19 +21,16 @@ public class Berserker extends Enemies {
     public Body berserker1;
     private TextureAtlas atlas;
     public Animation approaching,defeated;
-    public static float time;
+    public float time;
     private TextureRegion berkserkerinit;
 
     public int berserkerstate=0;
 
-    public Berserker(){
-
-    }
-
 
     public Berserker(Play_State state,float x, float y){
         super(state, x,  y);
-        atlas=new TextureAtlas("berserker.pack");
+        atlas=new TextureAtlas();
+        atlas=Lone_Warrior1.getAtlas(1);
         time=0;
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
@@ -53,7 +50,7 @@ public class Berserker extends Enemies {
         frames.clear();
 
 
-        setBounds(0,0,400/ Lone_Warrior1.PPM,250/Lone_Warrior1.PPM);//manipulates the size of sprite
+        setBounds(getX(),getY(),400/ Lone_Warrior1.PPM,250/Lone_Warrior1.PPM);//manipulates the size of sprite
         setRegion(berkserkerinit);
     }
 
@@ -63,12 +60,13 @@ public class Berserker extends Enemies {
             if(berserkerstate==0&&berserker1.getLinearVelocity().x>0)
                 berserkerstate=1;
             if(berserkerstate==1&&berserker1.getLinearVelocity().x==0){
+                System.out.println("Berserker fallen");
                 Play_State.bodiesToRemove.add(berserker1);
                 Play_State.flag2=true;
                 berserkerstate=-1;
             }
             if(berserkerstate==0)
-                berserker1.applyForceToCenter(-0.3f,0,true);
+                berserker1.applyForceToCenter(-2.3f,0,true);
        /* else{
         berserkerstate=0;}*/
             setRegion(getFrame(dt));
@@ -109,8 +107,5 @@ public class Berserker extends Enemies {
         fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_RUN|Lone_Warrior1.BIT_ATTACK;
         berserker1.createFixture(fdef).setUserData("berserker1");//to be checked
 
-    }
-    public Body getBerserker1() {
-        return berserker1;
     }
 }

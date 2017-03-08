@@ -17,6 +17,7 @@ import com.themetanoia.game.Characters.Berserker;
 import com.themetanoia.game.Characters.Enemies;
 import com.themetanoia.game.Characters.Spearman;
 import com.themetanoia.game.Characters.Warrior;
+import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Screen_Elements.Buttons;
 import com.themetanoia.game.Screen_Elements.Hud;
 import com.themetanoia.game.Lone_Warrior1;
@@ -88,6 +89,8 @@ public class Play_State implements Screen {
         //character body creation
         //spearman.defineEnemy();
 
+        spawn.spawn();
+
         bodiesToRemove=new Array<Body>();
     }
 
@@ -110,6 +113,11 @@ public class Play_State implements Screen {
         retreatFunction();//retreats the warrior to its attack initation position
         NightWorld.renderer.setView(gamecam);
         NightWorld.renderer2.setView(bgcam);
+        if(flag2){
+            spawn.spawn();
+            System.out.println("enemy destroyed");
+            flag2=false;}
+
         forceApplicationFunction();//applies force to each individual character in the game
     }
 
@@ -219,10 +227,7 @@ public class Play_State implements Screen {
             {Lone_Warrior1.x1=warrior.lowkickattack.getPosition().x;
                 Lone_Warrior1.y1=warrior.lowkickattack.getPosition().y;}
             Body b=bodiesToRemove.get(i);
-            if(flag2){
-                System.out.println("enemy destroyed");
-                spawn.spawn();
-            flag2=false;}
+            System.out.println("destroying body");
             world.destroyBody(b);
         }
         bodiesToRemove.clear();

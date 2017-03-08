@@ -27,7 +27,8 @@ public class Spearman extends Enemies {
 
     public Spearman(Play_State state,float x, float y){
         super(state,x,y);
-        atlas=new TextureAtlas("Warrior.pack");
+        atlas=new TextureAtlas();
+        atlas=Lone_Warrior1.getAtlas(2);
         time=0;
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
@@ -38,7 +39,7 @@ public class Spearman extends Enemies {
         approaching=new Animation(0.1f,frames);
         frames.clear();
         spearmaninit=new TextureRegion(atlas.findRegion("running0"));
-        setBounds(0,0,100/ Lone_Warrior1.PPM,100/Lone_Warrior1.PPM);
+        setBounds(getX(),getY(),100/ Lone_Warrior1.PPM,100/Lone_Warrior1.PPM);
         setRegion(spearmaninit);
 
     }
@@ -56,7 +57,7 @@ public class Spearman extends Enemies {
 
             }
             if(spearmanstate==0)
-                spearman1.applyForceToCenter(-0.3f,0,true);
+                spearman1.applyForceToCenter(-2.3f,0,true);
             setRegion(getFrame(dt));
         }
     }
@@ -97,7 +98,4 @@ public class Spearman extends Enemies {
 
     }
 
-    public Body getSpearman1() {
-        return spearman1;
-    }
 }

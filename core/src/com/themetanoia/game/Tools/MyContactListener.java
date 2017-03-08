@@ -24,7 +24,7 @@ public class MyContactListener implements ContactListener {
             if(fa.getUserData()!=null&&fa.getUserData().equals("berserker1")){
                 System.out.println("berserker Attacked!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(300,100,true);
-                fa.getBody().applyForceToCenter(300,100,true);
+                fa.getBody().applyForceToCenter(500,100,true);
             }
         }
 
@@ -33,7 +33,7 @@ public class MyContactListener implements ContactListener {
             if(fb.getUserData()!=null&&fb.getUserData().equals("berserker1")){
                 System.out.println("berserker Attacked!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(300,100,true);
-                fb.getBody().applyForceToCenter(300,100,true);
+                fb.getBody().applyForceToCenter(500,100,true);
             }
         }
 

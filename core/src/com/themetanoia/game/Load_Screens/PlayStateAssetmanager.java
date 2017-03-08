@@ -11,10 +11,15 @@ import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 public class PlayStateAssetmanager {
     public AssetManager manager=new AssetManager();
 
+    public PlayStateAssetmanager() {
+    }
+
     public void load(){
         manager.load("ButtonAtlas.pack", TextureAtlas.class);
         manager.load("WarriorJump.pack", TextureAtlas.class);
         manager.load("MenuButtons.pack", TextureAtlas.class);
+        manager.load("berserker.pack", TextureAtlas.class);
+        manager.load("Warrior.pack",TextureAtlas.class);
     }
 
     public void dispose(){
