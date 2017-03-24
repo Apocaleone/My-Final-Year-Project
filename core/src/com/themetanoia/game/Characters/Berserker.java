@@ -62,7 +62,7 @@ public class Berserker extends Enemies {
             if(berserkerstate==1&&berserker1.getLinearVelocity().x==0){
                 System.out.println("Berserker fallen");
                 Play_State.bodiesToRemove.add(berserker1);
-                Play_State.flag2=true;
+                Play_State.enemycounter++;
                 berserkerstate=-1;
             }
             if(berserkerstate==0)

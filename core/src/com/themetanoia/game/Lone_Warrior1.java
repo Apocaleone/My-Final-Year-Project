@@ -39,9 +39,10 @@ public class Lone_Warrior1 extends Game {
 		batch = new SpriteBatch();//sprite batch initialized
 		loading=new LoadState();
 		atlas=new Array<TextureAtlas>();
-		atlas.add(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));
-		atlas.add(loading.assets.manager.get("berserker.pack",TextureAtlas.class));
-		atlas.add(loading.assets.manager.get("Warrior.pack",TextureAtlas.class));
+		atlas.add(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));//0
+		atlas.add(loading.assets.manager.get("berserker.pack",TextureAtlas.class));//1
+		atlas.add(loading.assets.manager.get("Warrior.pack",TextureAtlas.class));//2
+		atlas.add(loading.assets.manager.get("Spearman.pack",TextureAtlas.class));//3
 		setScreen(new MenuScreen(this));//setting the menu screen
 	}
 

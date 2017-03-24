@@ -30,20 +30,24 @@ public class Spawner {
     }
 
     public void spawn(){
-        RandomXS128 random = new RandomXS128();
-        System.out.println("Generating random number");
-        int a = random.nextInt(2)+1;
+        Play_State.enemycounter=0;
+       for(int i=0;i<3;i++) {
+            RandomXS128 random = new RandomXS128();
+            System.out.println("Generating random number");
+            int a = random.nextInt(1) + 1;
 
-        switch(a){
-            case 1:
-                System.out.println("creating berserker");
-                spearman.add(new Spearman(screen,(Lone_Warrior1.V_Width/Lone_Warrior1.PPM)+ Lone_Warrior1.x,100/Lone_Warrior1.PPM ));
-                break;
-            case 2:
-                berserkers.add(new Berserker(screen,(Lone_Warrior1.V_Width/Lone_Warrior1.PPM)+ Lone_Warrior1.x,100/Lone_Warrior1.PPM ));
-                break;
+            switch (a) {
+                case 1:
+                    System.out.println("creating berserker");
+                    spearman.add(new Spearman(screen, (Lone_Warrior1.V_Width / Lone_Warrior1.PPM) + (Lone_Warrior1.x+(i*500/Lone_Warrior1.PPM)), 100 / Lone_Warrior1.PPM));
+                    break;
+                case 2:
+                    berserkers.add(new Berserker(screen, (Lone_Warrior1.V_Width / Lone_Warrior1.PPM) + (Lone_Warrior1.x+(i*500/Lone_Warrior1.PPM)), 100 / Lone_Warrior1.PPM));
+                    break;
 
+            }
         }
+
     }
 
     public Array<Berserker> getBerserkers() {

@@ -52,7 +52,7 @@ public class Play_State implements Screen {
     int j=0;
     public static Array<Body> bodiesToRemove;//an array that takes care of removing the bodies in the array after each update
     public static boolean ongoingmove=false, retreat=false,flag=false,flag2=false;//variables that determine the state of warrior
-
+    public static int enemycounter=0;
 
 
 
@@ -107,16 +107,17 @@ public class Play_State implements Screen {
 
     public void update(float dt){
         world.step(1/45f,6,2);
+        counters();
         updatingCharacterClasses(dt);//calls update method of individual character classes
         checkForMoves();//checks the state of each body
         bodyDestructor();//destroys the bodies from the list
         retreatFunction();//retreats the warrior to its attack initation position
         NightWorld.renderer.setView(gamecam);
         NightWorld.renderer2.setView(bgcam);
-        if(flag2){
+        if(enemycounter>=3){
             spawn.spawn();
-            System.out.println("enemy destroyed");
-            flag2=false;}
+            System.out.println("spawning enemies");
+            }
 
         forceApplicationFunction();//applies force to each individual character in the game
     }
@@ -128,8 +129,11 @@ public class Play_State implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         time+=delta;
+        if(warrior.posture==-1)
+        gamecam.position.set(warrior.herodefeated.getPosition().x+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
+        else
+            gamecam.position.set(Lone_Warrior1.x+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
 
-        gamecam.position.set(Lone_Warrior1.x+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
         gamecam.update();
 
         NightWorld.renderer2.render();
@@ -255,6 +259,19 @@ public class Play_State implements Screen {
         //if(spearman.spearmanstate==0)
            // spearman.spearman1.applyForceToCenter(-2.3f,0,true);
 
+    }
+
+    public void counters(){
+        if(retreat==true){
+            Lone_Warrior1.x1=warrior.heroretreating.getPosition().x;
+            Lone_Warrior1.y1=warrior.heroretreating.getPosition().y;
+        }
+        if(warrior.posture==-1){
+            if(flag2==false){
+            warrior.defineHeroDefeated();
+                warrior.herodefeated.applyForceToCenter(-300,0,true);
+            flag2=true;}
+        }
     }
 
 

@@ -17,12 +17,12 @@ import com.themetanoia.game.Screens.Play_State;
  * Created by MITHUN on 17-10-2016.
  */
 public class Warrior extends Sprite {
-    public enum Move{Running,Highkick,Lowkick};
+    public enum Move{Defeat,Running,Highkick,Lowkick};
     public Move currentState;
     public Move previousState;
     public static World world;
-    public static Body hero, highkickattack,heroretreating,lowkickattack;
-    public Animation running,highkick,lowkick;
+    public static Body hero, highkickattack,heroretreating,lowkickattack,herodefeated;
+    public Animation running,highkick,lowkick,retreat,defeat;
     public static float time;
     private TextureRegion warriorinit;
 
@@ -45,23 +45,38 @@ public class Warrior extends Sprite {
         rightside=true;
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
-        for(int i=0;i<6;i++)
+        for(int i=0;i<3;i++)
         {
             frames.add(new TextureRegion(state.getAtlas().findRegion("running"+i)));
         }
         running=new Animation(0.1f,frames);
         frames.clear();
-        for(int i=0;i<8;i++)
+        for(int i=0;i<7;i++)
         {
             frames.add(new TextureRegion(state.getAtlas().findRegion("highkick"+i)));
         }
         highkick=new Animation(0.1f,frames);
         frames.clear();
-        for(int i=0;i<6;i++)
+        for(int i=0;i<12;i++)
         {
-            frames.add(new TextureRegion(state.getAtlas().findRegion("lowkick"+i)));
+            if(i<=9)
+            frames.add(new TextureRegion(state.getAtlas().findRegion("lowkick0"+i)));
+            else
+                frames.add(new TextureRegion(state.getAtlas().findRegion("lowkick"+i)));
         }
-        lowkick=new Animation(0.1f,frames);
+        lowkick=new Animation(0.05f,frames);
+        frames.clear();
+        for(int i=0;i<2;i++)
+        {
+            frames.add(new TextureRegion(state.getAtlas().findRegion("retreat"+i)));
+        }
+        retreat=new Animation(0.1f,frames);
+        frames.clear();
+        for(int i=0;i<5;i++)
+        {
+            frames.add(new TextureRegion(state.getAtlas().findRegion("defeat"+i)));
+        }
+        defeat=new Animation(0.1f,frames);
         frames.clear();
         defineWarrior();
         warriorinit=new TextureRegion(state.getAtlas().findRegion("running0"));
@@ -70,14 +85,20 @@ public class Warrior extends Sprite {
     }
 
     public void update(float dt){
+
+
         if(posture==0)//run animation follows body only if posture=0
         {setPosition(hero.getPosition().x-getWidth()/2,hero.getPosition().y-getHeight()/2);
             Lone_Warrior1.x=hero.getPosition().x;
-            Lone_Warrior1.y=hero.getPosition().y;}
+            Lone_Warrior1.y=hero.getPosition().y;
+            Lone_Warrior1.x1=hero.getPosition().x;
+            Lone_Warrior1.y1=hero.getPosition().y;}
         if(posture==1)//flying kick animation follows body only if posture=1
         setPosition(highkickattack.getPosition().x-getWidth()/2, highkickattack.getPosition().y-getHeight()/2);
         if(posture==2)
             setPosition(lowkickattack.getPosition().x-getWidth()/2, lowkickattack.getPosition().y-getHeight()/2);
+        if(posture==-1)
+            setPosition(herodefeated.getPosition().x-getWidth()/2,herodefeated.getPosition().y-getHeight()/2);
         setRegion(getFrame(dt));//set the texture region of animation to the sprite which is the entire class
     }
 
@@ -87,13 +108,22 @@ public class Warrior extends Sprite {
 
         TextureRegion region = null;//default value of the texture region in case running animation fails
         switch (currentState){//switch between different animation states.
+            case Defeat:
+                region=defeat.getKeyFrame(time);
+                break;
             case Running://the real default value i.e. running animation
                 region=running.getKeyFrame(time,true);
                 break;
             case Highkick:
+                if(Play_State.retreat==true)
+                    region=retreat.getKeyFrame(time);
+                else
                 region=highkick.getKeyFrame(time);
                 break;
             case Lowkick:
+                if(Play_State.retreat==true)
+                    region=retreat.getKeyFrame(time);
+                else
                 region=lowkick.getKeyFrame(time);
                 break;
             default://is not needed, or the case running is not needed. Needs to be checked
@@ -118,7 +148,9 @@ public class Warrior extends Sprite {
 
 
     public Move getMove(int posture){//the actual function that determines the move to be executed.
-        if(posture==1)
+        if(posture==-1)
+            return Move.Defeat;
+        else if(posture==1)
             return Move.Highkick;
         else if(posture==2)
             return Move.Lowkick;
@@ -136,7 +168,7 @@ public class Warrior extends Sprite {
 
      FixtureDef fdef=new FixtureDef();
      PolygonShape War=new PolygonShape();
-     War.setAsBox(50/Lone_Warrior1.PPM,45/Lone_Warrior1.PPM);
+     War.setAsBox(60/Lone_Warrior1.PPM,50/Lone_Warrior1.PPM);
 
      fdef.shape=War;
         fdef.filter.categoryBits=Lone_Warrior1.BIT_RUN;
@@ -152,7 +184,7 @@ public class Warrior extends Sprite {
 
         FixtureDef fdef=new FixtureDef();
         PolygonShape War=new PolygonShape();
-        War.setAsBox(50/Lone_Warrior1.PPM,45/Lone_Warrior1.PPM);
+        War.setAsBox(50/Lone_Warrior1.PPM,100/Lone_Warrior1.PPM);
 
         fdef.shape=War;
         fdef.friction=0.34f;
@@ -193,5 +225,21 @@ public class Warrior extends Sprite {
         fdef.filter.categoryBits=Lone_Warrior1.BIT_RUN;
         fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_APPROACHING;
         heroretreating.createFixture(fdef).setUserData("warriorreturn");
+    }
+
+    public static void defineHeroDefeated(){
+        BodyDef bdef=new BodyDef();
+        bdef.position.set(Lone_Warrior1.x1,Lone_Warrior1.y1);
+        bdef.type=BodyDef.BodyType.DynamicBody;
+        herodefeated=world.createBody(bdef);
+
+        FixtureDef fdef=new FixtureDef();
+        PolygonShape War=new PolygonShape();
+        War.setAsBox(50/Lone_Warrior1.PPM,45/Lone_Warrior1.PPM);
+
+        fdef.shape=War;
+        fdef.filter.categoryBits=Lone_Warrior1.BIT_RUN;
+        fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND;
+        herodefeated.createFixture(fdef).setUserData("warriorfallen");
     }
 }

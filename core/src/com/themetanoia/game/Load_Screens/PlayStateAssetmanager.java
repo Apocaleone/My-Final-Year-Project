@@ -20,6 +20,7 @@ public class PlayStateAssetmanager {
         manager.load("MenuButtons.pack", TextureAtlas.class);
         manager.load("berserker.pack", TextureAtlas.class);
         manager.load("Warrior.pack",TextureAtlas.class);
+        manager.load("Spearman.pack",TextureAtlas.class);
     }
 
     public void dispose(){
