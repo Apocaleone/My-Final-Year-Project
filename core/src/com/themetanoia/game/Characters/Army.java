@@ -7,43 +7,41 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
-import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
 
 /**
- * Created by MITHUN on 05-02-2017.
+ * Created by MITHOON on 27-03-2017.
  */
-public class Spearman extends Enemies {
-    private Body spearman1;
+public class Army extends Enemies {private Body army1;//change
     private TextureAtlas atlas;
     private Animation approaching,defeated;
     private float time;
     private TextureRegion spearmaninit;
 
-    private int spearmanstate=0;
+    private int armystate =0;//change
 
 
-    public Spearman(Play_State state,float x, float y){
+    public Army(Play_State state, float x, float y){
         super(state,x,y);
         atlas=new TextureAtlas();
-        atlas=Lone_Warrior1.getAtlas(4);
+        atlas= Lone_Warrior1.getAtlas(4);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
-        for(int i=0;i<3;i++)
+        for(int i=0;i<5;i++)//change
         {
-            frames.add(new TextureRegion(atlas.findRegion("Spearman"+i)));
+            frames.add(new TextureRegion(atlas.findRegion("Army"+i)));//change
         }
         approaching=new Animation(0.15f,frames);
         frames.clear();
-        for(int i=0;i<5;i++)
+        for(int i=0;i<4;i++)
         {
-            frames.add(new TextureRegion(atlas.findRegion("Spearmandefeated"+i)));
+            frames.add(new TextureRegion(atlas.findRegion("Armydefeated"+i)));//change
         }
         defeated=new Animation(2.2f,frames);
         frames.clear();
-        spearmaninit=new TextureRegion(atlas.findRegion("Spearman0"));
+        spearmaninit=new TextureRegion(atlas.findRegion("Army0"));//change
         setBounds(getX(),getY(),200/ Lone_Warrior1.PPM,170/Lone_Warrior1.PPM);
         setRegion(spearmaninit);
         time=0f;
@@ -52,33 +50,33 @@ public class Spearman extends Enemies {
 
     public void update(float dt){
 
-        if(spearmanstate!=-1) {
-            setPosition(spearman1.getPosition().x - getWidth() / 2, (spearman1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
-            if (spearmanstate==0 && spearman1.getLinearVelocity().x>0)
-                spearmanstate=1;
-            if (spearmanstate==1 && spearman1.getLinearVelocity().x==0) {
-                Play_State.bodiesToRemove.add(spearman1);
+        if(armystate !=-1) {
+            setPosition(army1.getPosition().x - getWidth() / 2, (army1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
+            if (armystate ==0 && army1.getLinearVelocity().x>0)
+                armystate =1;
+            if (armystate ==1 && army1.getLinearVelocity().x==0) {
+                Play_State.bodiesToRemove.add(army1);
                 Play_State.enemycounter++;
-                spearmanstate = -1;
+                armystate = -1;
 
             }
-            if(spearmanstate==0)
-                spearman1.setLinearVelocity(Lone_Warrior1.velocity,0);
+            if(armystate ==0)
+                army1.setLinearVelocity(Lone_Warrior1.velocity,0);
             setRegion(getFrame(dt));
         }
     }
     public boolean check(){
-        if(spearmanstate!=-1)
-             return true;
-    else
-        return false;
+        if(armystate !=-1)
+            return true;
+        else
+            return false;
     }
     public TextureRegion getFrame(float dt){
         time=time+dt;
         TextureRegion region=null;
         region=approaching.getKeyFrame(time,true);
-        if(spearmanstate==1)
-           region=defeated.getKeyFrame(time);
+        if(armystate ==1)
+            region=defeated.getKeyFrame(time);
        /* if(!region.isFlipX())
         region.flip(true,false);*/
         return region;
@@ -90,7 +88,7 @@ public class Spearman extends Enemies {
         BodyDef bdef=new BodyDef();
         bdef.position.set(getX(),getY());
         bdef.type=BodyDef.BodyType.DynamicBody;
-        spearman1=Play_State.world.createBody(bdef);
+        army1 =Play_State.world.createBody(bdef);
 
         FixtureDef fdef=new FixtureDef();
         PolygonShape War1=new PolygonShape();
@@ -99,8 +97,7 @@ public class Spearman extends Enemies {
         fdef.shape=War1;
         fdef.filter.categoryBits=Lone_Warrior1.BIT_APPROACHING;
         fdef.filter.maskBits=Lone_Warrior1.BIT_GROUND|Lone_Warrior1.BIT_RUN|Lone_Warrior1.BIT_ATTACK;
-        spearman1.createFixture(fdef).setUserData("spearman1");
+        army1.createFixture(fdef).setUserData("army1");//change
 
     }
-
 }

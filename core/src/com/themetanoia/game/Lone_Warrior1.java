@@ -13,8 +13,6 @@ import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Screens.MenuScreen;
 import com.themetanoia.game.Screens.Play_State;
 
-import aurelienribon.tweenengine.Tween;
-import aurelienribon.tweenengine.TweenManager;
 
 public class Lone_Warrior1 extends Game {
 	public SpriteBatch batch;//common sprite batch for all rendering because batch functions are heavy
@@ -29,9 +27,9 @@ public class Lone_Warrior1 extends Game {
 	public static final short BIT_DEFEATED=16;
 	public static LoadState loading;
 	public static Array<TextureAtlas> atlas;
+	public static float velocity=-1f;
 
 
-	public static TweenManager tweenManager;//for animation manipulation
 
 	
 	@Override
@@ -40,9 +38,10 @@ public class Lone_Warrior1 extends Game {
 		loading=new LoadState();
 		atlas=new Array<TextureAtlas>();
 		atlas.add(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));//0
-		atlas.add(loading.assets.manager.get("berserker.pack",TextureAtlas.class));//1
+		atlas.add(loading.assets.manager.get("ButtonAtlas.pack",TextureAtlas.class));//1
 		atlas.add(loading.assets.manager.get("Warrior.pack",TextureAtlas.class));//2
 		atlas.add(loading.assets.manager.get("Spearman.pack",TextureAtlas.class));//3
+		atlas.add(loading.assets.manager.get("Enemies.pack",TextureAtlas.class));//4
 		setScreen(new MenuScreen(this));//setting the menu screen
 	}
 

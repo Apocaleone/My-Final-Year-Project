@@ -1,0 +1,520 @@
+
+Enemies.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Berserkerdefeated0
+  rotate: false
+  xy: 1, 423
+  size: 700, 600
+  orig: 700, 600
+  offset: 0, 0
+  index: -1
+Macemandefeated0
+  rotate: false
+  xy: 1, 1
+  size: 600, 420
+  orig: 600, 420
+  offset: 0, 0
+  index: -1
+Ghost0
+  rotate: false
+  xy: 703, 423
+  size: 300, 600
+  orig: 300, 600
+  offset: 0, 0
+  index: -1
+Spearmandefeated0
+  rotate: false
+  xy: 603, 156
+  size: 409, 265
+  orig: 409, 265
+  offset: 0, 0
+  index: -1
+
+Enemies2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Berserkerdefeated1
+  rotate: false
+  xy: 1, 423
+  size: 700, 600
+  orig: 700, 600
+  offset: 0, 0
+  index: -1
+Macemandefeated1
+  rotate: false
+  xy: 1, 1
+  size: 600, 420
+  orig: 600, 420
+  offset: 0, 0
+  index: -1
+Ghost1
+  rotate: false
+  xy: 703, 423
+  size: 300, 600
+  orig: 300, 600
+  offset: 0, 0
+  index: -1
+
+Enemies3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Berserkerdefeated2
+  rotate: false
+  xy: 1, 423
+  size: 700, 600
+  orig: 700, 600
+  offset: 0, 0
+  index: -1
+Macemandefeated2
+  rotate: false
+  xy: 1, 1
+  size: 600, 420
+  orig: 600, 420
+  offset: 0, 0
+  index: -1
+Ghost2
+  rotate: false
+  xy: 703, 423
+  size: 300, 600
+  orig: 300, 600
+  offset: 0, 0
+  index: -1
+
+Enemies4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Berserkerdefeated3
+  rotate: false
+  xy: 1, 423
+  size: 700, 600
+  orig: 700, 600
+  offset: 0, 0
+  index: -1
+Macemandefeated3
+  rotate: false
+  xy: 1, 1
+  size: 600, 420
+  orig: 600, 420
+  offset: 0, 0
+  index: -1
+Ghostdefeated0
+  rotate: false
+  xy: 703, 423
+  size: 300, 600
+  orig: 300, 600
+  offset: 0, 0
+  index: -1
+
+Enemies5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Spearman0
+  rotate: false
+  xy: 1, 652
+  size: 439, 196
+  orig: 439, 196
+  offset: 0, 0
+  index: -1
+Spearman1
+  rotate: false
+  xy: 442, 651
+  size: 496, 197
+  orig: 496, 197
+  offset: 0, 0
+  index: -1
+Spearmandefeated3
+  rotate: false
+  xy: 1, 448
+  size: 464, 201
+  orig: 464, 201
+  offset: 0, 0
+  index: -1
+Tridentman0
+  rotate: false
+  xy: 467, 439
+  size: 500, 210
+  orig: 500, 210
+  offset: 0, 0
+  index: -1
+Tridentman1
+  rotate: false
+  xy: 1, 227
+  size: 500, 210
+  orig: 500, 210
+  offset: 0, 0
+  index: -1
+Tridentman2
+  rotate: false
+  xy: 503, 227
+  size: 500, 210
+  orig: 500, 210
+  offset: 0, 0
+  index: -1
+Spearman2
+  rotate: false
+  xy: 1, 3
+  size: 456, 222
+  orig: 456, 222
+  offset: 0, 0
+  index: -1
+Spearmandefeated4
+  rotate: false
+  xy: 459, 1
+  size: 487, 224
+  orig: 487, 224
+  offset: 0, 0
+  index: -1
+
+Enemies6.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Locusts0
+  rotate: false
+  xy: 1, 503
+  size: 800, 500
+  orig: 800, 500
+  offset: 0, 0
+  index: -1
+Locusts1
+  rotate: false
+  xy: 1, 1
+  size: 800, 500
+  orig: 800, 500
+  offset: 0, 0
+  index: -1
+
+Enemies7.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Locusts2
+  rotate: false
+  xy: 1, 503
+  size: 800, 500
+  orig: 800, 500
+  offset: 0, 0
+  index: -1
+Locustsdefeated0
+  rotate: false
+  xy: 1, 1
+  size: 800, 500
+  orig: 800, 500
+  offset: 0, 0
+  index: -1
+
+Enemies8.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Locustsdefeated1
+  rotate: false
+  xy: 1, 503
+  size: 800, 500
+  orig: 800, 500
+  offset: 0, 0
+  index: -1
+Locustsdefeated2
+  rotate: false
+  xy: 1, 1
+  size: 800, 500
+  orig: 800, 500
+  offset: 0, 0
+  index: -1
+
+Enemies9.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Maceman0
+  rotate: false
+  xy: 1, 503
+  size: 600, 500
+  orig: 600, 500
+  offset: 0, 0
+  index: -1
+Maceman1
+  rotate: false
+  xy: 1, 1
+  size: 600, 500
+  orig: 600, 500
+  offset: 0, 0
+  index: -1
+Ghostdefeated1
+  rotate: false
+  xy: 603, 403
+  size: 300, 600
+  orig: 300, 600
+  offset: 0, 0
+  index: -1
+
+Enemies10.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Maceman2
+  rotate: false
+  xy: 1, 503
+  size: 600, 500
+  orig: 600, 500
+  offset: 0, 0
+  index: -1
+Maceman3
+  rotate: false
+  xy: 1, 1
+  size: 600, 500
+  orig: 600, 500
+  offset: 0, 0
+  index: -1
+Ghostdefeated2
+  rotate: false
+  xy: 603, 403
+  size: 300, 600
+  orig: 300, 600
+  offset: 0, 0
+  index: -1
+
+Enemies11.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Berserker0
+  rotate: false
+  xy: 1, 403
+  size: 570, 550
+  orig: 570, 550
+  offset: 0, 0
+  index: -1
+Crawler0
+  rotate: false
+  xy: 1, 1
+  size: 600, 400
+  orig: 600, 400
+  offset: 0, 0
+  index: -1
+Ghostdefeated3
+  rotate: false
+  xy: 603, 353
+  size: 300, 600
+  orig: 300, 600
+  offset: 0, 0
+  index: -1
+
+Enemies12.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Spearmandefeated1
+  rotate: false
+  xy: 1, 545
+  size: 482, 229
+  orig: 482, 229
+  offset: 0, 0
+  index: -1
+Spearmandefeated2
+  rotate: false
+  xy: 485, 525
+  size: 478, 249
+  orig: 478, 249
+  offset: 0, 0
+  index: -1
+Tridentmandefeated0
+  rotate: false
+  xy: 1, 263
+  size: 500, 260
+  orig: 500, 260
+  offset: 0, 0
+  index: -1
+Tridentmandefeated1
+  rotate: false
+  xy: 503, 263
+  size: 500, 260
+  orig: 500, 260
+  offset: 0, 0
+  index: -1
+Tridentmandefeated2
+  rotate: false
+  xy: 1, 1
+  size: 500, 260
+  orig: 500, 260
+  offset: 0, 0
+  index: -1
+
+Enemies13.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Berserker1
+  rotate: false
+  xy: 1, 403
+  size: 570, 550
+  orig: 570, 550
+  offset: 0, 0
+  index: -1
+Crawler1
+  rotate: false
+  xy: 1, 1
+  size: 600, 400
+  orig: 600, 400
+  offset: 0, 0
+  index: -1
+
+Enemies14.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Berserker2
+  rotate: false
+  xy: 1, 403
+  size: 570, 550
+  orig: 570, 550
+  offset: 0, 0
+  index: -1
+Crawler2
+  rotate: false
+  xy: 1, 1
+  size: 600, 400
+  orig: 600, 400
+  offset: 0, 0
+  index: -1
+
+Enemies15.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Berserker3
+  rotate: false
+  xy: 1, 403
+  size: 570, 550
+  orig: 570, 550
+  offset: 0, 0
+  index: -1
+Crawler3
+  rotate: false
+  xy: 1, 1
+  size: 600, 400
+  orig: 600, 400
+  offset: 0, 0
+  index: -1
+
+Enemies16.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Crawlerdefeated0
+  rotate: false
+  xy: 1, 655
+  size: 600, 350
+  orig: 600, 350
+  offset: 0, 0
+  index: -1
+Crawlerdefeated1
+  rotate: false
+  xy: 1, 303
+  size: 600, 350
+  orig: 600, 350
+  offset: 0, 0
+  index: -1
+Armydefeated0
+  rotate: false
+  xy: 1, 1
+  size: 530, 300
+  orig: 530, 300
+  offset: 0, 0
+  index: -1
+
+Enemies17.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Crawlerdefeated2
+  rotate: false
+  xy: 1, 655
+  size: 600, 350
+  orig: 600, 350
+  offset: 0, 0
+  index: -1
+Crawlerdefeated3
+  rotate: false
+  xy: 1, 303
+  size: 600, 350
+  orig: 600, 350
+  offset: 0, 0
+  index: -1
+Armydefeated1
+  rotate: false
+  xy: 1, 1
+  size: 530, 300
+  orig: 530, 300
+  offset: 0, 0
+  index: -1
+
+Enemies18.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Army0
+  rotate: false
+  xy: 1, 645
+  size: 530, 320
+  orig: 530, 320
+  offset: 0, 0
+  index: -1
+Army1
+  rotate: false
+  xy: 1, 323
+  size: 530, 320
+  orig: 530, 320
+  offset: 0, 0
+  index: -1
+Army2
+  rotate: false
+  xy: 1, 1
+  size: 530, 320
+  orig: 530, 320
+  offset: 0, 0
+  index: -1
+
+Enemies19.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Army3
+  rotate: false
+  xy: 1, 625
+  size: 530, 320
+  orig: 530, 320
+  offset: 0, 0
+  index: -1
+Army4
+  rotate: false
+  xy: 1, 303
+  size: 530, 320
+  orig: 530, 320
+  offset: 0, 0
+  index: -1
+Armydefeated2
+  rotate: false
+  xy: 1, 1
+  size: 530, 300
+  orig: 530, 300
+  offset: 0, 0
+  index: -1
+
+Enemies20.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Armydefeated3
+  rotate: false
+  xy: 1, 1
+  size: 530, 300
+  orig: 530, 300
+  offset: 0, 0
+  index: -1

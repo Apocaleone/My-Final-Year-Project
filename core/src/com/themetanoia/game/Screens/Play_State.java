@@ -59,7 +59,8 @@ public class Play_State implements Screen {
 
 
     public Play_State(Lone_Warrior1 game){
-        atlas=new TextureAtlas("Warrior.pack");
+        atlas=new TextureAtlas();
+        atlas=Lone_Warrior1.getAtlas(2);
         this.game=game;
 
 
@@ -124,11 +125,11 @@ public class Play_State implements Screen {
 
     @Override
     public void render(float delta) {
+        time+=delta;
         update(delta);
-        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClearColor(0.329412f, 0.329412f, 0.329412f, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        time+=delta;
         if(warrior.posture==-1)
         gamecam.position.set(warrior.herodefeated.getPosition().x+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
         else
@@ -136,7 +137,7 @@ public class Play_State implements Screen {
 
         gamecam.update();
 
-        NightWorld.renderer2.render();
+       //NightWorld.renderer2.render();
         NightWorld.renderer.render();
 
         b2dr.render(world, gamecam.combined);
@@ -215,6 +216,49 @@ public class Play_State implements Screen {
                 flag=true;
             }
         }
+        if(warrior.posture==3&&ongoingmove==true){
+            if(warrior.multikickattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
+                bodiesToRemove.add(warrior.multikickattack);
+                retreat=true;
+                flag=true;
+            }
+        }
+        if(warrior.posture==4&&ongoingmove==true){
+            if(warrior.groundpunchattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
+                bodiesToRemove.add(warrior.groundpunchattack);
+                retreat=true;
+                flag=true;
+            }
+        }
+        if(warrior.posture==5&&ongoingmove==true){
+            if(warrior.spinpunchattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
+                bodiesToRemove.add(warrior.spinpunchattack);
+                retreat=true;
+                flag=true;
+            }
+        }
+        if(warrior.posture==6&&ongoingmove==true){
+            if(warrior.megapunchattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
+                bodiesToRemove.add(warrior.megapunchattack);
+                retreat=true;
+                flag=true;
+            }
+        }
+        if(warrior.posture==7&&ongoingmove==true){
+            if(warrior.hurricanebreathattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
+                bodiesToRemove.add(warrior.hurricanebreathattack);
+                retreat=true;
+                flag=true;
+            }
+        }
+        if(warrior.posture==8&&ongoingmove==true){
+            if(warrior.exorcizeattack.getLinearVelocity().x==0) {//checks for the end of an attack, removes the attacking body
+                bodiesToRemove.add(warrior.exorcizeattack);
+                retreat=true;
+                flag=true;
+            }
+        }
+
 
     }
 
@@ -230,6 +274,24 @@ public class Play_State implements Screen {
             if(retreat==true&&warrior.posture==2)//only checks for the position of the body if warrior is in attack position
             {Lone_Warrior1.x1=warrior.lowkickattack.getPosition().x;
                 Lone_Warrior1.y1=warrior.lowkickattack.getPosition().y;}
+            if(retreat==true&&warrior.posture==3)//only checks for the position of the body if warrior is in attack position
+            {Lone_Warrior1.x1=warrior.multikickattack.getPosition().x;
+                Lone_Warrior1.y1=warrior.multikickattack.getPosition().y;}
+            if(retreat==true&&warrior.posture==4)//only checks for the position of the body if warrior is in attack position
+            {Lone_Warrior1.x1=warrior.groundpunchattack.getPosition().x;
+                Lone_Warrior1.y1=warrior.groundpunchattack.getPosition().y;}
+            if(retreat==true&&warrior.posture==5)//only checks for the position of the body if warrior is in attack position
+            {Lone_Warrior1.x1=warrior.spinpunchattack.getPosition().x;
+                Lone_Warrior1.y1=warrior.spinpunchattack.getPosition().y;}
+            if(retreat==true&&warrior.posture==6)//only checks for the position of the body if warrior is in attack position
+            {Lone_Warrior1.x1=warrior.megapunchattack.getPosition().x;
+                Lone_Warrior1.y1=warrior.megapunchattack.getPosition().y;}
+            if(retreat==true&&warrior.posture==7)//only checks for the position of the body if warrior is in attack position
+            {Lone_Warrior1.x1=warrior.hurricanebreathattack.getPosition().x;
+                Lone_Warrior1.y1=warrior.hurricanebreathattack.getPosition().y;}
+            if(retreat==true&&warrior.posture==8)//only checks for the position of the body if warrior is in attack position
+            {Lone_Warrior1.x1=warrior.exorcizeattack.getPosition().x;
+                Lone_Warrior1.y1=warrior.exorcizeattack.getPosition().y;}
             Body b=bodiesToRemove.get(i);
             System.out.println("destroying body");
             world.destroyBody(b);
@@ -243,8 +305,8 @@ public class Play_State implements Screen {
             if(flag==true){//defines the retreating body of the hero just once.
                 warrior.defineHeroRetreating();
                 flag=false;}
-            warrior.heroretreating.applyForceToCenter(-6,0,true);
-            if (warrior.heroretreating.getPosition().x < Lone_Warrior1.x) {
+            warrior.heroretreating.setLinearVelocity(-2f,0);
+            if (warrior.heroretreating.getPosition().x < Lone_Warrior1.x&&warrior.posture!=-1) {
                 bodiesToRemove.add(warrior.heroretreating);
                 ongoingmove=false;
                 warrior.posture=0;
@@ -255,6 +317,7 @@ public class Play_State implements Screen {
     }
 
     public void forceApplicationFunction(){
+        if(warrior.posture!=-1)
         warrior.hero.applyForceToCenter(2.2f,0,true);
         //if(spearman.spearmanstate==0)
            // spearman.spearman1.applyForceToCenter(-2.3f,0,true);

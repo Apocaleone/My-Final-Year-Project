@@ -1,7 +1,6 @@
 package com.themetanoia.game.Characters;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
@@ -9,7 +8,6 @@ import com.badlogic.gdx.physics.box2d.BodyDef;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
-import com.sun.jndi.ldap.Ber;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
 
@@ -21,7 +19,7 @@ public class Berserker extends Enemies {
     public Body berserker1;
     private TextureAtlas atlas;
     public Animation approaching,defeated;
-    public float time;
+    private float time;
     private TextureRegion berkserkerinit;
 
     public int berserkerstate=0;
@@ -30,23 +28,22 @@ public class Berserker extends Enemies {
     public Berserker(Play_State state,float x, float y){
         super(state, x,  y);
         atlas=new TextureAtlas();
-        atlas=Lone_Warrior1.getAtlas(1);
-        time=0;
+        atlas=Lone_Warrior1.getAtlas(4);
+        time=0f;
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<4;i++)
         {
-            frames.add(new TextureRegion(atlas.findRegion("berserker"+i)));
+            frames.add(new TextureRegion(atlas.findRegion("Berserker"+i)));
         }
         approaching=new Animation(0.1f,frames);
         frames.clear();
-        berkserkerinit=new TextureRegion(atlas.findRegion("berserker1"));
-        atlas=new TextureAtlas("falling.pack");
-        for(int i=0;i<1;i++)
+        berkserkerinit=new TextureRegion(atlas.findRegion("Berserker1"));
+        for(int i=0;i<4;i++)
         {
-            frames.add(new TextureRegion(atlas.findRegion("falling"+i)));
+            frames.add(new TextureRegion(atlas.findRegion("Berserkerdefeated"+i)));
         }
-        defeated=new Animation(0.1f,frames);
+        defeated=new Animation(2.2f,frames);
         frames.clear();
 
 
@@ -56,7 +53,7 @@ public class Berserker extends Enemies {
 
     public void update(float dt){
         if(berserkerstate!=-1){
-            setPosition(berserker1.getPosition().x-(getWidth()/2)+0.5f,berserker1.getPosition().y-((getHeight()/2)+0.1f));
+            setPosition(berserker1.getPosition().x-(getWidth()/2)+0.5f,(berserker1.getPosition().y-(getHeight()/2))+28/Lone_Warrior1.PPM);
             if(berserkerstate==0&&berserker1.getLinearVelocity().x>0)
                 berserkerstate=1;
             if(berserkerstate==1&&berserker1.getLinearVelocity().x==0){
@@ -66,7 +63,7 @@ public class Berserker extends Enemies {
                 berserkerstate=-1;
             }
             if(berserkerstate==0)
-                berserker1.applyForceToCenter(-2.3f,0,true);
+                berserker1.setLinearVelocity(Lone_Warrior1.velocity,0);
        /* else{
         berserkerstate=0;}*/
             setRegion(getFrame(dt));
@@ -78,7 +75,7 @@ public class Berserker extends Enemies {
         //if(berserkerstate==0){
         region=approaching.getKeyFrame(time,true);//}
         if(berserkerstate==1)
-            region=defeated.getKeyFrame(time,true);
+            region=defeated.getKeyFrame(time);
         time=time+dt;
         return region;
 

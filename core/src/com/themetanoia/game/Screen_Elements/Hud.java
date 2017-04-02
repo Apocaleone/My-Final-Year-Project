@@ -39,8 +39,8 @@ public class Hud implements Disposable {
         table.top();
         table.setFillParent(true);
 
-        scoreLabel=new Label(String.format("%06d",score),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        level=new Label(String.format("%01d",Difficulty),new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        scoreLabel=new Label("000",new Label.LabelStyle(new BitmapFont(), Color.WHITE));//String.format("%06d",score)
+        level=new Label("0",new Label.LabelStyle(new BitmapFont(), Color.WHITE));//String.format("%01d",Difficulty)
         levelString=new Label("Level",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreString=new Label("Score",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
 

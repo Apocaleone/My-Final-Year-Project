@@ -29,25 +29,25 @@ public class MenuScreen extends Game implements Screen {
     private TextButton.TextButtonStyle startbuttonStyle;
     public TextButton startbutton;
     private Skin skin;
+    private TextureAtlas atlas;
 
-    LoadState loading;
 
     private Lone_Warrior1 game;
 
     public MenuScreen(Lone_Warrior1 game){
-        loading=new LoadState();
 
         this.game=game;
 
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
 
-
+        atlas=new TextureAtlas();
+        atlas=Lone_Warrior1.getAtlas(0);
         stage=new Stage(viewport,game.batch);
         font=new BitmapFont();
         font.setColor(Color.BLACK);
         font.getData().setScale(3);
         skin=new Skin();
-        skin.addRegions(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));
+        skin.addRegions(atlas);
 
         Table table=new Table();
         table.center();

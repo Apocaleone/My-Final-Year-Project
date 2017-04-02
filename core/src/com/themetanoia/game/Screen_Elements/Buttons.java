@@ -31,23 +31,24 @@ public class Buttons implements ApplicationListener {
     private TextButton.TextButtonStyle button1Style,button2Style,button3Style,button4Style;
     public TextButton button1,button2,button3,button4;
     private Skin skin;
-    private boolean b1check=false;
+    private boolean b1check=false, b2check=false, b3check=false, b4check=false;
+    private TextureAtlas atlas;
 
-    LoadState loading;
 
 
 
 
     public Buttons(SpriteBatch sb){
-        loading=new LoadState();
 
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         stage=new Stage(viewport,sb);
+        atlas=new TextureAtlas();
+        atlas=Lone_Warrior1.getAtlas(1);
         font=new BitmapFont();
         font.setColor(Color.BLACK);
         font.getData().setScale(3);
         skin=new Skin();
-        skin.addRegions(loading.assets.manager.get("ButtonAtlas.pack",TextureAtlas.class));
+        skin.addRegions(atlas);
 
         Table table=new Table();
         table.center();
@@ -109,6 +110,24 @@ public class Buttons implements ApplicationListener {
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 b1check=false;
+                if(b2check==true){
+                    if(Play_State.ongoingmove==false&&Warrior.posture!=-1) {
+                        Play_State.ongoingmove = true;
+                        Warrior.posture = 8;
+                        Play_State.bodiesToRemove.add(Warrior.hero);
+                        Warrior.defineExorcize();
+                        Warrior.exorcizeattack.applyForceToCenter(100,0, true);
+                        // }
+                    }
+                }
+                else if(Play_State.ongoingmove==false&&Warrior.posture!=-1&&b2check==false) {
+                    Play_State.ongoingmove = true;
+                    Warrior.posture = 4;
+                    Play_State.bodiesToRemove.add(Warrior.hero);
+                    Warrior.defineGroundpunch();
+                    Warrior.groundpunchattack.applyForceToCenter(100,0, true);
+                    // }
+                }
                 System.out.println("Star Clicked");
             }
         });
@@ -117,38 +136,86 @@ public class Buttons implements ApplicationListener {
 
         button2.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                //if(b1check==true) {
-                    if(Play_State.ongoingmove==false) {
-                        Play_State.ongoingmove = true;
-                        Warrior.posture = 1;
-                        Play_State.bodiesToRemove.add(Warrior.hero);
-                        Warrior.defineHighkick();
-                        Warrior.highkickattack.applyForceToCenter(100,0, true);
-                   // }
-                }
+                b2check=true;
                 return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                b2check=false;
+                if(b1check==true){
+                    if(Play_State.ongoingmove==false&&Warrior.posture!=-1) {
+                        Play_State.ongoingmove = true;
+                        Warrior.posture = 6;
+                        Play_State.bodiesToRemove.add(Warrior.hero);
+                        Warrior.defineMegapunch();
+                        Warrior.megapunchattack.applyForceToCenter(100,0, true);
+                        // }
+                    }
+                }
+               else if(Play_State.ongoingmove==false&&Warrior.posture!=-1&&b1check==false) {
+                    Play_State.ongoingmove = true;
+                    Warrior.posture = 5;
+                    Play_State.bodiesToRemove.add(Warrior.hero);
+                    Warrior.defineSpinpunch();
+                    Warrior.spinpunchattack.applyForceToCenter(100,0, true);
+                    // }
+                }
+                System.out.println("Star Clicked");
             }
         });
         button3.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("button3 Clicked");
-                Warrior.hero.applyForceToCenter(-100,0,true);
+                b3check=true;
                 return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                b3check=false;
+                if(b4check==true){
+                    if(Play_State.ongoingmove==false&&Warrior.posture!=-1) {
+                        Play_State.ongoingmove = true;
+                        Warrior.posture = 7;
+                        Play_State.bodiesToRemove.add(Warrior.hero);
+                        Warrior.defineHurricanebreath();
+                        Warrior.hurricanebreathattack.applyForceToCenter(100,0, true);
+                    }
+                }
+                else if(Play_State.ongoingmove==false&&Warrior.posture!=-1&&b4check==false) {
+                    Play_State.ongoingmove = true;
+                    Warrior.posture = 2;
+                    Play_State.bodiesToRemove.add(Warrior.hero);
+                    Warrior.defineLowkick();
+                    Warrior.lowkickattack.applyForceToCenter(100,0, true);
+                    // }
+                }
+                System.out.println("Star Clicked");
             }
         });
         button4.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("button4 Clicked");
-                //if(b1check==true) {
-                    if(Play_State.ongoingmove==false) {
+                b4check=true;
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                b4check=false;
+                if(b3check==true){
+                    if(Play_State.ongoingmove==false&&Warrior.posture!=-1) {
                         Play_State.ongoingmove = true;
-                        Warrior.posture = 2;
+                        Warrior.posture = 3;
                         Play_State.bodiesToRemove.add(Warrior.hero);
-                        Warrior.defineLowkick();
-                        Warrior.lowkickattack.applyForceToCenter(100,0, true);
+                        Warrior.defineMultikick();
+                        Warrior.multikickattack.applyForceToCenter(100,0, true);
                         // }
                     }
-                return true;
+                }
+               else if(Play_State.ongoingmove==false&&Warrior.posture!=-1&&b3check==false) {
+                    Play_State.ongoingmove = true;
+                    Warrior.posture = 1;
+                    Play_State.bodiesToRemove.add(Warrior.hero);
+                    Warrior.defineHighkick();
+                    Warrior.highkickattack.applyForceToCenter(100,0, true);
+                    // }
+                }
+                System.out.println("Star Clicked");
             }
         });
 

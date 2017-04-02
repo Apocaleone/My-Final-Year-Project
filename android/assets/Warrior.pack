@@ -3,179 +3,67 @@ Warrior.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-retreat1
-  rotate: false
-  xy: 1, 761
-  size: 259, 246
-  orig: 259, 246
-  offset: 0, 0
-  index: -1
-lowkick12
-  rotate: false
-  xy: 1, 523
-  size: 209, 236
-  orig: 209, 236
-  offset: 0, 0
-  index: -1
-lowkick11
-  rotate: false
-  xy: 262, 772
-  size: 209, 235
-  orig: 209, 235
-  offset: 0, 0
-  index: -1
 defeat0
   rotate: false
-  xy: 473, 790
-  size: 226, 217
-  orig: 226, 217
-  offset: 0, 0
-  index: -1
-lowkick10
-  rotate: false
-  xy: 1, 290
-  size: 212, 231
-  orig: 212, 231
-  offset: 0, 0
-  index: -1
-lowkick00
-  rotate: false
-  xy: 1, 37
-  size: 164, 251
-  orig: 164, 251
-  offset: 0, 0
-  index: -1
-highkick6
-  rotate: false
-  xy: 701, 805
-  size: 204, 202
-  orig: 204, 202
-  offset: 0, 0
-  index: -1
-highkick3
-  rotate: false
-  xy: 907, 711
-  size: 112, 296
-  orig: 112, 296
-  offset: 0, 0
-  index: -1
-highkick2
-  rotate: false
-  xy: 167, 13
-  size: 130, 275
-  orig: 130, 275
-  offset: 0, 0
-  index: -1
-lowkick06
-  rotate: false
-  xy: 212, 556
-  size: 151, 203
-  orig: 151, 203
-  offset: 0, 0
-  index: -1
-lowkick01
-  rotate: false
-  xy: 215, 306
-  size: 164, 248
-  orig: 164, 248
-  offset: 0, 0
-  index: -1
-lowkick02
-  rotate: false
-  xy: 299, 57
-  size: 152, 247
-  orig: 152, 247
-  offset: 0, 0
-  index: -1
-lowkick05
-  rotate: false
-  xy: 365, 569
-  size: 191, 201
-  orig: 191, 201
-  offset: 0, 0
-  index: -1
-retreat0
-  rotate: false
-  xy: 381, 321
-  size: 145, 246
-  orig: 145, 246
-  offset: 0, 0
-  index: -1
-lowkick03
-  rotate: false
-  xy: 558, 550
-  size: 142, 238
-  orig: 142, 238
-  offset: 0, 0
-  index: -1
-highkick5
-  rotate: false
-  xy: 702, 561
-  size: 137, 242
-  orig: 137, 242
-  offset: 0, 0
-  index: -1
-lowkick04
-  rotate: false
-  xy: 528, 363
-  size: 174, 185
-  orig: 174, 185
-  offset: 0, 0
-  index: -1
-lowkick09
-  rotate: false
-  xy: 704, 375
-  size: 177, 184
-  orig: 177, 184
-  offset: 0, 0
-  index: -1
-highkick4
-  rotate: false
-  xy: 453, 77
-  size: 118, 242
-  orig: 118, 242
+  xy: 1, 605
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
 defeat1
   rotate: false
-  xy: 573, 186
-  size: 213, 175
-  orig: 213, 175
+  xy: 303, 605
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
 defeat2
   rotate: false
-  xy: 573, 40
-  size: 224, 144
-  orig: 224, 144
-  offset: 0, 0
-  index: -1
-highkick1
-  rotate: false
-  xy: 788, 203
-  size: 139, 170
-  orig: 139, 170
+  xy: 605, 605
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
 defeat3
   rotate: false
-  xy: 799, 57
-  size: 224, 144
-  orig: 224, 144
+  xy: 1, 303
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
-lowkick08
+defeat4
   rotate: false
-  xy: 841, 568
-  size: 166, 141
-  orig: 166, 141
+  xy: 303, 303
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
-defeat5
+exorcize0
   rotate: false
-  xy: 299, 1
-  size: 259, 54
-  orig: 259, 54
+  xy: 605, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+exorcize1
+  rotate: false
+  xy: 1, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+exorcize2
+  rotate: false
+  xy: 303, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+groundpunch0
+  rotate: false
+  xy: 605, 1
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
 
@@ -183,52 +71,404 @@ Warrior2.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-defeat4
+groundpunch1
   rotate: false
-  xy: 1, 307
-  size: 257, 118
-  orig: 257, 118
+  xy: 1, 605
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
-running3
+groundpunch2
   rotate: false
-  xy: 1, 160
-  size: 217, 145
-  orig: 217, 145
+  xy: 303, 605
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
-running1
+groundpunch3
   rotate: false
-  xy: 1, 1
-  size: 202, 157
-  orig: 202, 157
+  xy: 605, 605
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
-running2
+groundpunch4
   rotate: false
-  xy: 260, 294
-  size: 220, 131
-  orig: 220, 131
+  xy: 1, 303
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
-lowkick07
+groundpunch5
   rotate: false
-  xy: 482, 274
-  size: 174, 151
-  orig: 174, 151
-  offset: 0, 0
-  index: -1
-running0
-  rotate: false
-  xy: 658, 273
-  size: 170, 152
-  orig: 170, 152
+  xy: 303, 303
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
 highkick0
   rotate: false
-  xy: 830, 257
-  size: 154, 168
-  orig: 154, 168
+  xy: 605, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+highkick1
+  rotate: false
+  xy: 1, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+highkick2
+  rotate: false
+  xy: 303, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+highkick3
+  rotate: false
+  xy: 605, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+
+Warrior3.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+hurricanebreath0
+  rotate: false
+  xy: 1, 605
+  size: 400, 300
+  orig: 400, 300
+  offset: 0, 0
+  index: -1
+hurricanebreath1
+  rotate: false
+  xy: 1, 303
+  size: 400, 300
+  orig: 400, 300
+  offset: 0, 0
+  index: -1
+hurricanebreath2
+  rotate: false
+  xy: 403, 605
+  size: 400, 300
+  orig: 400, 300
+  offset: 0, 0
+  index: -1
+hurricanebreath3
+  rotate: false
+  xy: 1, 1
+  size: 400, 300
+  orig: 400, 300
+  offset: 0, 0
+  index: -1
+hurricanebreath4
+  rotate: false
+  xy: 403, 303
+  size: 400, 300
+  orig: 400, 300
+  offset: 0, 0
+  index: -1
+highkick4
+  rotate: false
+  xy: 403, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+highkick5
+  rotate: false
+  xy: 705, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+
+Warrior4.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+highkick6
+  rotate: false
+  xy: 1, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick00
+  rotate: false
+  xy: 1, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick01
+  rotate: false
+  xy: 303, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick02
+  rotate: false
+  xy: 1, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick03
+  rotate: false
+  xy: 303, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick04
+  rotate: false
+  xy: 605, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick05
+  rotate: false
+  xy: 303, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick06
+  rotate: false
+  xy: 605, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick07
+  rotate: false
+  xy: 605, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+
+Warrior5.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+lowkick08
+  rotate: false
+  xy: 1, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick09
+  rotate: false
+  xy: 1, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick10
+  rotate: false
+  xy: 303, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick11
+  rotate: false
+  xy: 1, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+lowkick12
+  rotate: false
+  xy: 303, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+multikick0
+  rotate: false
+  xy: 605, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+multikick1
+  rotate: false
+  xy: 303, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+multikick2
+  rotate: false
+  xy: 605, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+multikick3
+  rotate: false
+  xy: 605, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+
+Warrior6.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+powerpunch0
+  rotate: false
+  xy: 1, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+powerpunch1
+  rotate: false
+  xy: 1, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+powerpunch2
+  rotate: false
+  xy: 303, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+powerpunch3
+  rotate: false
+  xy: 1, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+powerpunch4
+  rotate: false
+  xy: 303, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+powerpunch5
+  rotate: false
+  xy: 605, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+powerpunch6
+  rotate: false
+  xy: 303, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+powerpunch7
+  rotate: false
+  xy: 605, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+retreat0
+  rotate: false
+  xy: 605, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+
+Warrior7.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+retreat1
+  rotate: false
+  xy: 1, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+running0
+  rotate: false
+  xy: 1, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+running1
+  rotate: false
+  xy: 303, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+running2
+  rotate: false
+  xy: 1, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+running3
+  rotate: false
+  xy: 303, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+spinpunch0
+  rotate: false
+  xy: 605, 605
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+spinpunch1
+  rotate: false
+  xy: 303, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+spinpunch2
+  rotate: false
+  xy: 605, 303
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+spinpunch3
+  rotate: false
+  xy: 605, 1
+  size: 300, 300
+  orig: 300, 300
+  offset: 0, 0
+  index: -1
+
+Warrior8.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+spinpunch4
+  rotate: false
+  xy: 1, 1
+  size: 300, 300
+  orig: 300, 300
   offset: 0, 0
   index: -1
