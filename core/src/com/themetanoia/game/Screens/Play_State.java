@@ -51,7 +51,7 @@ public class Play_State implements Screen {
     private float time=0;
     int j=0;
     public static Array<Body> bodiesToRemove;//an array that takes care of removing the bodies in the array after each update
-    public static boolean ongoingmove=false, retreat=false,flag=false,flag2=false;//variables that determine the state of warrior
+    public boolean ongoingmove=false, retreat=false,flag=false,flag2=false,gameover=false;//variables that determine the state of warrior
     public static int enemycounter=0;
 
 
@@ -73,7 +73,7 @@ public class Play_State implements Screen {
         bgPort=new StretchViewport(Lone_Warrior1.V_Width/Lone_Warrior1.PPM,Lone_Warrior1.V_Height/Lone_Warrior1.PPM,bgcam);
         //screen elements initialization
         hud=new Hud(game.batch);
-        buttons=new Buttons(game.batch);
+        buttons=new Buttons(game.batch,this);
         //camera position setting
         gamecam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2,0);
         bgcam.position.set(gamePort.getWorldWidth()/2,gamePort.getWorldHeight()/2,0);
@@ -140,7 +140,7 @@ public class Play_State implements Screen {
        //NightWorld.renderer2.render();
         NightWorld.renderer.render();
 
-        b2dr.render(world, gamecam.combined);
+       b2dr.render(world, gamecam.combined);
 
         drawCharacters();
 
@@ -149,6 +149,15 @@ public class Play_State implements Screen {
         hud.stage.draw();
         buttons.stage.act();
         buttons.stage.draw();
+
+        if(isGameover()){
+            game.setScreen(new GameOver(game));
+            dispose();
+            bodiesToRemove.add(warrior.herodefeated);
+            Lone_Warrior1.x=100/Lone_Warrior1.PPM;
+            Lone_Warrior1.y=50/Lone_Warrior1.PPM;
+            warrior.posture=0;
+        }
     }
 
     @Override
@@ -173,7 +182,8 @@ public class Play_State implements Screen {
         world.dispose();
         b2dr.dispose();
         hud.dispose();
-        buttons.dispose();}
+        buttons.dispose();
+    }
 
     public void drawCharacters(){
         game.batch.setProjectionMatrix(gamecam.combined);
@@ -337,6 +347,30 @@ public class Play_State implements Screen {
         }
     }
 
+    public boolean isGameover(){
+        if(warrior.posture==-1&&warrior.getTime()>3){
+            return true;
+        }
+        else
+            return false;
+    }
+public boolean flagchecker(int i){
+    switch (i){
+        case 1: if(ongoingmove)
+                    return true;
+            else
+            return false;
+        case 2: if(retreat)
+            return true;
+        else
+            return false;
+        default:
+            return false;
+    }
+}
+    public void switchstate(){
+        ongoingmove=true;
+    }
 
 
 }

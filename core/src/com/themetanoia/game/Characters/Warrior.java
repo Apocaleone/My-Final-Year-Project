@@ -2,6 +2,7 @@ package com.themetanoia.game.Characters;
 
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.physics.box2d.Body;
 import     com.badlogic.gdx.physics.box2d.BodyDef;
@@ -11,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Screens.Play_State;
 import com.themetanoia.game.Screens.Play_State;
 
 /**
@@ -24,17 +26,23 @@ public class Warrior extends Sprite {
     public static Body hero,highkickattack,heroretreating,lowkickattack,herodefeated,megapunchattack,groundpunchattack,spinpunchattack,
     exorcizeattack,hurricanebreathattack,multikickattack;
     public Animation running,highkick,lowkick,retreat,defeat,megapunch,groundpunch,multikick,spinpunch,exorcize,hurricanebreath;
-    public static float time;
+    public float time;
     private TextureRegion warriorinit;
 
     boolean rightside;
     public static int posture=0;
     public static boolean fallback=false;
+    private Play_State state;
+    
+    private TextureAtlas atlas;
 
 
 
     public Warrior(World world, Play_State state){
-        super(state.getAtlas().findRegion("running0"));
+        //super(atlas.findRegion("running0"));
+        this.state=state;
+        atlas=Lone_Warrior1.getAtlas(2);
+
         this.world=world;
 
 
@@ -46,74 +54,74 @@ public class Warrior extends Sprite {
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
         {
-            frames.add(new TextureRegion(state.getAtlas().findRegion("running"+i)));
+            frames.add(new TextureRegion(atlas.findRegion("running"+i)));
         }
         running=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<7;i++)
         {
-            frames.add(new TextureRegion(state.getAtlas().findRegion("highkick"+i)));
+            frames.add(new TextureRegion(atlas.findRegion("highkick"+i)));
         }
         highkick=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<12;i++)
         {
             if(i<=9)
-            frames.add(new TextureRegion(state.getAtlas().findRegion("lowkick0"+i)));
+            frames.add(new TextureRegion(atlas.findRegion("lowkick0"+i)));
             else
-                frames.add(new TextureRegion(state.getAtlas().findRegion("lowkick"+i)));
+                frames.add(new TextureRegion(atlas.findRegion("lowkick"+i)));
         }
         lowkick=new Animation(0.05f,frames);
         frames.clear();
         for(int i=0;i<3;i++)
         {
-                frames.add(new TextureRegion(state.getAtlas().findRegion("exorcize"+i)));
+                frames.add(new TextureRegion(atlas.findRegion("exorcize"+i)));
         }
         exorcize=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<6;i++) {
-            frames.add(new TextureRegion(state.getAtlas().findRegion("groundpunch" + i)));
+            frames.add(new TextureRegion(atlas.findRegion("groundpunch" + i)));
         }
         groundpunch=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<5;i++)
         {
-                frames.add(new TextureRegion(state.getAtlas().findRegion("hurricanebreath"+i)));
+                frames.add(new TextureRegion(atlas.findRegion("hurricanebreath"+i)));
         }
         hurricanebreath=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<4;i++)
         {
-                frames.add(new TextureRegion(state.getAtlas().findRegion("multikick"+i)));
+                frames.add(new TextureRegion(atlas.findRegion("multikick"+i)));
         }
         multikick=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<7;i++)
         {
-                frames.add(new TextureRegion(state.getAtlas().findRegion("powerpunch"+i)));
+                frames.add(new TextureRegion(atlas.findRegion("powerpunch"+i)));
         }
         megapunch=new Animation(0.1f,frames);
         frames.clear();
         for(int i=0;i<5;i++)
         {
-                frames.add(new TextureRegion(state.getAtlas().findRegion("spinpunch"+i)));
+                frames.add(new TextureRegion(atlas.findRegion("spinpunch"+i)));
         }
         spinpunch=new Animation(0.05f,frames);
         frames.clear();
         for(int i=0;i<2;i++)
         {
-            frames.add(new TextureRegion(state.getAtlas().findRegion("retreat"+i)));
+            frames.add(new TextureRegion(atlas.findRegion("retreat"+i)));
         }
         retreat=new Animation(0.8f,frames);
         frames.clear();
         for(int i=0;i<5;i++)
         {
-            frames.add(new TextureRegion(state.getAtlas().findRegion("defeat"+i)));
+            frames.add(new TextureRegion(atlas.findRegion("defeat"+i)));
         }
         defeat=new Animation(0.2f,frames);
         frames.clear();
         defineWarrior();
-        warriorinit=new TextureRegion(state.getAtlas().findRegion("running0"));
+        warriorinit=new TextureRegion(atlas.findRegion("running0"));
         setBounds(0,0,100/Lone_Warrior1.PPM,100/Lone_Warrior1.PPM);
         setRegion(warriorinit);
     }
@@ -172,56 +180,56 @@ public class Warrior extends Sprite {
                 region=running.getKeyFrame(time,true);
                 break;
             case Highkick://1
-                if(Play_State.retreat==true){
+                if(state.flagchecker(2)==true){
                     setBounds(heroretreating.getPosition().x-getWidth()/2,heroretreating.getPosition().y-getHeight()/2,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
                     region=retreat.getKeyFrame(time);}
                 else
                 region=highkick.getKeyFrame(time);
                 break;
             case Lowkick://2
-                if(Play_State.retreat==true){
+                if(state.flagchecker(2)==true){
                     setBounds(heroretreating.getPosition().x-getWidth()/2,(heroretreating.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
                     region=retreat.getKeyFrame(time);}
                 else
                 region=lowkick.getKeyFrame(time);
                 break;
             case Multikick://3
-                if(Play_State.retreat==true){
+                if(state.flagchecker(2)==true){
                     setBounds(heroretreating.getPosition().x-getWidth()/2,(heroretreating.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
                     region=retreat.getKeyFrame(time);}
                 else
                     region=multikick.getKeyFrame(time);
                 break;
             case Megapunch://4
-                if(Play_State.retreat==true){
+                if(state.flagchecker(2)==true){
                     setBounds(heroretreating.getPosition().x-getWidth()/2,(heroretreating.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
                     region=retreat.getKeyFrame(time);}
                 else
                     region=megapunch.getKeyFrame(time);
                 break;
             case Groundpunch://5
-                if(Play_State.retreat==true){
+                if(state.flagchecker(2)==true){
                     setBounds(heroretreating.getPosition().x-getWidth()/2,(heroretreating.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
                     region=retreat.getKeyFrame(time);}
                 else
                     region=groundpunch.getKeyFrame(time);
                 break;
             case Hurricanebreath://6
-                if(Play_State.retreat==true){
+                if(state.flagchecker(2)==true){
                     setBounds(heroretreating.getPosition().x-getWidth()/2,(heroretreating.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
                     region=retreat.getKeyFrame(time);}
                 else
                     region=hurricanebreath.getKeyFrame(time);
                 break;
             case Spinpunch://7
-                if(Play_State.retreat==true){
+                if(state.flagchecker(2)==true){
                     setBounds(heroretreating.getPosition().x-getWidth()/2,(heroretreating.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
                     region=retreat.getKeyFrame(time);}
                 else
                     region=spinpunch.getKeyFrame(time);
                 break;
             case Exorcize://8
-                if(Play_State.retreat==true){
+                if(state.flagchecker(2)==true){
                     setBounds(heroretreating.getPosition().x-getWidth()/2,(heroretreating.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
                     region=retreat.getKeyFrame(time);}
                 else
@@ -245,6 +253,10 @@ public class Warrior extends Sprite {
         time=currentState==previousState ? time+dt : 0;//I don't know why I put it here but the tutorial said so, to swap between different states of animation.
         previousState=currentState;
         return region;//return the region to the called position
+    }
+
+    public float getTime(){
+        return time;
     }
 
 

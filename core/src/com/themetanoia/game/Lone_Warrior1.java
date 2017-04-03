@@ -3,6 +3,7 @@ package com.themetanoia.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -14,7 +15,7 @@ import com.themetanoia.game.Screens.MenuScreen;
 import com.themetanoia.game.Screens.Play_State;
 
 
-public class Lone_Warrior1 extends Game {
+public class Lone_Warrior1 extends Game implements Screen {
 	public SpriteBatch batch;//common sprite batch for all rendering because batch functions are heavy
 	public static final int V_Width=900;//global variable for screen resolution
 	public static final int V_Height=416;
@@ -27,7 +28,7 @@ public class Lone_Warrior1 extends Game {
 	public static final short BIT_DEFEATED=16;
 	public static LoadState loading;
 	public static Array<TextureAtlas> atlas;
-	public static float velocity=-1f;
+	public static float velocity=-0.5f;
 
 
 
@@ -55,7 +56,22 @@ public class Lone_Warrior1 extends Game {
 		return atlas.get(i);
 
 	}
-	
+
+	@Override
+	public void show() {
+
+	}
+
+	@Override
+	public void render(float delta) {
+
+	}
+
+	@Override
+	public void hide() {
+
+	}
+
 	@Override
 	public void dispose () {
 

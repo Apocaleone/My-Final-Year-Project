@@ -20,7 +20,7 @@ public class Army extends Enemies {private Body army1;//change
     private float time;
     private TextureRegion spearmaninit;
 
-    private int armystate =0;//change
+    private int armystate =0,previousstate;//change
 
 
     public Army(Play_State state, float x, float y){
@@ -39,7 +39,7 @@ public class Army extends Enemies {private Body army1;//change
         {
             frames.add(new TextureRegion(atlas.findRegion("Armydefeated"+i)));//change
         }
-        defeated=new Animation(2.2f,frames);
+        defeated=new Animation(0.1f,frames);
         frames.clear();
         spearmaninit=new TextureRegion(atlas.findRegion("Army0"));//change
         setBounds(getX(),getY(),200/ Lone_Warrior1.PPM,170/Lone_Warrior1.PPM);
@@ -72,13 +72,15 @@ public class Army extends Enemies {private Body army1;//change
             return false;
     }
     public TextureRegion getFrame(float dt){
-        time=time+dt;
+
         TextureRegion region=null;
         region=approaching.getKeyFrame(time,true);
         if(armystate ==1)
             region=defeated.getKeyFrame(time);
        /* if(!region.isFlipX())
         region.flip(true,false);*/
+        time=armystate==previousstate?time+dt:0;
+        previousstate=armystate;
         return region;
 
     }

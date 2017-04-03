@@ -20,6 +20,7 @@ import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Screens.Play_State;
 
 /**
  * Created by MITHUN on 10-11-2016.
@@ -33,12 +34,14 @@ public class Buttons implements ApplicationListener {
     private Skin skin;
     private boolean b1check=false, b2check=false, b3check=false, b4check=false;
     private TextureAtlas atlas;
+    private Play_State state;
 
 
 
 
 
-    public Buttons(SpriteBatch sb){
+    public Buttons(SpriteBatch sb,Play_State state){
+        this.state=state;
 
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         stage=new Stage(viewport,sb);
@@ -111,19 +114,19 @@ public class Buttons implements ApplicationListener {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 b1check=false;
                 if(b2check==true){
-                    if(Play_State.ongoingmove==false&&Warrior.posture!=-1) {
-                        Play_State.ongoingmove = true;
+                    if(state.flagchecker(1)==false&&Warrior.posture!=-1) {
+                        state.switchstate();
                         Warrior.posture = 8;
-                        Play_State.bodiesToRemove.add(Warrior.hero);
+                        state.bodiesToRemove.add(Warrior.hero);
                         Warrior.defineExorcize();
                         Warrior.exorcizeattack.applyForceToCenter(100,0, true);
                         // }
                     }
                 }
-                else if(Play_State.ongoingmove==false&&Warrior.posture!=-1&&b2check==false) {
-                    Play_State.ongoingmove = true;
+                else if(state.flagchecker(1)==false&&Warrior.posture!=-1&&b2check==false) {
+                    state.switchstate();
                     Warrior.posture = 4;
-                    Play_State.bodiesToRemove.add(Warrior.hero);
+                    state.bodiesToRemove.add(Warrior.hero);
                     Warrior.defineGroundpunch();
                     Warrior.groundpunchattack.applyForceToCenter(100,0, true);
                     // }
@@ -142,19 +145,19 @@ public class Buttons implements ApplicationListener {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 b2check=false;
                 if(b1check==true){
-                    if(Play_State.ongoingmove==false&&Warrior.posture!=-1) {
-                        Play_State.ongoingmove = true;
+                    if(state.flagchecker(1)==false&&Warrior.posture!=-1) {
+                        state.switchstate();
                         Warrior.posture = 6;
-                        Play_State.bodiesToRemove.add(Warrior.hero);
+                        state.bodiesToRemove.add(Warrior.hero);
                         Warrior.defineMegapunch();
                         Warrior.megapunchattack.applyForceToCenter(100,0, true);
                         // }
                     }
                 }
-               else if(Play_State.ongoingmove==false&&Warrior.posture!=-1&&b1check==false) {
-                    Play_State.ongoingmove = true;
+               else if(state.flagchecker(1)==false&&Warrior.posture!=-1&&b1check==false) {
+                    state.switchstate();
                     Warrior.posture = 5;
-                    Play_State.bodiesToRemove.add(Warrior.hero);
+                    state.bodiesToRemove.add(Warrior.hero);
                     Warrior.defineSpinpunch();
                     Warrior.spinpunchattack.applyForceToCenter(100,0, true);
                     // }
@@ -170,18 +173,18 @@ public class Buttons implements ApplicationListener {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 b3check=false;
                 if(b4check==true){
-                    if(Play_State.ongoingmove==false&&Warrior.posture!=-1) {
-                        Play_State.ongoingmove = true;
+                    if(state.flagchecker(1)==false&&Warrior.posture!=-1) {
+                        state.switchstate();
                         Warrior.posture = 7;
-                        Play_State.bodiesToRemove.add(Warrior.hero);
+                        state.bodiesToRemove.add(Warrior.hero);
                         Warrior.defineHurricanebreath();
                         Warrior.hurricanebreathattack.applyForceToCenter(100,0, true);
                     }
                 }
-                else if(Play_State.ongoingmove==false&&Warrior.posture!=-1&&b4check==false) {
-                    Play_State.ongoingmove = true;
+                else if(state.flagchecker(1)==false&&Warrior.posture!=-1&&b4check==false) {
+                    state.switchstate();
                     Warrior.posture = 2;
-                    Play_State.bodiesToRemove.add(Warrior.hero);
+                    state.bodiesToRemove.add(Warrior.hero);
                     Warrior.defineLowkick();
                     Warrior.lowkickattack.applyForceToCenter(100,0, true);
                     // }
@@ -198,19 +201,19 @@ public class Buttons implements ApplicationListener {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 b4check=false;
                 if(b3check==true){
-                    if(Play_State.ongoingmove==false&&Warrior.posture!=-1) {
-                        Play_State.ongoingmove = true;
+                    if(state.flagchecker(1)==false&&Warrior.posture!=-1) {
+                        state.switchstate();
                         Warrior.posture = 3;
-                        Play_State.bodiesToRemove.add(Warrior.hero);
+                        state.bodiesToRemove.add(Warrior.hero);
                         Warrior.defineMultikick();
                         Warrior.multikickattack.applyForceToCenter(100,0, true);
                         // }
                     }
                 }
-               else if(Play_State.ongoingmove==false&&Warrior.posture!=-1&&b3check==false) {
-                    Play_State.ongoingmove = true;
+               else if(state.flagchecker(1)==false&&Warrior.posture!=-1&&b3check==false) {
+                    state.switchstate();
                     Warrior.posture = 1;
-                    Play_State.bodiesToRemove.add(Warrior.hero);
+                    state.bodiesToRemove.add(Warrior.hero);
                     Warrior.defineHighkick();
                     Warrior.highkickattack.applyForceToCenter(100,0, true);
                     // }

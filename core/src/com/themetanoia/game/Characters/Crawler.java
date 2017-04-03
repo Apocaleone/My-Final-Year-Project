@@ -20,7 +20,7 @@ public class Crawler extends Enemies {private Body crawler1;
     private float time;
     private TextureRegion spearmaninit;
 
-    private int crawlerstate =0;
+    private int crawlerstate =0,previousstate;
 
 
     public Crawler (Play_State state, float x, float y){
@@ -39,7 +39,7 @@ public class Crawler extends Enemies {private Body crawler1;
         {
             frames.add(new TextureRegion(atlas.findRegion("Crawlerdefeated"+i)));
         }
-        defeated=new Animation(2.2f,frames);
+        defeated=new Animation(0.1f,frames);
         frames.clear();
         spearmaninit=new TextureRegion(atlas.findRegion("Crawler0"));
         setBounds(getX(),getY(),200/ Lone_Warrior1.PPM,170/Lone_Warrior1.PPM);
@@ -72,13 +72,14 @@ public class Crawler extends Enemies {private Body crawler1;
             return false;
     }
     public TextureRegion getFrame(float dt){
-        time=time+dt;
         TextureRegion region=null;
         region=approaching.getKeyFrame(time,true);
         if(crawlerstate ==1)
             region=defeated.getKeyFrame(time);
        /* if(!region.isFlipX())
         region.flip(true,false);*/
+        time=crawlerstate==previousstate?time+dt:0;
+        previousstate=crawlerstate;
         return region;
 
     }

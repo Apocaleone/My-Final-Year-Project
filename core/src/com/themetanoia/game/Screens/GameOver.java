@@ -6,7 +6,10 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
@@ -16,13 +19,12 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Lone_Warrior1;
 
 /**
- * Created by MITHUN on 28-11-2016.
+ * Created by MITHOON on 03-04-2017.
  */
-public class MenuScreen extends Game implements Screen {
+public class GameOver extends Game implements Screen {
     private Stage stage;
     private Viewport viewport;
     private BitmapFont font;
@@ -31,14 +33,17 @@ public class MenuScreen extends Game implements Screen {
     private Skin skin;
     private TextureAtlas atlas;
 
-
     private Lone_Warrior1 game;
+    private SpriteBatch sb;
+    private Sprite sprite;
+    private Texture texture;
 
-    public MenuScreen(Lone_Warrior1 game){
-
-        this.game=game;
-
+    public GameOver(Lone_Warrior1 game) {
+        this.game = game;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
+        sb=new SpriteBatch();
+        texture=new Texture("gameover.png");
+        sprite=new Sprite(texture);
 
         atlas=new TextureAtlas();
         atlas=Lone_Warrior1.getAtlas(0);
@@ -50,7 +55,7 @@ public class MenuScreen extends Game implements Screen {
         skin.addRegions(atlas);
 
         Table table=new Table();
-        table.center();
+        table.bottom();
         table.setFillParent(true);
 
         Gdx.input.setInputProcessor(stage);
@@ -65,10 +70,11 @@ public class MenuScreen extends Game implements Screen {
         table.add(startbutton).expandX().padBottom(100).width(200).height(50).center();
 
         stage.addActor(table);
-
-
     }
 
+    @Override
+    public void create() {
+    }
 
     @Override
     public void show() {
@@ -78,8 +84,8 @@ public class MenuScreen extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
-                dispose();
                 game.setScreen(new Play_State(game));
+                dispose();
             }
         });
 
@@ -89,30 +95,12 @@ public class MenuScreen extends Game implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
+        sprite.setPosition(Gdx.graphics.getWidth()/2-texture.getWidth()/2,Gdx.graphics.getHeight()/2-texture.getHeight()/2);
+        sb.begin();
+        sprite.draw(sb);
+        sb.end();
         stage.act();
         stage.draw();
-
-
-    }
-
-    @Override
-    public void create() {
-
-    }
-
-    @Override
-    public void resize(int width, int height) {
-
-    }
-
-    @Override
-    public void pause() {
-
-    }
-
-    @Override
-    public void resume() {
 
     }
 
@@ -120,10 +108,8 @@ public class MenuScreen extends Game implements Screen {
     public void hide() {
 
     }
-
-    @Override
-    public void dispose() {
+    public void dispose(){
         stage.dispose();
-
+        texture.dispose();
     }
 }

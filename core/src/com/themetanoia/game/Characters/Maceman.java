@@ -20,7 +20,7 @@ public class Maceman extends Enemies {private Body maceman1;
     private float time;
     private TextureRegion spearmaninit;
 
-    private int macemanstate =0;
+    private int macemanstate =0,previousstate;
 
 
     public Maceman(Play_State state, float x, float y){
@@ -39,7 +39,7 @@ public class Maceman extends Enemies {private Body maceman1;
         {
             frames.add(new TextureRegion(atlas.findRegion("Macemandefeated"+i)));
         }
-        defeated=new Animation(2.2f,frames);
+        defeated=new Animation(0.1f,frames);
         frames.clear();
         spearmaninit=new TextureRegion(atlas.findRegion("Maceman0"));
         setBounds(getX(),getY(),200/ Lone_Warrior1.PPM,170/Lone_Warrior1.PPM);
@@ -72,13 +72,14 @@ public class Maceman extends Enemies {private Body maceman1;
             return false;
     }
     public TextureRegion getFrame(float dt){
-        time=time+dt;
         TextureRegion region=null;
         region=approaching.getKeyFrame(time,true);
         if(macemanstate ==1)
             region=defeated.getKeyFrame(time);
        /* if(!region.isFlipX())
         region.flip(true,false);*/
+        time=macemanstate==previousstate?time+dt:0;
+        previousstate=macemanstate;
         return region;
 
     }
