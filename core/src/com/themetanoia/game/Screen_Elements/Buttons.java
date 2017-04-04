@@ -4,6 +4,7 @@ import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -17,9 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Characters.Warrior;
-import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Lone_Warrior1;
-import com.themetanoia.game.Screens.Play_State;
 import com.themetanoia.game.Screens.Play_State;
 
 /**
@@ -27,11 +26,11 @@ import com.themetanoia.game.Screens.Play_State;
  */
 public class Buttons implements ApplicationListener {
     private Viewport viewport;
-    public Stage stage;
+    public Stage stage, resumestage;
     private BitmapFont font;
-    private TextButton.TextButtonStyle button1Style,button2Style,button3Style,button4Style;
-    public TextButton button1,button2,button3,button4;
-    private Skin skin;
+    private TextButton.TextButtonStyle button1Style,button2Style,button3Style,button4Style,pauseButtonStyle,startbuttonStyle;
+    public TextButton button1,button2,button3,button4,pauseButton,startbutton;
+    private Skin skin,pauseskin,startskin;
     private boolean b1check=false, b2check=false, b3check=false, b4check=false;
     private TextureAtlas atlas;
     private Play_State state;
@@ -45,19 +44,23 @@ public class Buttons implements ApplicationListener {
 
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         stage=new Stage(viewport,sb);
+        resumestage=new Stage(viewport,sb);
         atlas=new TextureAtlas();
         atlas=Lone_Warrior1.getAtlas(1);
         font=new BitmapFont();
         font.setColor(Color.BLACK);
         font.getData().setScale(3);
         skin=new Skin();
+        pauseskin=new Skin();
+        startskin=new Skin();
         skin.addRegions(atlas);
+        pauseskin.add("pause",new Texture("pausebutton.png"));
+        startskin.add("resume",new Texture("Resumebuttondown.png"));
+
 
         Table table=new Table();
-        table.center();
-        table.setFillParent(true);
+        Table resumetable=new Table();
 
-        Gdx.input.setInputProcessor(stage);
 
 
         button1Style=new TextButton.TextButtonStyle();            //button 1 properties
@@ -73,38 +76,70 @@ public class Buttons implements ApplicationListener {
         button2= new TextButton(" ",button2Style);
 
 
-        
-
-
-
         button3Style=new TextButton.TextButtonStyle(); //Button3 properties!
         button3Style.up= skin.getDrawable("bottomleft");
         button3Style.font=font;
         button3= new TextButton(" ",button3Style);
-
-
-
-
-
 
         button4Style=new TextButton.TextButtonStyle(); //Button4 properties!
         button4Style.up= skin.getDrawable("bottomright");
         button4Style.font=font;
         button4= new TextButton(" ",button4Style);
 
+        pauseButtonStyle=new TextButton.TextButtonStyle(); //Button4 properties!
+        pauseButtonStyle.up= pauseskin.getDrawable("pause");
+        pauseButtonStyle.font=font;
+        pauseButton= new TextButton(" ",pauseButtonStyle);
 
-        table.add(button1).expandX().padTop(100).width(200).height(50).left();
-        table.add(button2).expandX().padTop(100).width(200).height(50).right();
+        startbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
+        startbuttonStyle.up= startskin.getDrawable("resume");
+        //startbuttonStyle.down= skin.getDrawable("Resumebutton");
+        startbuttonStyle.font=font;
+        startbutton= new TextButton(" ",startbuttonStyle);
+
+
+        table.top();
+        table.setFillParent(true);
+        table.add(pauseButton).expandX().padTop(5).padLeft(1100).width(50).height(30).right();
+
+        //table.center();
         table.row();
-        table.add(button3).expandX().padTop(30).width(200).height(50).left();
-        table.add(button4).expandX().padTop(30).width(200).height(50).right();
+        table.row();
+        table.add(button1).expandX().padTop(150).width(300).height(50).left();
+        table.add(button2).expandX().padTop(150).width(300).height(50).right();
+        table.row();
+        table.add(button3).expandX().padTop(30).width(300).height(50).left();
+        table.add(button4).expandX().padTop(30).width(300).height(50).right();
+
+        resumetable.bottom();
+        resumetable.setFillParent(true);
+        resumetable.add(startbutton).expandX().padBottom(100).width(200).height(50).center();
 
         stage.addActor(table);
+        resumestage.addActor(resumetable);
 
+    }
+
+    public void buttonmode(){
+        if(Play_State.halt==false){
+            Gdx.input.setInputProcessor(stage);
+        }
+        else
+            Gdx.input.setInputProcessor(resumestage);
     }
 
     @Override
     public void create() {
+        pauseButton.addListener(new ClickListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                System.out.println("Pause button");
+                Play_State.halt=true;
+            }
+        });
         button1.addListener(new ClickListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 b1check=true;
@@ -219,6 +254,16 @@ public class Buttons implements ApplicationListener {
                     // }
                 }
                 System.out.println("Star Clicked");
+            }
+        });
+
+        startbutton.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                System.out.println("Start Clicked");
+                Play_State.halt=false;
             }
         });
 

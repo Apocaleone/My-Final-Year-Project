@@ -1,6 +1,7 @@
 package com.themetanoia.game.Screens;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -11,13 +12,12 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.IntFloatMap;
+import com.badlogic.gdx.utils.ObjectIntMap;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.themetanoia.game.Characters.Berserker;
 import com.themetanoia.game.Characters.Enemies;
-import com.themetanoia.game.Characters.Spearman;
 import com.themetanoia.game.Characters.Warrior;
-import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Screen_Elements.Buttons;
 import com.themetanoia.game.Screen_Elements.Hud;
 import com.themetanoia.game.Lone_Warrior1;
@@ -51,8 +51,11 @@ public class Play_State implements Screen {
     private float time=0;
     int j=0;
     public static Array<Body> bodiesToRemove;//an array that takes care of removing the bodies in the array after each update
-    public boolean ongoingmove=false, retreat=false,flag=false,flag2=false,gameover=false;//variables that determine the state of warrior
+    public boolean ongoingmove=false, retreat=false,flag=false,flag2=false;//variables that determine the state of warrior
+    public static boolean halt =false;
     public static int enemycounter=0;
+    public float stepchange=1/45f;
+    public PauseScreen pauseScreen;
 
 
 
@@ -62,6 +65,7 @@ public class Play_State implements Screen {
         atlas=new TextureAtlas();
         atlas=Lone_Warrior1.getAtlas(2);
         this.game=game;
+        pauseScreen=new PauseScreen(this);
 
 
         sR=new ShapeRenderer();
@@ -103,30 +107,53 @@ public class Play_State implements Screen {
 
 
     @Override
-    public void show() {buttons.create();}
+    public void show() {buttons.create();
+    pauseScreen.create();}
+    public boolean pausescreen(){
+
+        if(halt==true)
+            return true;
+        else
+            return false;
+
+    }
 
 
     public void update(float dt){
-        world.step(1/45f,6,2);
+        world.step(stepchange,6,2);
+        if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+            halt=true;
+        }
         counters();
         updatingCharacterClasses(dt);//calls update method of individual character classes
         checkForMoves();//checks the state of each body
         bodyDestructor();//destroys the bodies from the list
-        retreatFunction();//retreats the warrior to its attack initation position
+        retreatFunction();//retreats the warrior to its attack initation position!
         NightWorld.renderer.setView(gamecam);
         NightWorld.renderer2.setView(bgcam);
         if(enemycounter>=3){
             spawn.spawn();
             System.out.println("spawning enemies");
-            }
 
-        forceApplicationFunction();//applies force to each individual character in the game
+        }
+            forceApplicationFunction();//applies force to each individual character in the game
+
     }
 
     @Override
     public void render(float delta) {
-        time+=delta;
-        update(delta);
+
+
+        if(halt)
+        {
+            if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
+                halt=false;
+            }
+        }
+        else{
+            time+=delta;
+        update(delta);}
+        buttons.buttonmode();
         Gdx.gl.glClearColor(0.329412f, 0.329412f, 0.329412f, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
@@ -149,6 +176,15 @@ public class Play_State implements Screen {
         hud.stage.draw();
         buttons.stage.act();
         buttons.stage.draw();
+
+        if(pausescreen()){
+            pauseScreen.sprite.setPosition(Gdx.graphics.getWidth()/2-pauseScreen.texture.getWidth()/2,Gdx.graphics.getHeight()/2-pauseScreen.texture.getHeight()/2);
+            pauseScreen.sb.begin();
+            pauseScreen.sprite.draw(pauseScreen.sb);
+            pauseScreen.sb.end();
+            buttons.resumestage.act();
+            buttons.resumestage.draw();
+        }
 
         if(isGameover()){
             game.setScreen(new GameOver(game));
