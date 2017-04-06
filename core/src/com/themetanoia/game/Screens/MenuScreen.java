@@ -18,6 +18,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Tools.LevelsManager;
 
 /**
  * Created by MITHUN on 28-11-2016.
@@ -33,15 +34,17 @@ public class MenuScreen extends Game implements Screen {
 
 
     private Lone_Warrior1 game;
+    public LevelsManager levelsManager;
 
     public MenuScreen(Lone_Warrior1 game){
 
         this.game=game;
 
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
+        levelsManager=new LevelsManager(game);
 
         atlas=new TextureAtlas();
-        atlas=Lone_Warrior1.getAtlas(0);
+        atlas=game.getAtlas(0);
         stage=new Stage(viewport,game.batch);
         font=new BitmapFont();
         font.setColor(Color.BLACK);
@@ -79,7 +82,7 @@ public class MenuScreen extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
                 dispose();
-                game.setScreen(new Play_State(game));
+                levelsManager.levelSelector();//game.setScreen(new Play_State(game));
             }
         });
 

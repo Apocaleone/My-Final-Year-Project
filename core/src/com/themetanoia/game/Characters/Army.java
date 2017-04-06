@@ -21,12 +21,14 @@ public class Army extends Enemies {private Body army1;//change
     private TextureRegion spearmaninit;
 
     private int armystate =0,previousstate;//change
+    Play_State state;
 
 
     public Army(Play_State state, float x, float y){
         super(state,x,y);
+        this.state=state;
         atlas=new TextureAtlas();
-        atlas= Lone_Warrior1.getAtlas(4);
+        atlas= state.game.getAtlas(4);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<5;i++)//change
@@ -61,7 +63,7 @@ public class Army extends Enemies {private Body army1;//change
 
             }
             if(armystate ==0)
-                army1.setLinearVelocity(Lone_Warrior1.velocity,0);
+                army1.setLinearVelocity( state.getVelocity(),0);
             setRegion(getFrame(dt));
         }
     }

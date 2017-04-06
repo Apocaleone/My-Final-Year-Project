@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -30,23 +31,22 @@ public class GameOver extends Game implements Screen {
     private BitmapFont font;
     private TextButton.TextButtonStyle startbuttonStyle;
     public TextButton startbutton;
+    public Image image;
     private Skin skin;
     private TextureAtlas atlas;
 
     private Lone_Warrior1 game;
-    private SpriteBatch sb;
-    private Sprite sprite;
     private Texture texture;
+
 
     public GameOver(Lone_Warrior1 game) {
         this.game = game;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
-        sb=new SpriteBatch();
         texture=new Texture("gameover.png");
-        sprite=new Sprite(texture);
+        image=new Image(texture);
 
         atlas=new TextureAtlas();
-        atlas=Lone_Warrior1.getAtlas(0);
+        atlas=game.getAtlas(0);
         stage=new Stage(viewport,game.batch);
         font=new BitmapFont();
         font.setColor(Color.BLACK);
@@ -55,7 +55,7 @@ public class GameOver extends Game implements Screen {
         skin.addRegions(atlas);
 
         Table table=new Table();
-        table.bottom();
+        table.center();
         table.setFillParent(true);
 
         Gdx.input.setInputProcessor(stage);
@@ -66,8 +66,9 @@ public class GameOver extends Game implements Screen {
         startbuttonStyle.down= skin.getDrawable("startbutton");
         startbuttonStyle.font=font;
         startbutton= new TextButton(" ",startbuttonStyle);
-
-        table.add(startbutton).expandX().padBottom(100).width(200).height(50).center();
+       table.add(image);
+        table.row();
+        table.add(startbutton).expandX().padTop(100).width(200).height(50).center();
 
         stage.addActor(table);
     }
@@ -84,7 +85,7 @@ public class GameOver extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
-                game.setScreen(new Play_State(game));
+                game.setScreen(new MenuScreen(game));
                 dispose();
             }
         });
@@ -95,10 +96,6 @@ public class GameOver extends Game implements Screen {
     public void render(float delta) {
         Gdx.gl.glClearColor(0, 0, 0, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-        sprite.setPosition(Gdx.graphics.getWidth()/2-texture.getWidth()/2,Gdx.graphics.getHeight()/2-texture.getHeight()/2);
-        sb.begin();
-        sprite.draw(sb);
-        sb.end();
         stage.act();
         stage.draw();
 

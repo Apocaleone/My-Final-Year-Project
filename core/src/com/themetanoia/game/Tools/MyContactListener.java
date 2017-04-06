@@ -45,7 +45,7 @@ public class MyContactListener implements ContactListener {
             }
             else{
                 System.out.println("berserker wins");
-                if(!fa.getUserData().equals("Ground")&&!fa.getUserData().equals("berserker1")){
+                if(!fb.getUserData().equals("Ground")&&!fb.getUserData().equals("berserker1")){
                     Play_State.bodiesToRemove.add(fa.getBody());
                     Warrior.posture=-1;}
             }

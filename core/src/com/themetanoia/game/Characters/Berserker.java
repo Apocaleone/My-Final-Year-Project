@@ -22,13 +22,15 @@ public class Berserker extends Enemies {
     private float time;
     private TextureRegion berkserkerinit;
 
-    public int berserkerstate=0;
+    public int berserkerstate=0,previousstate;
+    Play_State state;
 
 
     public Berserker(Play_State state,float x, float y){
         super(state, x,  y);
+        this.state=state;
         atlas=new TextureAtlas();
-        atlas=Lone_Warrior1.getAtlas(4);
+        atlas=state.game.getAtlas(4);
         time=0f;
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
@@ -63,7 +65,7 @@ public class Berserker extends Enemies {
                 berserkerstate=-1;
             }
             if(berserkerstate==0)
-                berserker1.setLinearVelocity(Lone_Warrior1.velocity,0);
+                berserker1.setLinearVelocity(state.getVelocity(),0);
        /* else{
         berserkerstate=0;}*/
             setRegion(getFrame(dt));
@@ -76,7 +78,8 @@ public class Berserker extends Enemies {
         region=approaching.getKeyFrame(time,true);//}
         if(berserkerstate==1)
             region=defeated.getKeyFrame(time);
-        time=time+dt;
+        time=berserkerstate==previousstate?time+dt:0;
+        previousstate=berserkerstate;
         return region;
 
     }

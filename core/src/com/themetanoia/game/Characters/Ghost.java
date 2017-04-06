@@ -21,12 +21,14 @@ public class Ghost extends Enemies {private Body ghost1;//change
     private TextureRegion spearmaninit;
 
     private int ghoststate =0,previousstate;//change
+    Play_State state;
 
 
     public Ghost(Play_State state, float x, float y){
         super(state,x,y);
+        this.state=state;
         atlas=new TextureAtlas();
-        atlas= Lone_Warrior1.getAtlas(4);
+        atlas= state.game.getAtlas(4);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)//change
@@ -61,7 +63,7 @@ public class Ghost extends Enemies {private Body ghost1;//change
 
             }
             if(ghoststate ==0)
-                ghost1.setLinearVelocity(Lone_Warrior1.velocity,0);
+                ghost1.setLinearVelocity(state.getVelocity(),0);
             setRegion(getFrame(dt));
         }
     }

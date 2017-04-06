@@ -52,14 +52,14 @@ public class Spawner {
        for(int i=0;i<3;i++) {
             RandomXS128 random = new RandomXS128();
             System.out.println("Generating random number");
-            int a =random.nextInt(4) + 1;
+            int a =random.nextInt(screen.level+1) + 1;
 
             switch (a) {
                 case 1:
                     System.out.println("creating berserker");
                     spearman.add(new Spearman(screen, (Lone_Warrior1.V_Width / Lone_Warrior1.PPM) + (Lone_Warrior1.x+(i*500/Lone_Warrior1.PPM)), 100 / Lone_Warrior1.PPM));
                     break;
-                case 8:
+                case 5:
                     berserkers.add(new Berserker(screen, (Lone_Warrior1.V_Width / Lone_Warrior1.PPM) + (Lone_Warrior1.x+(i*500/Lone_Warrior1.PPM)), 100 / Lone_Warrior1.PPM));
                     break;
                 case 7:
@@ -68,10 +68,10 @@ public class Spawner {
                 case 4:
                     crawlers.add(new Crawler(screen, (Lone_Warrior1.V_Width / Lone_Warrior1.PPM) + (Lone_Warrior1.x+(i*500/Lone_Warrior1.PPM)), 100 / Lone_Warrior1.PPM));
                     break;
-                case 5:
+                case 6:
                     ghosts.add(new Ghost(screen, (Lone_Warrior1.V_Width / Lone_Warrior1.PPM) + (Lone_Warrior1.x+(i*500/Lone_Warrior1.PPM)), 100 / Lone_Warrior1.PPM));
                     break;
-                case 6:
+                case 8:
                     locusts.add(new Locusts(screen, (Lone_Warrior1.V_Width / Lone_Warrior1.PPM) + (Lone_Warrior1.x+(i*500/Lone_Warrior1.PPM)), 100 / Lone_Warrior1.PPM));
                     break;
                 case 3:

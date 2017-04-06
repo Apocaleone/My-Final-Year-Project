@@ -23,12 +23,14 @@ public class Spearman extends Enemies {
     private TextureRegion spearmaninit;
 
     private int spearmanstate=0,previousstate;
+    public Play_State state;
 
 
     public Spearman(Play_State state,float x, float y){
         super(state,x,y);
+        this.state=state;
         atlas=new TextureAtlas();
-        atlas=Lone_Warrior1.getAtlas(4);
+        atlas=state.game.getAtlas(4);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
@@ -63,7 +65,7 @@ public class Spearman extends Enemies {
 
             }
             if(spearmanstate==0)
-                spearman1.setLinearVelocity(Lone_Warrior1.velocity,0);
+                spearman1.setLinearVelocity(state.getVelocity(),0);
             setRegion(getFrame(dt));
         }
     }

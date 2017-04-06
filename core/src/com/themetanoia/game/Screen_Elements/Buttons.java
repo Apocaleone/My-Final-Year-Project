@@ -2,6 +2,7 @@ package com.themetanoia.game.Screen_Elements;
 
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -34,6 +35,7 @@ public class Buttons implements ApplicationListener {
     private boolean b1check=false, b2check=false, b3check=false, b4check=false;
     private TextureAtlas atlas;
     private Play_State state;
+    public InputMultiplexer multiplexer;
 
 
 
@@ -46,7 +48,7 @@ public class Buttons implements ApplicationListener {
         stage=new Stage(viewport,sb);
         resumestage=new Stage(viewport,sb);
         atlas=new TextureAtlas();
-        atlas=Lone_Warrior1.getAtlas(1);
+        atlas=state.game.getAtlas(1);
         font=new BitmapFont();
         font.setColor(Color.BLACK);
         font.getData().setScale(3);
@@ -56,6 +58,12 @@ public class Buttons implements ApplicationListener {
         skin.addRegions(atlas);
         pauseskin.add("pause",new Texture("pausebutton.png"));
         startskin.add("resume",new Texture("Resumebuttondown.png"));
+
+        multiplexer=new InputMultiplexer();
+        multiplexer.addProcessor(stage);
+        multiplexer.addProcessor(resumestage);
+
+        Gdx.input.setInputProcessor(multiplexer);
 
 
         Table table=new Table();
@@ -102,11 +110,10 @@ public class Buttons implements ApplicationListener {
         table.setFillParent(true);
         table.add(pauseButton).expandX().padTop(5).padLeft(1100).width(50).height(30).right();
 
-        //table.center();
         table.row();
         table.row();
-        table.add(button1).expandX().padTop(150).width(300).height(50).left();
-        table.add(button2).expandX().padTop(150).width(300).height(50).right();
+        table.add(button1).expandX().padTop(300).width(300).height(50).left().bottom();
+        table.add(button2).expandX().padTop(300).width(300).height(50).right().bottom();
         table.row();
         table.add(button3).expandX().padTop(30).width(300).height(50).left();
         table.add(button4).expandX().padTop(30).width(300).height(50).right();
@@ -121,11 +128,11 @@ public class Buttons implements ApplicationListener {
     }
 
     public void buttonmode(){
-        if(Play_State.halt==false){
+      /*  if(Play_State.halt==false){
             Gdx.input.setInputProcessor(stage);
         }
         else
-            Gdx.input.setInputProcessor(resumestage);
+            Gdx.input.setInputProcessor(resumestage);*/
     }
 
     @Override

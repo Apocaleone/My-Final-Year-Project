@@ -21,12 +21,14 @@ public class Crawler extends Enemies {private Body crawler1;
     private TextureRegion spearmaninit;
 
     private int crawlerstate =0,previousstate;
+    Play_State state;
 
 
     public Crawler (Play_State state, float x, float y){
         super(state,x,y);
+        this.state=state;
         atlas=new TextureAtlas();
-        atlas= Lone_Warrior1.getAtlas(4);
+        atlas= state.game.getAtlas(4);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<4;i++)
@@ -61,7 +63,7 @@ public class Crawler extends Enemies {private Body crawler1;
 
             }
             if(crawlerstate ==0)
-                crawler1.setLinearVelocity(Lone_Warrior1.velocity,0);
+                crawler1.setLinearVelocity(state.getVelocity(),0);
             setRegion(getFrame(dt));
         }
     }

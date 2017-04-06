@@ -41,7 +41,7 @@ public class Warrior extends Sprite {
     public Warrior(World world, Play_State state){
         //super(atlas.findRegion("running0"));
         this.state=state;
-        atlas=Lone_Warrior1.getAtlas(2);
+        atlas=state.game.getAtlas(2);
 
         this.world=world;
 
@@ -164,6 +164,8 @@ public class Warrior extends Sprite {
         if(posture==-1){
             setBounds(0,0,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
             setPosition(herodefeated.getPosition().x-getWidth()/2,(herodefeated.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM);}
+        if(posture==0)
+            hero.setLinearVelocity(-state.getVelocity(),0);
         setRegion(getFrame(dt));//set the texture region of animation to the sprite which is the entire class
     }
 

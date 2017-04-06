@@ -1,0 +1,89 @@
+
+Levels.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+icon
+  rotate: false
+  xy: 1, 93
+  size: 382, 382
+  orig: 382, 382
+  offset: 0, 0
+  index: -1
+Leftarrowdown
+  rotate: false
+  xy: 385, 318
+  size: 148, 157
+  orig: 148, 157
+  offset: 0, 0
+  index: -1
+Rightarrowdown
+  rotate: false
+  xy: 385, 159
+  size: 148, 157
+  orig: 148, 157
+  offset: 0, 0
+  index: -1
+Rightarrowup
+  rotate: false
+  xy: 535, 318
+  size: 148, 157
+  orig: 148, 157
+  offset: 0, 0
+  index: -1
+Leftarrowup
+  rotate: false
+  xy: 535, 167
+  size: 140, 149
+  orig: 140, 149
+  offset: 0, 0
+  index: -1
+Level4
+  rotate: false
+  xy: 1, 47
+  size: 173, 44
+  orig: 173, 44
+  offset: 0, 0
+  index: -1
+Level6
+  rotate: false
+  xy: 685, 431
+  size: 172, 44
+  orig: 172, 44
+  offset: 0, 0
+  index: -1
+Level7
+  rotate: false
+  xy: 1, 1
+  size: 172, 44
+  orig: 172, 44
+  offset: 0, 0
+  index: -1
+Level1
+  rotate: false
+  xy: 176, 47
+  size: 171, 44
+  orig: 171, 44
+  offset: 0, 0
+  index: -1
+Level2
+  rotate: false
+  xy: 685, 385
+  size: 171, 44
+  orig: 171, 44
+  offset: 0, 0
+  index: -1
+Level3
+  rotate: false
+  xy: 175, 1
+  size: 171, 44
+  orig: 171, 44
+  offset: 0, 0
+  index: -1
+Level5
+  rotate: false
+  xy: 685, 339
+  size: 171, 44
+  orig: 171, 44
+  offset: 0, 0
+  index: -1

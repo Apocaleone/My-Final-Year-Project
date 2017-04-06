@@ -1,6 +1,7 @@
 package com.themetanoia.game.Load_Screens;
 
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
@@ -21,6 +22,8 @@ public class PlayStateAssetmanager {
         manager.load("Warrior.pack",TextureAtlas.class);
         manager.load("Spearman.pack",TextureAtlas.class);
         manager.load("Enemies.pack",TextureAtlas.class);
+        manager.load("Levels/Levels.pack",TextureAtlas.class);
+        manager.load("Music/Bgmusic.ogg", Music.class);
     }
 
     public void dispose(){

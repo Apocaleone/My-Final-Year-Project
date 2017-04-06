@@ -21,12 +21,14 @@ public class Locusts extends Enemies {private Body locusts1;//change
     private TextureRegion spearmaninit;
 
     private int locustsstate =0,previousstate;//change
+    Play_State state;
 
 
     public Locusts(Play_State state, float x, float y){
         super(state,x,y);
+        this.state=state;
         atlas=new TextureAtlas();
-        atlas= Lone_Warrior1.getAtlas(4);
+        atlas= state.game.getAtlas(4);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)//change
@@ -61,7 +63,7 @@ public class Locusts extends Enemies {private Body locusts1;//change
 
             }
             if(locustsstate ==0)
-                locusts1.setLinearVelocity(Lone_Warrior1.velocity,0);
+                locusts1.setLinearVelocity(state.getVelocity(),0);
             setRegion(getFrame(dt));
         }
     }

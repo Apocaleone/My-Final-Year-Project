@@ -3,6 +3,7 @@ package com.themetanoia.game.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -12,14 +13,11 @@ import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
-import com.badlogic.gdx.utils.IntFloatMap;
-import com.badlogic.gdx.utils.ObjectIntMap;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Characters.Enemies;
 import com.themetanoia.game.Characters.Warrior;
-import com.themetanoia.game.Screen_Elements.Buttons;
-import com.themetanoia.game.Screen_Elements.Hud;
+import com.themetanoia.game.Screen_Elements.*;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Tools.MyContactListener;
 import com.themetanoia.game.Tools.Spawner;
@@ -30,7 +28,7 @@ import com.themetanoia.game.Worlds.NightWorld;
  */
 public class Play_State implements Screen {
 
-    private Lone_Warrior1 game;
+    public Lone_Warrior1 game;
     private Hud hud;//for heads up display
     private TextureAtlas atlas;
 
@@ -50,22 +48,27 @@ public class Play_State implements Screen {
 
     private float time=0;
     int j=0;
+    public float velocity=-0;
+    public int level=0,levelvariable=0;
     public static Array<Body> bodiesToRemove;//an array that takes care of removing the bodies in the array after each update
     public boolean ongoingmove=false, retreat=false,flag=false,flag2=false;//variables that determine the state of warrior
     public static boolean halt =false;
     public static int enemycounter=0;
     public float stepchange=1/45f;
-    public PauseScreen pauseScreen;
+    public com.themetanoia.game.Screen_Elements.PauseScreen pauseScreen;
+    public Music music;
 
 
 
 
 
-    public Play_State(Lone_Warrior1 game){
-        atlas=new TextureAtlas();
-        atlas=Lone_Warrior1.getAtlas(2);
+    public Play_State(Lone_Warrior1 game,float velocity,int level,int levelvariable){
         this.game=game;
-        pauseScreen=new PauseScreen(this);
+        this.velocity=velocity;
+        this.level=level;
+        this.levelvariable=levelvariable;
+        pauseScreen=new com.themetanoia.game.Screen_Elements.PauseScreen(this);
+        music=game.getMusic();
 
 
         sR=new ShapeRenderer();
@@ -95,13 +98,16 @@ public class Play_State implements Screen {
         //spearman.defineEnemy();
 
         spawn.spawn();
+        music.setLooping(true);
+       // music.play();
+
 
         bodiesToRemove=new Array<Body>();
     }
-
-    public TextureAtlas getAtlas(){
-        return atlas;
+    public float getVelocity() {
+        return velocity;
     }
+
 
 
 
@@ -142,8 +148,6 @@ public class Play_State implements Screen {
 
     @Override
     public void render(float delta) {
-
-
         if(halt)
         {
             if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
@@ -153,8 +157,7 @@ public class Play_State implements Screen {
         else{
             time+=delta;
         update(delta);}
-        buttons.buttonmode();
-        Gdx.gl.glClearColor(0.329412f, 0.329412f, 0.329412f, 0);
+        Gdx.gl.glClearColor(1,0,1,0);//(0.329412f, 0.329412f, 0.329412f, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if(warrior.posture==-1)
@@ -178,10 +181,10 @@ public class Play_State implements Screen {
         buttons.stage.draw();
 
         if(pausescreen()){
-            pauseScreen.sprite.setPosition(Gdx.graphics.getWidth()/2-pauseScreen.texture.getWidth()/2,Gdx.graphics.getHeight()/2-pauseScreen.texture.getHeight()/2);
-            pauseScreen.sb.begin();
-            pauseScreen.sprite.draw(pauseScreen.sb);
-            pauseScreen.sb.end();
+            //pauseScreen.sprite.setPosition(Gdx.graphics.getWidth()/2-pauseScreen.texture.getWidth()/2,Gdx.graphics.getHeight()/2-pauseScreen.texture.getHeight()/2);
+            pauseScreen.stage.act();
+            pauseScreen.stage.draw();
+
             buttons.resumestage.act();
             buttons.resumestage.draw();
         }
@@ -351,7 +354,7 @@ public class Play_State implements Screen {
             if(flag==true){//defines the retreating body of the hero just once.
                 warrior.defineHeroRetreating();
                 flag=false;}
-            warrior.heroretreating.setLinearVelocity(-2f,0);
+            warrior.heroretreating.setLinearVelocity(velocity-1.5f,0);
             if (warrior.heroretreating.getPosition().x < Lone_Warrior1.x&&warrior.posture!=-1) {
                 bodiesToRemove.add(warrior.heroretreating);
                 ongoingmove=false;
@@ -363,8 +366,8 @@ public class Play_State implements Screen {
     }
 
     public void forceApplicationFunction(){
-        if(warrior.posture!=-1)
-        warrior.hero.applyForceToCenter(2.2f,0,true);
+        /*if(warrior.posture!=-1)
+        warrior.hero.applyForceToCenter(2.2f,0,true);*/
         //if(spearman.spearmanstate==0)
            // spearman.spearman1.applyForceToCenter(-2.3f,0,true);
 
