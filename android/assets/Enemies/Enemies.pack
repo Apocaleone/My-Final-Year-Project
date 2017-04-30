@@ -114,6 +114,32 @@ Enemies5.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
+Berserkerdefeated4
+  rotate: false
+  xy: 1, 423
+  size: 700, 600
+  orig: 700, 600
+  offset: 0, 0
+  index: -1
+Macemandefeated4
+  rotate: false
+  xy: 1, 1
+  size: 600, 420
+  orig: 600, 420
+  offset: 0, 0
+  index: -1
+Ghostdefeated1
+  rotate: false
+  xy: 703, 423
+  size: 300, 600
+  orig: 300, 600
+  offset: 0, 0
+  index: -1
+
+Enemies6.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
 Spearman0
   rotate: false
   xy: 1, 652
@@ -171,7 +197,7 @@ Spearmandefeated4
   offset: 0, 0
   index: -1
 
-Enemies6.png
+Enemies7.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -190,7 +216,7 @@ Locusts1
   offset: 0, 0
   index: -1
 
-Enemies7.png
+Enemies8.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -209,7 +235,7 @@ Locustsdefeated0
   offset: 0, 0
   index: -1
 
-Enemies8.png
+Enemies9.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -228,7 +254,26 @@ Locustsdefeated2
   offset: 0, 0
   index: -1
 
-Enemies9.png
+Enemies10.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Locustsdefeated3
+  rotate: false
+  xy: 1, 503
+  size: 800, 500
+  orig: 800, 500
+  offset: 0, 0
+  index: -1
+Locustsdefeated4
+  rotate: false
+  xy: 1, 1
+  size: 800, 500
+  orig: 800, 500
+  offset: 0, 0
+  index: -1
+
+Enemies11.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -246,7 +291,7 @@ Maceman1
   orig: 600, 500
   offset: 0, 0
   index: -1
-Ghostdefeated1
+Ghostdefeated2
   rotate: false
   xy: 603, 403
   size: 300, 600
@@ -254,7 +299,7 @@ Ghostdefeated1
   offset: 0, 0
   index: -1
 
-Enemies10.png
+Enemies12.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -272,7 +317,7 @@ Maceman3
   orig: 600, 500
   offset: 0, 0
   index: -1
-Ghostdefeated2
+Ghostdefeated3
   rotate: false
   xy: 603, 403
   size: 300, 600
@@ -280,33 +325,7 @@ Ghostdefeated2
   offset: 0, 0
   index: -1
 
-Enemies11.png
-format: RGBA8888
-filter: Nearest,Nearest
-repeat: none
-Berserker0
-  rotate: false
-  xy: 1, 403
-  size: 570, 550
-  orig: 570, 550
-  offset: 0, 0
-  index: -1
-Crawler0
-  rotate: false
-  xy: 1, 1
-  size: 600, 400
-  orig: 600, 400
-  offset: 0, 0
-  index: -1
-Ghostdefeated3
-  rotate: false
-  xy: 603, 353
-  size: 300, 600
-  orig: 300, 600
-  offset: 0, 0
-  index: -1
-
-Enemies12.png
+Enemies13.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -345,8 +364,34 @@ Tridentmandefeated2
   orig: 500, 260
   offset: 0, 0
   index: -1
+Tridentmandefeated3
+  rotate: false
+  xy: 503, 1
+  size: 500, 260
+  orig: 500, 260
+  offset: 0, 0
+  index: -1
 
-Enemies13.png
+Enemies14.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Berserker0
+  rotate: false
+  xy: 1, 403
+  size: 570, 550
+  orig: 570, 550
+  offset: 0, 0
+  index: -1
+Crawler0
+  rotate: false
+  xy: 1, 1
+  size: 600, 400
+  orig: 600, 400
+  offset: 0, 0
+  index: -1
+
+Enemies15.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -365,7 +410,7 @@ Crawler1
   offset: 0, 0
   index: -1
 
-Enemies14.png
+Enemies16.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -384,7 +429,7 @@ Crawler2
   offset: 0, 0
   index: -1
 
-Enemies15.png
+Enemies17.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -403,7 +448,7 @@ Crawler3
   offset: 0, 0
   index: -1
 
-Enemies16.png
+Enemies18.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -429,7 +474,7 @@ Armydefeated0
   offset: 0, 0
   index: -1
 
-Enemies17.png
+Enemies19.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -455,7 +500,7 @@ Armydefeated1
   offset: 0, 0
   index: -1
 
-Enemies18.png
+Enemies20.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -481,7 +526,7 @@ Army2
   offset: 0, 0
   index: -1
 
-Enemies19.png
+Enemies21.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
@@ -507,7 +552,7 @@ Armydefeated2
   offset: 0, 0
   index: -1
 
-Enemies20.png
+Enemies22.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none

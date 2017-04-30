@@ -26,34 +26,34 @@ import com.themetanoia.game.Screens.Play_State;
 /**
  * Created by MITHOON on 06-04-2017.
  */
-public class Level2 extends Game implements Screen {
+public class Level3 extends Game implements Screen {
 
     private Stage stage;
     private Viewport viewport;
     private BitmapFont font,font1;
-    
+
     private TextButton.TextButtonStyle rightArrowStyle,leftArrowStyle;
-    private TextButton.TextButtonStyle chapter1Style,chapter2Style,chapter3Style,chapter4Style;
-    public TextButton rightArrow,leftArrow; 
-    public TextButton chapter1,chapter2,chapter3,chapter4;
-    
+    private TextButton.TextButtonStyle chapter1Style,chapter2Style,chapter3Style,chapter4Style,chapter5Style,chapter6Style;
+    public TextButton rightArrow,leftArrow;
+    public TextButton chapter1,chapter2,chapter3,chapter4,chapter5,chapter6;
+
     public Image image;
     private Skin skin;
     private TextureAtlas atlas;
     private FreeTypeFontGenerator generator;
-    
+
     private FreeTypeFontGenerator.FreeTypeFontParameter parameter;
-    private Label act1,act2,act3,act4;
+    private Label act1,act2,act3,act4,act5,act6;
 
     private Lone_Warrior1 game;
     public InputMultiplexer multiplexer;
 
-    public Level2(Lone_Warrior1 game){
+    public Level3(Lone_Warrior1 game){
         this.game = game;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         atlas=new TextureAtlas();
         atlas=game.getAtlas(5);
-        image=new Image(atlas.findRegion("Level2"));
+        image=new Image(atlas.findRegion("Level3"));
         stage=new Stage(viewport,game.batch);
 
 
@@ -123,20 +123,38 @@ public class Level2 extends Game implements Screen {
         chapter4Style.font=font;
         chapter4= new TextButton(" ",chapter4Style);
 
+        chapter5Style=new TextButton.TextButtonStyle();            //button 1 properties
+        chapter5Style.up= skin.getDrawable("icon");
+        chapter5Style.font=font;
+        chapter5= new TextButton(" ",chapter5Style);
+
+        chapter6Style=new TextButton.TextButtonStyle();            //button 1 properties
+        chapter6Style.up= skin.getDrawable("icon");
+        chapter6Style.font=font;
+        chapter6= new TextButton(" ",chapter6Style);
+
         act1=new Label("Act 1",new Label.LabelStyle(font1,Color.WHITE));
         act2=new Label("Act 2",new Label.LabelStyle(font1,Color.WHITE));
         act3=new Label("Act 3",new Label.LabelStyle(font1,Color.WHITE));
         act4=new Label("Act 4",new Label.LabelStyle(font1,Color.WHITE));
+        act5=new Label("Act 5",new Label.LabelStyle(font1,Color.WHITE));
+        act6=new Label("Act 6",new Label.LabelStyle(font1,Color.WHITE));
 
         table2.add(chapter1).expandX().padTop(100).width(100).height(100);
         table2.add(chapter2).expandX().padTop(100).width(100).height(100);
         table2.add(chapter3).expandX().padTop(100).width(100).height(100);
         table2.add(chapter4).expandX().padTop(100).width(100).height(100);
+        table2.add(chapter5).expandX().padTop(100).width(100).height(100);
         table2.row();
         table2.add(act1).expandX().padTop(10);
         table2.add(act2).expandX().padTop(10);
         table2.add(act3).expandX().padTop(10);
         table2.add(act4).expandX().padTop(10);
+        table2.add(act5).expandX().padTop(10);
+        table2.row();
+        table2.add(chapter6).expandX().padTop(10).width(100).height(100);
+        table2.row();
+        table2.add(act6).expandX().padTop(10);
 
 
         stage.addActor(table);
@@ -144,21 +162,19 @@ public class Level2 extends Game implements Screen {
         stage.addActor(table2);
 
     }
+
     @Override
     public void create() {
-
+        
     }
 
     @Override
     public void show() {
         rightArrow.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("Button pressed down");
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("Button released");
-                game.setScreen(new Level3(game));
             }
         });
 
@@ -167,7 +183,7 @@ public class Level2 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new Level1(game));
+                game.setScreen(new Level2(game));
             }
         });
 
@@ -176,7 +192,7 @@ public class Level2 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new Play_State(game,-0.5f,2,0));
+                game.setScreen(new Play_State(game,-0.5f,7,0));
             }
         });
 
@@ -185,7 +201,7 @@ public class Level2 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new Play_State(game,-1f,2,0));
+                game.setScreen(new Play_State(game,-1f,3,0));
             }
         });
 
@@ -194,7 +210,7 @@ public class Level2 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new Play_State(game,-1.5f,2,0));
+                game.setScreen(new Play_State(game,-1.5f,3,0));
             }
         });
 
@@ -204,7 +220,27 @@ public class Level2 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new Play_State(game,-2f,2,0));
+                game.setScreen(new Play_State(game,-2f,3,0));
+            }
+        });
+
+
+        chapter5.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                game.setScreen(new Play_State(game,-2.2f,3,0));
+            }
+        });
+
+
+        chapter6.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                game.setScreen(new Play_State(game,-2.4f,7,0));
             }
         });
     }
@@ -215,6 +251,7 @@ public class Level2 extends Game implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
+
     }
 
     @Override

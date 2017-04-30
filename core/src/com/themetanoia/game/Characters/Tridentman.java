@@ -37,7 +37,7 @@ public class Tridentman extends Enemies {private Body tridentman1;//change
         }
         approaching=new Animation(0.15f,frames);
         frames.clear();
-        for(int i=0;i<3;i++)
+        for(int i=0;i<4;i++)
         {
             frames.add(new TextureRegion(atlas.findRegion("Tridentmandefeated"+i)));//change
         }

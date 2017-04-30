@@ -83,7 +83,7 @@ public class Level1 extends Game implements Screen {
         rightArrowStyle.font=font;
         rightArrow= new TextButton(" ",rightArrowStyle);
 
-        table1.add(rightArrow).expandX().right().width(100);
+        table1.add(rightArrow).padBottom(120).right().expandX().width(70);
         
         Table table2=new Table();
         table2.top();
@@ -143,7 +143,7 @@ public class Level1 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new Play_State(game,-0.5f,1,0));
+                game.setScreen(new Play_State(game,-100f,1,0));
             }
         });
 

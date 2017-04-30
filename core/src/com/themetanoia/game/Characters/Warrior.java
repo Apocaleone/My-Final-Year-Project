@@ -22,7 +22,7 @@ public class Warrior extends Sprite {
     public enum Move{Defeat,Running,Highkick,Lowkick,Megapunch,Groundpunch,Multikick,Spinpunch,Exorcize,Hurricanebreath};
     public Move currentState;
     public Move previousState;
-    public static World world;
+    public static World world;                               //NEED TO REMOVE!!!
     public static Body hero,highkickattack,heroretreating,lowkickattack,herodefeated,megapunchattack,groundpunchattack,spinpunchattack,
     exorcizeattack,hurricanebreathattack,multikickattack;
     public Animation running,highkick,lowkick,retreat,defeat,megapunch,groundpunch,multikick,spinpunch,exorcize,hurricanebreath;
@@ -62,29 +62,29 @@ public class Warrior extends Sprite {
         {
             frames.add(new TextureRegion(atlas.findRegion("highkick"+i)));
         }
-        highkick=new Animation(0.1f,frames);
+        highkick=new Animation(0.07f,frames);
         frames.clear();
-        for(int i=0;i<12;i++)
+        for(int i=0;i<13;i++)
         {
             if(i<=9)
             frames.add(new TextureRegion(atlas.findRegion("lowkick0"+i)));
             else
                 frames.add(new TextureRegion(atlas.findRegion("lowkick"+i)));
         }
-        lowkick=new Animation(0.05f,frames);
+        lowkick=new Animation(0.03f,frames);
         frames.clear();
-        for(int i=0;i<3;i++)
+        for(int i=0;i<4;i++)
         {
                 frames.add(new TextureRegion(atlas.findRegion("exorcize"+i)));
         }
         exorcize=new Animation(0.1f,frames);
         frames.clear();
-        for(int i=0;i<6;i++) {
+        for(int i=0;i<7;i++) {
             frames.add(new TextureRegion(atlas.findRegion("groundpunch" + i)));
         }
         groundpunch=new Animation(0.1f,frames);
         frames.clear();
-        for(int i=0;i<5;i++)
+        for(int i=0;i<7;i++)
         {
                 frames.add(new TextureRegion(atlas.findRegion("hurricanebreath"+i)));
         }

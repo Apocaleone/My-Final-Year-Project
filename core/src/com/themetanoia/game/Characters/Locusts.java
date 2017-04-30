@@ -37,7 +37,7 @@ public class Locusts extends Enemies {private Body locusts1;//change
         }
         approaching=new Animation(0.15f,frames);
         frames.clear();
-        for(int i=0;i<3;i++)
+        for(int i=0;i<5;i++)
         {
             frames.add(new TextureRegion(atlas.findRegion("Locustsdefeated"+i)));//change
         }

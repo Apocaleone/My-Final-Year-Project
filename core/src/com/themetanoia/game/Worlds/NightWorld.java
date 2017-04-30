@@ -12,6 +12,7 @@ import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.physics.box2d.FixtureDef;
 import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
+import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
 
 /**
@@ -24,6 +25,7 @@ public class NightWorld {
     public TiledMap bg2;
     public static OrthogonalTiledMapRenderer renderer;
     public static OrthogonalTiledMapRenderer renderer2;
+    public static Array<RectangleMapObject> marker;
 
     public NightWorld(World world){
         backgroundloader= new TmxMapLoader();

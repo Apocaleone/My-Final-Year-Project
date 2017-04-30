@@ -56,8 +56,9 @@ public class Spearman extends Enemies {
 
         if(spearmanstate!=-1) {
             setPosition(spearman1.getPosition().x - getWidth() / 2, (spearman1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
-            if (spearmanstate==0 && spearman1.getLinearVelocity().x>0)
-                spearmanstate=1;
+            if (spearmanstate==0 && spearman1.getLinearVelocity().x>0){
+                Lone_Warrior1.sound.play();
+                spearmanstate=1;}
             if (spearmanstate==1 && spearman1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(spearman1);
                 Play_State.enemycounter++;

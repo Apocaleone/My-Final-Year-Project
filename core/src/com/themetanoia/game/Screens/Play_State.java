@@ -99,7 +99,7 @@ public class Play_State implements Screen {
 
         spawn.spawn();
         music.setLooping(true);
-       // music.play();
+        music.play();
 
 
         bodiesToRemove=new Array<Body>();
@@ -116,12 +116,10 @@ public class Play_State implements Screen {
     public void show() {buttons.create();
     pauseScreen.create();}
     public boolean pausescreen(){
-
         if(halt==true)
             return true;
         else
             return false;
-
     }
 
 
@@ -137,12 +135,13 @@ public class Play_State implements Screen {
         retreatFunction();//retreats the warrior to its attack initation position!
         NightWorld.renderer.setView(gamecam);
         NightWorld.renderer2.setView(bgcam);
-        if(enemycounter>=3){
+        if(enemycounter>=10){
             spawn.spawn();
             System.out.println("spawning enemies");
 
         }
             forceApplicationFunction();//applies force to each individual character in the game
+        System.out.println(time);
 
     }
 
@@ -156,8 +155,8 @@ public class Play_State implements Screen {
         }
         else{
             time+=delta;
-        update(delta);}
-        Gdx.gl.glClearColor(1,0,1,0);//(0.329412f, 0.329412f, 0.329412f, 0);
+        update(delta);}                      //purple     //Don't know
+        Gdx.gl.glClearColor(1,0.95f,0.95f,1);//(1,0,1,0);//(0.329412f, 0.329412f, 0.329412f, 0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         if(warrior.posture==-1)
@@ -170,7 +169,7 @@ public class Play_State implements Screen {
        //NightWorld.renderer2.render();
         NightWorld.renderer.render();
 
-       b2dr.render(world, gamecam.combined);
+       //b2dr.render(world, gamecam.combined);
 
         drawCharacters();
 
@@ -197,6 +196,14 @@ public class Play_State implements Screen {
             Lone_Warrior1.y=50/Lone_Warrior1.PPM;
             warrior.posture=0;
         }
+        /*if(time>3.1){
+            halt=true;
+            *//*game.setScreen(new GameOver(game));
+            dispose();
+            Lone_Warrior1.x=100/Lone_Warrior1.PPM;
+            Lone_Warrior1.y=50/Lone_Warrior1.PPM;
+            warrior.posture=0;*//*
+        }*/
     }
 
     @Override

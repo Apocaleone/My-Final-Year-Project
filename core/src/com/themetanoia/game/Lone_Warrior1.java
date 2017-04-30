@@ -42,11 +42,12 @@ public class Lone_Warrior1 extends Game implements Screen {
 		atlas=new Array<TextureAtlas>();
 		atlas.add(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));//0
 		atlas.add(loading.assets.manager.get("ButtonAtlas.pack",TextureAtlas.class));//1
-		atlas.add(loading.assets.manager.get("Warrior.pack",TextureAtlas.class));//2
+		atlas.add(loading.assets.manager.get("Warrior/Warrior.pack",TextureAtlas.class));//2
 		atlas.add(loading.assets.manager.get("Spearman.pack",TextureAtlas.class));//3
-		atlas.add(loading.assets.manager.get("Enemies.pack",TextureAtlas.class));//4
+		atlas.add(loading.assets.manager.get("Enemies/Enemies.pack",TextureAtlas.class));//4
 		atlas.add(loading.assets.manager.get("Levels/Levels.pack",TextureAtlas.class));//5
 		music=loading.assets.manager.get("Music/Bgmusic.ogg",Music.class);
+		sound=loading.assets.manager.get("Music/attack.wav",Sound.class);
 		setScreen(new MenuScreen(this));//setting the menu screen
 	}
 

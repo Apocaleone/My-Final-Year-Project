@@ -9,6 +9,7 @@ import com.badlogic.gdx.physics.box2d.Manifold;
 import com.themetanoia.game.Characters.Berserker;
 import com.themetanoia.game.Characters.Spearman;
 import com.themetanoia.game.Characters.Warrior;
+import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
 
 /**
@@ -26,7 +27,7 @@ public class MyContactListener implements ContactListener {
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriormegapunch")){
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(300,100,true);
-                fb.getBody().applyForceToCenter(500,100,true);
+                fb.getBody().applyForceToCenter(300,100,true);
             }
             else{
                 System.out.println("berserker wins");
@@ -41,7 +42,7 @@ public class MyContactListener implements ContactListener {
             if(fb.getUserData()!=null&&fb.getUserData().equals("warriormegapunch")){
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(300,100,true);
-                fa.getBody().applyForceToCenter(500,100,true);
+                fa.getBody().applyForceToCenter(300,100,true);
             }
             else{
                 System.out.println("berserker wins");

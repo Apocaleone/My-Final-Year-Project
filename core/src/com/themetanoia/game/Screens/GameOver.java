@@ -62,8 +62,8 @@ public class GameOver extends Game implements Screen {
 
 
         startbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
-        startbuttonStyle.up= skin.getDrawable("startbuttondown");
-        startbuttonStyle.down= skin.getDrawable("startbutton");
+        startbuttonStyle.up= skin.getDrawable("startbutton");
+        startbuttonStyle.down= skin.getDrawable("startbuttondown");
         startbuttonStyle.font=font;
         startbutton= new TextButton(" ",startbuttonStyle);
        table.add(image);

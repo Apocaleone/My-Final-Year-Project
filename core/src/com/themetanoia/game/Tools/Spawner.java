@@ -49,7 +49,7 @@ public class Spawner {
 
     public void spawn(){
         Play_State.enemycounter=0;
-       for(int i=0;i<3;i++) {
+       for(int i=0;i<10;i++) {
             RandomXS128 random = new RandomXS128();
             System.out.println("Generating random number");
             int a =random.nextInt(screen.level+1) + 1;

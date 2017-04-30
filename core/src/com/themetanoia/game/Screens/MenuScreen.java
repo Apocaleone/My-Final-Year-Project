@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -31,6 +32,8 @@ public class MenuScreen extends Game implements Screen {
     public TextButton startbutton;
     private Skin skin;
     private TextureAtlas atlas;
+    private FreeTypeFontGenerator generator;
+    FreeTypeFontGenerator.FreeTypeFontParameter parameter;
 
 
     private Lone_Warrior1 game;
@@ -46,9 +49,12 @@ public class MenuScreen extends Game implements Screen {
         atlas=new TextureAtlas();
         atlas=game.getAtlas(0);
         stage=new Stage(viewport,game.batch);
+        generator= new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Variane Script.ttf"));
+        parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size=50;
         font=new BitmapFont();
-        font.setColor(Color.BLACK);
-        font.getData().setScale(3);
+        font=generator.generateFont(parameter);
+        generator.dispose();
         skin=new Skin();
         skin.addRegions(atlas);
 
@@ -60,12 +66,12 @@ public class MenuScreen extends Game implements Screen {
 
 
         startbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
-        startbuttonStyle.up= skin.getDrawable("startbuttondown");
-        startbuttonStyle.down= skin.getDrawable("startbutton");
+        startbuttonStyle.up= skin.getDrawable("startbutton");
+        startbuttonStyle.down= skin.getDrawable("startbuttondown");
         startbuttonStyle.font=font;
-        startbutton= new TextButton(" ",startbuttonStyle);
+        startbutton= new TextButton("Start",startbuttonStyle);
 
-        table.add(startbutton).expandX().padBottom(100).width(200).height(50).center();
+        table.add(startbutton).expandX().padBottom(100).width(400).height(100).center();
 
         stage.addActor(table);
 
@@ -90,7 +96,7 @@ public class MenuScreen extends Game implements Screen {
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(0, 0, 0, 0);
+        Gdx.gl.glClearColor(1,0.95f,0.95f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act();

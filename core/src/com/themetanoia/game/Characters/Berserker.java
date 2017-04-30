@@ -41,11 +41,11 @@ public class Berserker extends Enemies {
         approaching=new Animation(0.1f,frames);
         frames.clear();
         berkserkerinit=new TextureRegion(atlas.findRegion("Berserker1"));
-        for(int i=0;i<4;i++)
+        for(int i=0;i<5;i++)
         {
             frames.add(new TextureRegion(atlas.findRegion("Berserkerdefeated"+i)));
         }
-        defeated=new Animation(2.2f,frames);
+        defeated=new Animation(0.1f,frames);
         frames.clear();
 
 
