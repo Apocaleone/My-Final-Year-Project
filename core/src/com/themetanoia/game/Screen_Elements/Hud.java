@@ -29,18 +29,24 @@ public class Hud implements Disposable,ApplicationListener {
     private Viewport viewport;
 
 
-    private Integer score;
+    public static int score;
+    private float timecount;
+    private int worldTimer;
     private Integer Difficulty;
 
-    Label scoreLabel;
+    static Label scoreLabel;
     Label level;
     Label scoreString;
     Label levelString;
+    Label timeLabel;
+    Label countDownLable;
 
     public Hud(SpriteBatch sb)
     {
         score=0;
         Difficulty=1;
+        timecount=0;
+        worldTimer=300;
 
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         stage=new Stage(viewport,sb);
@@ -51,7 +57,9 @@ public class Hud implements Disposable,ApplicationListener {
         table.top();
         table.setFillParent(true);
 
+        countDownLable=new Label(String.format("%03d",worldTimer),new Label.LabelStyle(new BitmapFont(),Color.WHITE));
         scoreLabel=new Label(String.format("%06d",score),new Label.LabelStyle(new BitmapFont(), Color.WHITE));//String.format("%06d",score)
+        timeLabel=new Label("TIME",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         level=new Label(String.format("%01d",Difficulty),new Label.LabelStyle(new BitmapFont(), Color.WHITE));//String.format("%01d",Difficulty)
         levelString=new Label("Level",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
         scoreString=new Label("Score",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
@@ -61,14 +69,35 @@ public class Hud implements Disposable,ApplicationListener {
 
         table.add(scoreString).expandX().padTop(10);
         table.add(levelString).expandX().padTop(10);
+        table.add(timeLabel).expandX().padTop(10).padRight(20);
        // table.add(pauseButton).expandX().padTop(5).width(50).height(30).top();
         table.row();
         table.add(scoreLabel).expandX();
         table.add(level).expandX();
+        table.add(countDownLable).expandX().padRight(20);
 
         stage.addActor(table);
     }
 
+    public void update(float dt){
+        timecount+=dt;
+        if(timecount>=1){
+            worldTimer--;
+            countDownLable.setText(String.format("%03d",worldTimer));
+            timecount=0;
+        }
+
+    }
+
+    public static void addScore(int x){
+        score+=x;
+        scoreLabel.setText(String.format("%06d",score));
+
+    }
+
+    public static int getScore() {
+        return score;
+    }
 
     @Override
     public void create() {

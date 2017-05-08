@@ -3,6 +3,7 @@ package com.themetanoia.game;
 import com.badlogic.gdx.ApplicationAdapter;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -28,10 +29,12 @@ public class Lone_Warrior1 extends Game implements Screen {
 	public static final short BIT_ATTACK=4;
 	public static final short BIT_APPROACHING=8;
 	public static final short BIT_DEFEATED=16;
-	public static LoadState loading;
+	public LoadState loading;
 	public Array<TextureAtlas> atlas;
-	public static Music music;
-	public static Sound sound;
+	public Music music;
+	public Array<Sound> sound;
+
+	public Preferences prefs;
 
 
 	
@@ -40,14 +43,21 @@ public class Lone_Warrior1 extends Game implements Screen {
 		batch = new SpriteBatch();//sprite batch initialized
 		loading=new LoadState();
 		atlas=new Array<TextureAtlas>();
+		sound=new Array<Sound>();
 		atlas.add(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));//0
 		atlas.add(loading.assets.manager.get("ButtonAtlas.pack",TextureAtlas.class));//1
 		atlas.add(loading.assets.manager.get("Warrior/Warrior.pack",TextureAtlas.class));//2
 		atlas.add(loading.assets.manager.get("Spearman.pack",TextureAtlas.class));//3
 		atlas.add(loading.assets.manager.get("Enemies/Enemies.pack",TextureAtlas.class));//4
 		atlas.add(loading.assets.manager.get("Levels/Levels.pack",TextureAtlas.class));//5
+		atlas.add(loading.assets.manager.get("Buttons/Checkbox.pack",TextureAtlas.class));//6
 		music=loading.assets.manager.get("Music/Bgmusic.ogg",Music.class);
-		sound=loading.assets.manager.get("Music/attack.wav",Sound.class);
+		sound.add(loading.assets.manager.get("Music/attack.wav",Sound.class));//0
+		sound.add(loading.assets.manager.get("Music/slap.wav",Sound.class));//1
+		sound.add(loading.assets.manager.get("Music/PUNCH.wav",Sound.class));//2
+		sound.add(loading.assets.manager.get("Music/punch1.wav",Sound.class));//3
+		sound.add(loading.assets.manager.get("Music/punch2.wav",Sound.class));//4
+		prefs=Gdx.app.getPreferences("GameData");
 		setScreen(new MenuScreen(this));//setting the menu screen
 	}
 
@@ -61,9 +71,19 @@ public class Lone_Warrior1 extends Game implements Screen {
 		return atlas.get(i);
 
 	}
-	public static Music getMusic(){
+	public Music getMusic(){
 		return music;
 	}
+	public Preferences getPrefs() {
+		return prefs;
+	}
+
+	public Sound getSound(int i)
+	{
+		return sound.get(i);
+
+	}
+
 
 	@Override
 	public void show() {

@@ -19,6 +19,7 @@ import com.themetanoia.game.Characters.Enemies;
 import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Screen_Elements.*;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Tools.AudioManager;
 import com.themetanoia.game.Tools.MyContactListener;
 import com.themetanoia.game.Tools.Spawner;
 import com.themetanoia.game.Worlds.NightWorld;
@@ -29,7 +30,7 @@ import com.themetanoia.game.Worlds.NightWorld;
 public class Play_State implements Screen {
 
     public Lone_Warrior1 game;
-    private Hud hud;//for heads up display
+    public Hud hud;//for heads up display
     private TextureAtlas atlas;
 
     private OrthographicCamera gamecam;//for the camera that follows the warrior
@@ -58,6 +59,8 @@ public class Play_State implements Screen {
     public com.themetanoia.game.Screen_Elements.PauseScreen pauseScreen;
     public Music music;
 
+    public AudioManager audio;
+
 
 
 
@@ -69,6 +72,7 @@ public class Play_State implements Screen {
         this.levelvariable=levelvariable;
         pauseScreen=new com.themetanoia.game.Screen_Elements.PauseScreen(this);
         music=game.getMusic();
+        audio=new AudioManager(game);
 
 
         sR=new ShapeRenderer();
@@ -98,8 +102,7 @@ public class Play_State implements Screen {
         //spearman.defineEnemy();
 
         spawn.spawn();
-        music.setLooping(true);
-        music.play();
+       audio.playMusic();
 
 
         bodiesToRemove=new Array<Body>();
@@ -128,6 +131,7 @@ public class Play_State implements Screen {
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             halt=true;
         }
+        hud.update(dt);
         counters();
         updatingCharacterClasses(dt);//calls update method of individual character classes
         checkForMoves();//checks the state of each body
@@ -141,7 +145,6 @@ public class Play_State implements Screen {
 
         }
             forceApplicationFunction();//applies force to each individual character in the game
-        System.out.println(time);
 
     }
 
@@ -189,7 +192,8 @@ public class Play_State implements Screen {
         }
 
         if(isGameover()){
-            game.setScreen(new GameOver(game));
+            audio.stopMusic();
+            game.setScreen(new GameOver(game,this,hud.score));
             dispose();
             bodiesToRemove.add(warrior.herodefeated);
             Lone_Warrior1.x=100/Lone_Warrior1.PPM;

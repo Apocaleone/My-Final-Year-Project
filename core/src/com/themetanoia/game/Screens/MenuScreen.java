@@ -28,8 +28,8 @@ public class MenuScreen extends Game implements Screen {
     private Stage stage;
     private Viewport viewport;
     private BitmapFont font;
-    private TextButton.TextButtonStyle startbuttonStyle;
-    public TextButton startbutton;
+    private TextButton.TextButtonStyle startbuttonStyle,settingbuttonStyle,testButtonStyle;
+    public TextButton startbutton,settingbutton,testButton;
     private Skin skin;
     private TextureAtlas atlas;
     private FreeTypeFontGenerator generator;
@@ -71,7 +71,23 @@ public class MenuScreen extends Game implements Screen {
         startbuttonStyle.font=font;
         startbutton= new TextButton("Start",startbuttonStyle);
 
-        table.add(startbutton).expandX().padBottom(100).width(400).height(100).center();
+        settingbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
+        settingbuttonStyle.up= skin.getDrawable("startbutton");
+        settingbuttonStyle.down= skin.getDrawable("startbuttondown");
+        settingbuttonStyle.font=font;
+        settingbutton= new TextButton("Settings",settingbuttonStyle);
+
+        testButtonStyle=new TextButton.TextButtonStyle();            //button 1 properties
+        testButtonStyle.up= skin.getDrawable("startbutton");
+        testButtonStyle.down= skin.getDrawable("startbuttondown");
+        testButtonStyle.font=font;
+        testButton= new TextButton("Test",testButtonStyle);
+
+        table.add(startbutton).expandX().padBottom(10).width(400).height(100).center();
+        table.row();
+        table.add(settingbutton).expandX().padBottom(10).width(400).height(100).center();
+        table.row();
+        table.add(testButton).expandX().padBottom(100).width(400).height(100).center();
 
         stage.addActor(table);
 
@@ -92,6 +108,26 @@ public class MenuScreen extends Game implements Screen {
             }
         });
 
+        settingbutton.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                System.out.println("Start Clicked");
+                dispose();
+                game.setScreen(new Settings(game));
+            }
+        });
+        testButton.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                System.out.println("Start Clicked");
+                dispose();
+                game.setScreen(new StoryView(game));
+            }
+        });
     }
 
     @Override

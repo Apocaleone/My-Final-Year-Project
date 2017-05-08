@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 27-03-2017.
@@ -19,6 +20,7 @@ public class Crawler extends Enemies {private Body crawler1;
     private Animation approaching,defeated;
     private float time;
     private TextureRegion spearmaninit;
+    private AudioManager audio;
 
     private int crawlerstate =0,previousstate;
     Play_State state;
@@ -29,6 +31,7 @@ public class Crawler extends Enemies {private Body crawler1;
         this.state=state;
         atlas=new TextureAtlas();
         atlas= state.game.getAtlas(4);
+        audio=new AudioManager(state.game);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<4;i++)
@@ -54,8 +57,9 @@ public class Crawler extends Enemies {private Body crawler1;
 
         if(crawlerstate !=-1) {
             setPosition(crawler1.getPosition().x - getWidth() / 2, (crawler1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
-            if (crawlerstate ==0 && crawler1.getLinearVelocity().x>0)
-                crawlerstate =1;
+            if (crawlerstate ==0 && crawler1.getLinearVelocity().x>0){
+                audio.playSound(3);
+                crawlerstate =1;}
             if (crawlerstate ==1 && crawler1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(crawler1);
                 Play_State.enemycounter++;

@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 27-03-2017.
@@ -19,6 +20,7 @@ public class Maceman extends Enemies {private Body maceman1;
     private Animation approaching,defeated;
     private float time;
     private TextureRegion spearmaninit;
+    private AudioManager audio;
 
     private int macemanstate =0,previousstate;
     Play_State state;
@@ -29,6 +31,7 @@ public class Maceman extends Enemies {private Body maceman1;
         this.state=state;
         atlas=new TextureAtlas();
         atlas= state.game.getAtlas(4);
+        audio=new AudioManager(state.game);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<4;i++)
@@ -53,17 +56,22 @@ public class Maceman extends Enemies {private Body maceman1;
     public void update(float dt){
 
         if(macemanstate !=-1) {
-            setPosition(maceman1.getPosition().x - getWidth() / 2, (maceman1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
-            if (macemanstate ==0 && maceman1.getLinearVelocity().x>0)
-                macemanstate =1;
+            if (macemanstate ==0 && maceman1.getLinearVelocity().x>0){
+                audio.playSound(2);
+                macemanstate =1;}
             if (macemanstate ==1 && maceman1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(maceman1);
                 Play_State.enemycounter++;
                 macemanstate = -1;
 
             }
-            if(macemanstate ==0)
-                maceman1.setLinearVelocity(state.getVelocity(),0);
+            if(macemanstate ==0){
+                setBounds(0,0,400/Lone_Warrior1.PPM,400/Lone_Warrior1.PPM);
+                setPosition(maceman1.getPosition().x - getWidth() / 2, (maceman1.getPosition().y - getHeight() / 2)+130/Lone_Warrior1.PPM);
+                maceman1.setLinearVelocity(state.getVelocity(),0);}
+            if(macemanstate==1){
+                setPosition(maceman1.getPosition().x - getWidth() / 2, (maceman1.getPosition().y - getHeight() / 2)+130/Lone_Warrior1.PPM);
+            }
             setRegion(getFrame(dt));
         }
     }

@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 27-03-2017.
@@ -19,6 +20,7 @@ public class Tridentman extends Enemies {private Body tridentman1;//change
     private Animation approaching,defeated;
     private float time;
     private TextureRegion spearmaninit;
+    private AudioManager audio;
 
     private int tridentmanstate =0,previousstate;//change
    public Play_State state;
@@ -30,6 +32,7 @@ public class Tridentman extends Enemies {private Body tridentman1;//change
         atlas=new TextureAtlas();
         atlas= state.game.getAtlas(4);
 
+        audio=new AudioManager(state.game);
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)//change
         {
@@ -54,8 +57,9 @@ public class Tridentman extends Enemies {private Body tridentman1;//change
 
         if(tridentmanstate !=-1) {
             setPosition(tridentman1.getPosition().x - getWidth() / 2, (tridentman1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
-            if (tridentmanstate ==0 && tridentman1.getLinearVelocity().x>0)
-                tridentmanstate =1;
+            if (tridentmanstate ==0 && tridentman1.getLinearVelocity().x>0){
+                audio.playSound(1);
+                tridentmanstate =1;}
             if (tridentmanstate ==1 && tridentman1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(tridentman1);
                 Play_State.enemycounter++;

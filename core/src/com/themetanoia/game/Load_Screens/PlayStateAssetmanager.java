@@ -1,5 +1,7 @@
 package com.themetanoia.game.Load_Screens;
 
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
@@ -26,6 +28,13 @@ public class PlayStateAssetmanager {
         manager.load("Levels/Levels.pack",TextureAtlas.class);
         manager.load("Music/Bgmusic.ogg", Music.class);
         manager.load("Music/attack.wav", Sound.class);
+        manager.load("Music/PUNCH.wav", Sound.class);
+        manager.load("Music/punch1.wav", Sound.class);
+        manager.load("Music/punch2.wav", Sound.class);
+        manager.load("Music/slap.wav", Sound.class);
+        manager.load("Buttons/Checkbox.pack",TextureAtlas.class);
+
+
 
     }
 

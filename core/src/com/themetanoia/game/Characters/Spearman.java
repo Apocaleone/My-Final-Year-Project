@@ -10,7 +10,9 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Screen_Elements.Hud;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHUN on 05-02-2017.
@@ -24,6 +26,7 @@ public class Spearman extends Enemies {
 
     private int spearmanstate=0,previousstate;
     public Play_State state;
+    private AudioManager audio;
 
 
     public Spearman(Play_State state,float x, float y){
@@ -31,6 +34,7 @@ public class Spearman extends Enemies {
         this.state=state;
         atlas=new TextureAtlas();
         atlas=state.game.getAtlas(4);
+        audio=new AudioManager(state.game);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)
@@ -49,24 +53,26 @@ public class Spearman extends Enemies {
         setBounds(getX(),getY(),200/ Lone_Warrior1.PPM,170/Lone_Warrior1.PPM);
         setRegion(spearmaninit);
         time=0;
-
     }
 
     public void update(float dt){
 
         if(spearmanstate!=-1) {
-            setPosition(spearman1.getPosition().x - getWidth() / 2, (spearman1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
             if (spearmanstate==0 && spearman1.getLinearVelocity().x>0){
-                Lone_Warrior1.sound.play();
+                audio.playSound(0);
                 spearmanstate=1;}
             if (spearmanstate==1 && spearman1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(spearman1);
                 Play_State.enemycounter++;
                 spearmanstate = -1;
-
             }
-            if(spearmanstate==0)
+            if(spearmanstate==0){
+                setPosition(spearman1.getPosition().x - getWidth() / 2, (spearman1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
                 spearman1.setLinearVelocity(state.getVelocity(),0);
+            }
+            if(spearmanstate==1){
+                setPosition(spearman1.getPosition().x - getWidth() / 2, (spearman1.getPosition().y - getHeight() / 2)-25/Lone_Warrior1.PPM);
+            }
             setRegion(getFrame(dt));
         }
     }

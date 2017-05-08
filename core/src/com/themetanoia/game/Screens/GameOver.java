@@ -8,13 +8,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
-import com.badlogic.gdx.graphics.g2d.Sprite;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -28,7 +28,7 @@ import com.themetanoia.game.Lone_Warrior1;
 public class GameOver extends Game implements Screen {
     private Stage stage;
     private Viewport viewport;
-    private BitmapFont font;
+    private BitmapFont font,font1;
     private TextButton.TextButtonStyle startbuttonStyle;
     public TextButton startbutton;
     public Image image;
@@ -36,11 +36,19 @@ public class GameOver extends Game implements Screen {
     private TextureAtlas atlas;
 
     private Lone_Warrior1 game;
+    private Play_State state;
     private Texture texture;
+    Label highScore,currentscore;
+    Label highScoreString,currentscorestring;
+    int score=0;
+    private FreeTypeFontGenerator generator;
+    FreeTypeFontGenerator.FreeTypeFontParameter parameter;
 
 
-    public GameOver(Lone_Warrior1 game) {
+    public GameOver(Lone_Warrior1 game,Play_State state,int score) {
         this.game = game;
+        this.state=state;
+        this.score=score;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         texture=new Texture("gameover.png");
         image=new Image(texture);
@@ -48,9 +56,15 @@ public class GameOver extends Game implements Screen {
         atlas=new TextureAtlas();
         atlas=game.getAtlas(0);
         stage=new Stage(viewport,game.batch);
+        generator= new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Variane Script.ttf"));
+        parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size=50;
         font=new BitmapFont();
-        font.setColor(Color.BLACK);
-        font.getData().setScale(3);
+        font1=new BitmapFont();
+        font=generator.generateFont(parameter);
+        parameter.size=50;
+        font1=generator.generateFont(parameter);
+        generator.dispose();
         skin=new Skin();
         skin.addRegions(atlas);
 
@@ -60,17 +74,39 @@ public class GameOver extends Game implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
+        currentscorestring=new Label("Current Score",new Label.LabelStyle(font1, Color.WHITE));
+        currentscore=new Label(String.format("%03d",score),new Label.LabelStyle(font1,Color.WHITE));
+
+        if(score>game.prefs.getInteger("HighScore"))
+            game.prefs.putInteger("HighScore",score);
+        else{
+            score=game.prefs.getInteger("HighScore");
+        }
+        game.prefs.flush();
+
+        highScoreString=new Label("High Score",new Label.LabelStyle(font1, Color.WHITE));
+        highScore=new Label(String.format("%03d",score),new Label.LabelStyle(font1,Color.WHITE));
+
 
         startbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
         startbuttonStyle.up= skin.getDrawable("startbutton");
         startbuttonStyle.down= skin.getDrawable("startbuttondown");
         startbuttonStyle.font=font;
-        startbutton= new TextButton(" ",startbuttonStyle);
-       table.add(image);
+        startbutton= new TextButton("Menu Screen ",startbuttonStyle);
+       table.add(image).expandX().center().padLeft(300);
         table.row();
-        table.add(startbutton).expandX().padTop(100).width(200).height(50).center();
-
+        table.add(highScoreString).padTop(40).left().padLeft(100);
+        table.add(currentscorestring).padTop(40).right().padRight(100);
+        table.row();
+        table.add(highScore).padTop(5).left().padLeft(100);
+        table.add(currentscore).padTop(5).right().padRight(100);
+        table.row();
+        table.add(startbutton).expandX().padTop(100).width(400).height(100).center().padLeft(300);
         stage.addActor(table);
+    }
+
+    public void init(){
+
     }
 
     @Override
