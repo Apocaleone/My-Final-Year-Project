@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Screens.StoryView;
 
 /**
  * Created by MITHOON on 05-04-2017.
@@ -33,12 +34,12 @@ public class Level1 extends Game implements Screen {
     private BitmapFont font,font1;
     private TextButton.TextButtonStyle rightArrowStyle,chapter1Style,chapter2Style,chapter3Style;
     public TextButton rightArrow,chapter1,chapter2,chapter3;
-    public Image image;
+
     private Skin skin;
     private TextureAtlas atlas;
     private FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
-    Label act1,act2,act3;
+    Label act1,act2,act3,level;
 
     private Lone_Warrior1 game;
     public InputMultiplexer multiplexer;
@@ -48,16 +49,15 @@ public class Level1 extends Game implements Screen {
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         atlas=new TextureAtlas();
         atlas=game.getAtlas(5);
-        image=new Image(atlas.findRegion("Level1"));
         stage=new Stage(viewport,game.batch);
 
 
         generator= new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Variane Script.ttf"));
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size=30;
+        parameter.size=70;
         font=new BitmapFont();
-        font.setColor(Color.BLACK);
-        font.getData().setScale(2);
+        font=generator.generateFont(parameter);
+        parameter.size=30;
         font1=new BitmapFont();
         font1=generator.generateFont(parameter);
         generator.dispose();
@@ -68,17 +68,18 @@ public class Level1 extends Game implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
+        level=new Label("Level 1",new Label.LabelStyle(font,Color.FIREBRICK));
         Table table=new Table();
         table.top();
         table.setFillParent(true);
-        table.add(image);
+        table.add(level);
         
         Table table1=new Table();
         table1.center();
         table1.setFillParent(true);
 
         rightArrowStyle=new TextButton.TextButtonStyle();            //button 1 properties
-        rightArrowStyle.up= skin.getDrawable("Rightarrowup");
+        rightArrowStyle.up= skin.getDrawable("Rightarrow");
         rightArrowStyle.down= skin.getDrawable("Rightarrowdown");
         rightArrowStyle.font=font;
         rightArrow= new TextButton(" ",rightArrowStyle);
@@ -91,30 +92,26 @@ public class Level1 extends Game implements Screen {
 
         chapter1Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter1Style.up= skin.getDrawable("icon");
-        chapter1Style.font=font;
-        chapter1= new TextButton(" ",chapter1Style);
+        chapter1Style.font=font1;
+        chapter1= new TextButton("Act 1 ",chapter1Style);
 
         chapter2Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter2Style.up= skin.getDrawable("icon");
-        chapter2Style.font=font;
-        chapter2= new TextButton(" ",chapter2Style);
+        chapter2Style.font=font1;
+        chapter2= new TextButton("Act 2",chapter2Style);
 
         chapter3Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter3Style.up= skin.getDrawable("icon");
-        chapter3Style.font=font;
-        chapter3= new TextButton(" ",chapter3Style);
+        chapter3Style.font=font1;
+        chapter3= new TextButton("Act 3",chapter3Style);
 
         act1=new Label("Act 1",new Label.LabelStyle(font1,Color.WHITE));
         act2=new Label("Act 2",new Label.LabelStyle(font1,Color.WHITE));
         act3=new Label("Act 3",new Label.LabelStyle(font1,Color.WHITE));
 
-        table2.add(chapter1).expandX().padTop(100).width(100).height(100);
-        table2.add(chapter2).expandX().padTop(100).width(100).height(100);
-        table2.add(chapter3).expandX().padTop(100).width(100).height(100);
-        table2.row();
-        table2.add(act1).expandX().padTop(10);
-        table2.add(act2).expandX().padTop(10);
-        table2.add(act3).expandX().padTop(10);
+        table2.add(chapter1).expandX().padTop(100).width(120).height(140);
+        table2.add(chapter2).expandX().padTop(100).width(120).height(140);
+        table2.add(chapter3).expandX().padTop(100).width(120).height(140);
 
         stage.addActor(table);
         stage.addActor(table1);
@@ -134,6 +131,7 @@ public class Level1 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                stage.dispose();
                 game.setScreen(new Level2(game));
             }
         });
@@ -143,7 +141,8 @@ public class Level1 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new Play_State(game,-100f,1,0));
+                stage.dispose();
+                game.setScreen(new StoryView(game,1,1));
             }
         });
 
@@ -152,6 +151,7 @@ public class Level1 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                stage.dispose();
                 game.setScreen(new Play_State(game,-1f,1,0));
             }
         });
@@ -161,6 +161,7 @@ public class Level1 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                stage.dispose();
                 game.setScreen(new Play_State(game,-2f,1,0));
             }
         });

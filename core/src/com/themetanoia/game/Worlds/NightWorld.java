@@ -1,8 +1,11 @@
 package com.themetanoia.game.Worlds;
 
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.maps.MapLayers;
 import com.badlogic.gdx.maps.MapObject;
 import com.badlogic.gdx.maps.objects.RectangleMapObject;
 import com.badlogic.gdx.maps.tiled.TiledMap;
+import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
 import com.badlogic.gdx.maps.tiled.TmxMapLoader;
 import com.badlogic.gdx.maps.tiled.renderers.OrthogonalTiledMapRenderer;
 import com.badlogic.gdx.math.Rectangle;
@@ -14,6 +17,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Screens.Play_State;
 
 /**
  * Created by MITHUN on 01-11-2016.
@@ -26,14 +30,19 @@ public class NightWorld {
     public static OrthogonalTiledMapRenderer renderer;
     public static OrthogonalTiledMapRenderer renderer2;
     public static Array<RectangleMapObject> marker;
+    SpriteBatch batch;
 
-    public NightWorld(World world){
+    public NightWorld(World world, Play_State state){
         backgroundloader= new TmxMapLoader();
+        batch=new SpriteBatch();
+        bg2=new TiledMap();
+        MapLayers layers=bg2.getLayers();
+        TiledMapTileLayer layer=new TiledMapTileLayer(1000, 600, 8, 8);
+        layers.add(layer);
         bg=backgroundloader.load("background2.tmx");
-        bg2=backgroundloader.load("bg.tmx");
+        bg2=Lone_Warrior1.map;
         renderer=new OrthogonalTiledMapRenderer(bg,1/Lone_Warrior1.PPM);
-        renderer2=new OrthogonalTiledMapRenderer(bg2,1/Lone_Warrior1.PPM);
-
+        renderer2=new OrthogonalTiledMapRenderer(bg2,1/Lone_Warrior1.PPM,state.game.batch);
         BodyDef bdef=new BodyDef();
         PolygonShape shape=new PolygonShape();
         FixtureDef fdef=new FixtureDef();

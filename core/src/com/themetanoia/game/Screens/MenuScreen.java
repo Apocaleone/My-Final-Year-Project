@@ -125,7 +125,7 @@ public class MenuScreen extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
                 dispose();
-                game.setScreen(new StoryView(game));
+                game.setScreen(new StoryView(game,1,1));
             }
         });
     }

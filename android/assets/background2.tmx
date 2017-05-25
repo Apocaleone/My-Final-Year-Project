@@ -4,7 +4,7 @@
   <image source="Tiles_64x64.png" width="512" height="512"/>
  </tileset>
  <tileset firstgid="1025" name="bg" tilewidth="800" tileheight="480" tilecount="1" columns="1">
-  <image source="bg2.jpg" width="853" height="480"/>
+  <image source="bg2.png" width="853" height="480"/>
  </tileset>
  <tileset firstgid="1026" name="grass" tilewidth="16" tileheight="16" tilecount="4" columns="4">
   <image source="vegetation_grass_card_03.png" width="64" height="16"/>

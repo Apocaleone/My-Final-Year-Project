@@ -3,6 +3,7 @@ package com.themetanoia.game.Load_Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Preferences;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.assets.loaders.resolvers.InternalFileHandleResolver;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -19,7 +20,7 @@ public class PlayStateAssetmanager {
     }
 
     public void load(){
-        manager.load("ButtonAtlas.pack", TextureAtlas.class);
+        manager.load("Buttons/ButtonAtlas.pack", TextureAtlas.class);
         manager.load("MenuButtons.pack", TextureAtlas.class);
         manager.load("berserker.pack", TextureAtlas.class);
         manager.load("Warrior/Warrior.pack",TextureAtlas.class);
@@ -32,10 +33,9 @@ public class PlayStateAssetmanager {
         manager.load("Music/punch1.wav", Sound.class);
         manager.load("Music/punch2.wav", Sound.class);
         manager.load("Music/slap.wav", Sound.class);
-        manager.load("Buttons/Checkbox.pack",TextureAtlas.class);
-
-
-
+        manager.setLoader(TiledMap.class,new TmxMapLoader(new InternalFileHandleResolver()) );
+        manager.load("background2.tmx",TiledMap.class);
+        manager.load("bg.tmx",TiledMap.class);
     }
 
     public void dispose(){

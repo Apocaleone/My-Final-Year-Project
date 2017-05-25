@@ -1,30 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.0" orientation="orthogonal" renderorder="right-down" width="100" height="30" tilewidth="16" tileheight="16" nextobjectid="1">
- <tileset firstgid="1" name="bg" tilewidth="853" tileheight="480" tilecount="1" columns="1">
-  <image source="bg2.jpg" width="853" height="480"/>
+<map version="1.0" orientation="orthogonal" renderorder="right-down" width="1" height="1" tilewidth="1000" tileheight="600" nextobjectid="1">
+ <tileset firstgid="1" name="bg" tilewidth="1000" tileheight="600" tilecount="1" columns="1">
+  <image source="bg2.png" width="1000" height="600"/>
  </tileset>
- <tileset firstgid="2" name="stars" tilewidth="16" tileheight="16" tilecount="1" columns="1">
-  <image source="star16.png" width="16" height="16"/>
- </tileset>
- <tileset firstgid="3" name="newback" tilewidth="1920" tileheight="480" tilecount="3" columns="1">
-  <image source="bg5.jpg" width="1920" height="1536"/>
- </tileset>
- <tileset firstgid="6" name="moon" tilewidth="190" tileheight="191" tilecount="1" columns="1">
-  <image source="moon.png" width="191" height="191"/>
- </tileset>
- <layer name="background" width="100" height="30">
-  <data encoding="base64" compression="zlib">
-   eJztzrENAAAEADDh/5/NLiDRXtAIAAAALsjtAAAAAAAAAAA8VNsBhgZ2EAAG
-  </data>
- </layer>
- <layer name="stars" width="100" height="30">
-  <data encoding="base64" compression="zlib">
-   eJzt1kENADAIA0Ay/6JnAjYCdwraT9MIACDb+R3gsW19AQDoY8oXndIDoIqdBAAAAADY4wJltwAL
-  </data>
- </layer>
- <layer name="moon" width="100" height="30">
-  <data encoding="base64" compression="zlib">
-   eJztzkEJAAAIBLB72T+yKQ4RtgRLAAAAAACga64DAAAAAADACwvA2AAH
-  </data>
+ <layer name="Tile Layer 1" width="1" height="1">
+  <data encoding="csv">
+1
+</data>
  </layer>
 </map>

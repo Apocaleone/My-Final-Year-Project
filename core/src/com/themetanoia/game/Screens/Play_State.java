@@ -8,11 +8,13 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
+import com.badlogic.gdx.math.FloatCounter;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Box2DDebugRenderer;
 import com.badlogic.gdx.physics.box2d.World;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.PerformanceCounter;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Characters.Enemies;
@@ -61,11 +63,16 @@ public class Play_State implements Screen {
 
     public AudioManager audio;
 
+    public PerformanceCounter performanceCounter;
+    public FloatCounter testing;
+
+    NightWorld night;
 
 
 
 
-    public Play_State(Lone_Warrior1 game,float velocity,int level,int levelvariable){
+
+    public Play_State(Lone_Warrior1 game,float velocity,int level,int act){
         this.game=game;
         this.velocity=velocity;
         this.level=level;
@@ -76,7 +83,6 @@ public class Play_State implements Screen {
 
 
         sR=new ShapeRenderer();
-
         //camera initialization
         gamecam=new OrthographicCamera();
         bgcam=new OrthographicCamera();
@@ -92,7 +98,7 @@ public class Play_State implements Screen {
         world=new World(new Vector2(0,-9.81f),true);
         world.setContactListener(new MyContactListener());
         b2dr=new Box2DDebugRenderer();
-        new NightWorld(world);
+        night=new NightWorld(world,this);
         //character initialization
         warrior=new Warrior(world,this);
         spawn=new Spawner(this);
@@ -127,6 +133,10 @@ public class Play_State implements Screen {
 
 
     public void update(float dt){
+        if (performanceCounter != null) {
+            performanceCounter.tick();
+            performanceCounter.start();
+        }
         world.step(stepchange,6,2);
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             halt=true;
@@ -137,14 +147,17 @@ public class Play_State implements Screen {
         checkForMoves();//checks the state of each body
         bodyDestructor();//destroys the bodies from the list
         retreatFunction();//retreats the warrior to its attack initation position!
-        NightWorld.renderer.setView(gamecam);
-        NightWorld.renderer2.setView(bgcam);
+        night.renderer.setView(gamecam);
+        night.renderer2.setView(bgcam);
         if(enemycounter>=10){
             spawn.spawn();
             System.out.println("spawning enemies");
 
         }
             forceApplicationFunction();//applies force to each individual character in the game
+        if(performanceCounter != null){
+            performanceCounter.stop();
+        }
 
     }
 
@@ -169,8 +182,8 @@ public class Play_State implements Screen {
 
         gamecam.update();
 
-       //NightWorld.renderer2.render();
-        NightWorld.renderer.render();
+       night.renderer2.render();
+        night.renderer.render();
 
        //b2dr.render(world, gamecam.combined);
 
@@ -227,8 +240,8 @@ public class Play_State implements Screen {
 
     @Override
     public void dispose() {
-        NightWorld.bg.dispose();
-        NightWorld.renderer.dispose();
+        night.bg.dispose();
+        night.renderer.dispose();
         world.dispose();
         b2dr.dispose();
         hud.dispose();

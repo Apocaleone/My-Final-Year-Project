@@ -42,9 +42,12 @@ public class StoryView extends Game implements Screen {
     private Lone_Warrior1 game;
     Label story;
     Label title;
+    int level, act;
 
-    public StoryView(Lone_Warrior1 game){
+    public StoryView(Lone_Warrior1 game, int level, int act){
         this.game=game;
+        this.level=level;
+        this.act=act;
         FileHandle test=Gdx.files.internal("test1.txt");
         text=test.readString();
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
@@ -117,11 +120,9 @@ public class StoryView extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
                 dispose();
-                game.setScreen(new MenuScreen(game));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
+                game.setScreen(new Play_State(game,(float)-0.5*act,level,act));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
             }
         });
-
-
     }
 
     @Override

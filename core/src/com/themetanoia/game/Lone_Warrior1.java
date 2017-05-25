@@ -8,9 +8,11 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.graphics.Mesh;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Load_Screens.LoadState;
@@ -33,6 +35,7 @@ public class Lone_Warrior1 extends Game implements Screen {
 	public Array<TextureAtlas> atlas;
 	public Music music;
 	public Array<Sound> sound;
+	public static TiledMap map;
 
 	public Preferences prefs;
 
@@ -44,20 +47,27 @@ public class Lone_Warrior1 extends Game implements Screen {
 		loading=new LoadState();
 		atlas=new Array<TextureAtlas>();
 		sound=new Array<Sound>();
+
 		atlas.add(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));//0
-		atlas.add(loading.assets.manager.get("ButtonAtlas.pack",TextureAtlas.class));//1
+		atlas.add(loading.assets.manager.get("Buttons/ButtonAtlas.pack",TextureAtlas.class));//1
 		atlas.add(loading.assets.manager.get("Warrior/Warrior.pack",TextureAtlas.class));//2
 		atlas.add(loading.assets.manager.get("Spearman.pack",TextureAtlas.class));//3
 		atlas.add(loading.assets.manager.get("Enemies/Enemies.pack",TextureAtlas.class));//4
 		atlas.add(loading.assets.manager.get("Levels/Levels.pack",TextureAtlas.class));//5
-		atlas.add(loading.assets.manager.get("Buttons/Checkbox.pack",TextureAtlas.class));//6
+
+
 		music=loading.assets.manager.get("Music/Bgmusic.ogg",Music.class);
+
+
 		sound.add(loading.assets.manager.get("Music/attack.wav",Sound.class));//0
 		sound.add(loading.assets.manager.get("Music/slap.wav",Sound.class));//1
 		sound.add(loading.assets.manager.get("Music/PUNCH.wav",Sound.class));//2
 		sound.add(loading.assets.manager.get("Music/punch1.wav",Sound.class));//3
 		sound.add(loading.assets.manager.get("Music/punch2.wav",Sound.class));//4
 		prefs=Gdx.app.getPreferences("GameData");
+
+		map=loading.assets.manager.get("bg.tmx");
+		//loading.assets.dispose();
 		setScreen(new MenuScreen(this));//setting the menu screen
 	}
 

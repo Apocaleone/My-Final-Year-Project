@@ -1,19 +1,19 @@
 
-Checkbox.png
+ButtonAtlas.png
 format: RGBA8888
 filter: Nearest,Nearest
 repeat: none
-unchecked
+Buttondown
   rotate: false
-  xy: 1, 2
-  size: 126, 102
-  orig: 126, 102
+  xy: 1, 1
+  size: 400, 88
+  orig: 400, 88
   offset: 0, 0
   index: -1
-checked
+Buttonup
   rotate: false
-  xy: 129, 1
-  size: 121, 103
-  orig: 121, 103
+  xy: 403, 1
+  size: 400, 88
+  orig: 400, 88
   offset: 0, 0
   index: -1

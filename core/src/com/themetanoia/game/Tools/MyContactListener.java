@@ -1,5 +1,6 @@
 package com.themetanoia.game.Tools;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.Contact;
 import com.badlogic.gdx.physics.box2d.ContactImpulse;
@@ -29,6 +30,7 @@ public class MyContactListener implements ContactListener {
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriormegapunch")){
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 fb.getBody().applyForceToCenter(260,100,true);
                 Hud.addScore(2);
             }
@@ -46,6 +48,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(260,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -64,6 +67,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(260,100,true);
+                Gdx.input.vibrate(500);
                 //Lone_Warrior1.sound.play();
                 Hud.addScore(2);
             }
@@ -83,6 +87,7 @@ public class MyContactListener implements ContactListener {
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(260,100,true);
                 //Lone_Warrior1.sound.play();
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -102,6 +107,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -119,6 +125,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -137,6 +144,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -154,6 +162,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -174,6 +183,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -191,6 +201,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -210,6 +221,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -227,6 +239,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -245,6 +258,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
                  
             }
@@ -263,6 +277,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -281,6 +296,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{
@@ -298,6 +314,7 @@ public class MyContactListener implements ContactListener {
                 System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
+                Gdx.input.vibrate(500);
                 Hud.addScore(2);
             }
             else{

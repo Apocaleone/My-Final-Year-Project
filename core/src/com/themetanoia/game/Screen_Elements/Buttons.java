@@ -72,25 +72,29 @@ public class Buttons implements ApplicationListener {
 
 
         button1Style=new TextButton.TextButtonStyle();            //button 1 properties
-        button1Style.up= skin.getDrawable("topleft");
+        button1Style.up= skin.getDrawable("Buttonup");
+        button1Style.down=skin.getDrawable("Buttondown");
         button1Style.font=font;
         button1= new TextButton(" ",button1Style);
 
 
 
         button2Style=new TextButton.TextButtonStyle(); //Button2 properties!
-        button2Style.up= skin.getDrawable("topright");
+        button2Style.up= skin.getDrawable("Buttonup");
+        button2Style.down=skin.getDrawable("Buttondown");
         button2Style.font=font;
         button2= new TextButton(" ",button2Style);
 
 
         button3Style=new TextButton.TextButtonStyle(); //Button3 properties!
-        button3Style.up= skin.getDrawable("bottomleft");
+        button3Style.up= skin.getDrawable("Buttonup");
+        button3Style.down=skin.getDrawable("Buttondown");
         button3Style.font=font;
         button3= new TextButton(" ",button3Style);
 
         button4Style=new TextButton.TextButtonStyle(); //Button4 properties!
-        button4Style.up= skin.getDrawable("bottomright");
+        button4Style.up= skin.getDrawable("Buttonup");
+        button4Style.down=skin.getDrawable("Buttondown");
         button4Style.font=font;
         button4= new TextButton(" ",button4Style);
 
