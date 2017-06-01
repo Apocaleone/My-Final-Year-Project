@@ -39,10 +39,12 @@ public class Level1 extends Game implements Screen {
     private TextureAtlas atlas;
     private FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
-    Label act1,act2,act3,level;
+    Label level;
 
     private Lone_Warrior1 game;
     public InputMultiplexer multiplexer;
+    private Image image;
+    private Texture texture;
 
     public Level1(Lone_Warrior1 game){
         this.game = game;
@@ -61,6 +63,14 @@ public class Level1 extends Game implements Screen {
         font1=new BitmapFont();
         font1=generator.generateFont(parameter);
         generator.dispose();
+
+        texture=new Texture(Gdx.files.internal("paper.png"));
+        image=new Image(texture);
+
+        Table table3=new Table();
+        table3.center();
+        table3.setFillParent(true);
+        table3.add(image);
 
 
         skin=new Skin();
@@ -92,27 +102,40 @@ public class Level1 extends Game implements Screen {
 
         chapter1Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter1Style.up= skin.getDrawable("icon");
+        chapter1Style.down=skin.getDrawable("icondown");
         chapter1Style.font=font1;
+        chapter1Style.fontColor=Color.BLACK;
         chapter1= new TextButton("Act 1 ",chapter1Style);
 
         chapter2Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter2Style.up= skin.getDrawable("icon");
+        chapter2Style.down=skin.getDrawable("icondown");
         chapter2Style.font=font1;
-        chapter2= new TextButton("Act 2",chapter2Style);
+        if(game.getPrefs().getBoolean("unlock12")==true){
+        chapter2Style.fontColor=Color.BLACK;
+        chapter2= new TextButton("Act 2",chapter2Style);}
+        else{
+            chapter2Style.fontColor=Color.FIREBRICK;
+            chapter2= new TextButton("Locked",chapter2Style);}
+
 
         chapter3Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter3Style.up= skin.getDrawable("icon");
+        chapter3Style.down=skin.getDrawable("icondown");
         chapter3Style.font=font1;
-        chapter3= new TextButton("Act 3",chapter3Style);
+        if(game.getPrefs().getBoolean("unlock13")==true){
+            chapter3Style.fontColor=Color.BLACK;
+            chapter3= new TextButton("Act 3",chapter3Style);}
+        else{
+            chapter3Style.fontColor=Color.FIREBRICK;
+            chapter3= new TextButton("Locked",chapter3Style);}
 
-        act1=new Label("Act 1",new Label.LabelStyle(font1,Color.WHITE));
-        act2=new Label("Act 2",new Label.LabelStyle(font1,Color.WHITE));
-        act3=new Label("Act 3",new Label.LabelStyle(font1,Color.WHITE));
 
         table2.add(chapter1).expandX().padTop(100).width(120).height(140);
         table2.add(chapter2).expandX().padTop(100).width(120).height(140);
         table2.add(chapter3).expandX().padTop(100).width(120).height(140);
 
+        stage.addActor(table3);
         stage.addActor(table);
         stage.addActor(table1);
         stage.addActor(table2);
@@ -142,7 +165,7 @@ public class Level1 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new StoryView(game,1,1));
+                game.setScreen(new StoryView(game,1,1,0.5f,2));
             }
         });
 
@@ -151,8 +174,9 @@ public class Level1 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                if(game.getPrefs().getBoolean("unlock12")==true){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-1f,1,0));
+                game.setScreen(new Play_State(game,-1f,1,2,2));}
             }
         });
 
@@ -161,8 +185,10 @@ public class Level1 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+
+                if(game.getPrefs().getBoolean("unlock13")==true){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-2f,1,0));
+                 game.setScreen(new Play_State(game,-2f,1,3,20));}
             }
         });
 

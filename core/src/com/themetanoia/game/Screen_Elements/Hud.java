@@ -46,7 +46,7 @@ public class Hud implements Disposable,ApplicationListener {
         score=0;
         Difficulty=1;
         timecount=0;
-        worldTimer=300;
+        worldTimer=500;
 
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         stage=new Stage(viewport,sb);

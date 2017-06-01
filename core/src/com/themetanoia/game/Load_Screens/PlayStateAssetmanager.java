@@ -27,13 +27,16 @@ public class PlayStateAssetmanager {
         manager.load("Spearman.pack",TextureAtlas.class);
         manager.load("Enemies/Enemies.pack",TextureAtlas.class);
         manager.load("Levels/Levels.pack",TextureAtlas.class);
+        manager.load("Tutorials/Tutorials.pack",TextureAtlas.class);
+
         manager.load("Music/Bgmusic.ogg", Music.class);
         manager.load("Music/attack.wav", Sound.class);
         manager.load("Music/PUNCH.wav", Sound.class);
         manager.load("Music/punch1.wav", Sound.class);
         manager.load("Music/punch2.wav", Sound.class);
         manager.load("Music/slap.wav", Sound.class);
-        manager.setLoader(TiledMap.class,new TmxMapLoader(new InternalFileHandleResolver()) );
+
+        manager.setLoader(TiledMap.class,new TmxMapLoader(new InternalFileHandleResolver()));
         manager.load("background2.tmx",TiledMap.class);
         manager.load("bg.tmx",TiledMap.class);
     }

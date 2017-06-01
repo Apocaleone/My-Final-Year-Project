@@ -54,6 +54,7 @@ public class Lone_Warrior1 extends Game implements Screen {
 		atlas.add(loading.assets.manager.get("Spearman.pack",TextureAtlas.class));//3
 		atlas.add(loading.assets.manager.get("Enemies/Enemies.pack",TextureAtlas.class));//4
 		atlas.add(loading.assets.manager.get("Levels/Levels.pack",TextureAtlas.class));//5
+		atlas.add(loading.assets.manager.get("Tutorials/Tutorials.pack", TextureAtlas.class));//6
 
 
 		music=loading.assets.manager.get("Music/Bgmusic.ogg",Music.class);
@@ -69,6 +70,9 @@ public class Lone_Warrior1 extends Game implements Screen {
 		map=loading.assets.manager.get("bg.tmx");
 		//loading.assets.dispose();
 		setScreen(new MenuScreen(this));//setting the menu screen
+		if(!prefs.getBoolean("blah")){
+			System.out.println("blah");
+		}
 	}
 
 	@Override

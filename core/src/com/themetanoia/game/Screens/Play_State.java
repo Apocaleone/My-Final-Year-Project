@@ -52,7 +52,9 @@ public class Play_State implements Screen {
     private float time=0;
     int j=0;
     public float velocity=-0;
-    public int level=0,levelvariable=0;
+
+    public int level=0, act =0,beatscore=0;
+
     public static Array<Body> bodiesToRemove;//an array that takes care of removing the bodies in the array after each update
     public boolean ongoingmove=false, retreat=false,flag=false,flag2=false;//variables that determine the state of warrior
     public static boolean halt =false;
@@ -72,11 +74,12 @@ public class Play_State implements Screen {
 
 
 
-    public Play_State(Lone_Warrior1 game,float velocity,int level,int act){
+    public Play_State(Lone_Warrior1 game,float velocity,int level,int act,int beatscore){
         this.game=game;
         this.velocity=velocity;
         this.level=level;
-        this.levelvariable=levelvariable;
+        this.act =act;
+        this.beatscore=beatscore;
         pauseScreen=new com.themetanoia.game.Screen_Elements.PauseScreen(this);
         music=game.getMusic();
         audio=new AudioManager(game);
@@ -133,10 +136,6 @@ public class Play_State implements Screen {
 
 
     public void update(float dt){
-        if (performanceCounter != null) {
-            performanceCounter.tick();
-            performanceCounter.start();
-        }
         world.step(stepchange,6,2);
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             halt=true;
@@ -155,9 +154,6 @@ public class Play_State implements Screen {
 
         }
             forceApplicationFunction();//applies force to each individual character in the game
-        if(performanceCounter != null){
-            performanceCounter.stop();
-        }
 
     }
 
@@ -180,10 +176,11 @@ public class Play_State implements Screen {
         else
             gamecam.position.set(Lone_Warrior1.x+gamePort.getWorldWidth()/3,gamePort.getWorldHeight()/2,0);
 
-        gamecam.update();
 
        night.renderer2.render();
         night.renderer.render();
+
+        gamecam.update();
 
        //b2dr.render(world, gamecam.combined);
 
@@ -206,12 +203,13 @@ public class Play_State implements Screen {
 
         if(isGameover()){
             audio.stopMusic();
-            game.setScreen(new GameOver(game,this,hud.score));
-            dispose();
             bodiesToRemove.add(warrior.herodefeated);
             Lone_Warrior1.x=100/Lone_Warrior1.PPM;
             Lone_Warrior1.y=50/Lone_Warrior1.PPM;
             warrior.posture=0;
+            game.getPrefs().putInteger("score"+level+act,hud.score);
+            game.setScreen(new GameOver(game,this,hud.score,level,act,beatscore));
+            dispose();
         }
         /*if(time>3.1){
             halt=true;
@@ -237,6 +235,7 @@ public class Play_State implements Screen {
 
     @Override
     public void hide() {}
+
 
     @Override
     public void dispose() {

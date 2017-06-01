@@ -7,6 +7,7 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
@@ -46,6 +47,8 @@ public class Level2 extends Game implements Screen {
 
     private Lone_Warrior1 game;
     public InputMultiplexer multiplexer;
+    private Image image;
+    private Texture texture;
 
     public Level2(Lone_Warrior1 game){
         this.game = game;
@@ -65,6 +68,13 @@ public class Level2 extends Game implements Screen {
         font1=generator.generateFont(parameter);
         generator.dispose();
 
+        texture=new Texture(Gdx.files.internal("paper.png"));
+        image=new Image(texture);
+        Table table3=new Table();
+        table3.center();
+        table3.setFillParent(true);
+        table3.add(image);
+        stage.addActor(table3);
 
         skin=new Skin();
         skin.addRegions(atlas);
@@ -105,22 +115,30 @@ public class Level2 extends Game implements Screen {
 
         chapter1Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter1Style.up= skin.getDrawable("icon");
+        chapter1Style.down=skin.getDrawable("icondown");
         chapter1Style.font=font1;
+        chapter1Style.fontColor=Color.BLACK;
         chapter1= new TextButton("Act 1",chapter1Style);
 
         chapter2Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter2Style.up= skin.getDrawable("icon");
+        chapter2Style.down=skin.getDrawable("icondown");
         chapter2Style.font=font1;
+        chapter2Style.fontColor=Color.BLACK;
         chapter2= new TextButton("Act 2",chapter2Style);
 
         chapter3Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter3Style.up= skin.getDrawable("icon");
+        chapter3Style.down=skin.getDrawable("icondown");
         chapter3Style.font=font1;
+        chapter3Style.fontColor=Color.BLACK;
         chapter3= new TextButton("Act 3",chapter3Style);
 
         chapter4Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter4Style.up= skin.getDrawable("icon");
+        chapter4Style.down=skin.getDrawable("icondown");
         chapter4Style.font=font1;
+        chapter4Style.fontColor=Color.BLACK;
         chapter4= new TextButton("Act 4",chapter4Style);
 
         act1=new Label("Act 1",new Label.LabelStyle(font1,Color.WHITE));
@@ -174,7 +192,7 @@ public class Level2 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-0.5f,2,0));
+                game.setScreen(new Play_State(game,-0.5f,2,0,20));
             }
         });
 
@@ -184,7 +202,7 @@ public class Level2 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-1f,2,0));
+                game.setScreen(new Play_State(game,-1f,2,0,20));
             }
         });
 
@@ -194,7 +212,7 @@ public class Level2 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-1.5f,2,0));
+                game.setScreen(new Play_State(game,-1.5f,2,0,20));
             }
         });
 
@@ -205,7 +223,7 @@ public class Level2 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-2f,2,0));
+                game.setScreen(new Play_State(game,-2f,2,0,20));
             }
         });
     }

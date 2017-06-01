@@ -186,7 +186,7 @@ public class Level3 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-0.5f,7,0));
+                game.setScreen(new Play_State(game,-0.5f,7,0,20));
             }
         });
 
@@ -196,7 +196,7 @@ public class Level3 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-1f,3,0));
+                game.setScreen(new Play_State(game,-1f,3,0,20));
             }
         });
 
@@ -206,7 +206,7 @@ public class Level3 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-1.5f,3,0));
+                game.setScreen(new Play_State(game,-1.5f,3,0,20));
             }
         });
 
@@ -217,7 +217,7 @@ public class Level3 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-2f,3,0));
+                game.setScreen(new Play_State(game,-2f,3,0,20));
             }
         });
 
@@ -228,7 +228,7 @@ public class Level3 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-2.2f,3,0));
+                game.setScreen(new Play_State(game,-2.2f,3,0,20));
             }
         });
 
@@ -239,7 +239,7 @@ public class Level3 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-2.4f,7,0));
+                game.setScreen(new Play_State(game,-2.4f,7,0,20));
             }
         });
     }

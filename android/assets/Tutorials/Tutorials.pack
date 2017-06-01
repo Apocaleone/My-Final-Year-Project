@@ -1,0 +1,61 @@
+
+Tutorials.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+tutorial5
+  rotate: false
+  xy: 1, 646
+  size: 500, 213
+  orig: 500, 213
+  offset: 0, 0
+  index: -1
+tutorial7
+  rotate: false
+  xy: 1, 431
+  size: 500, 213
+  orig: 500, 213
+  offset: 0, 0
+  index: -1
+tutorial2
+  rotate: false
+  xy: 503, 646
+  size: 500, 213
+  orig: 500, 213
+  offset: 0, 0
+  index: -1
+tutorial3
+  rotate: false
+  xy: 1, 216
+  size: 500, 213
+  orig: 500, 213
+  offset: 0, 0
+  index: -1
+tutorial4
+  rotate: false
+  xy: 503, 431
+  size: 500, 213
+  orig: 500, 213
+  offset: 0, 0
+  index: -1
+tutorial1
+  rotate: false
+  xy: 1, 1
+  size: 500, 213
+  orig: 500, 213
+  offset: 0, 0
+  index: -1
+tutorial6
+  rotate: false
+  xy: 503, 216
+  size: 500, 213
+  orig: 500, 213
+  offset: 0, 0
+  index: -1
+tutorial0
+  rotate: false
+  xy: 503, 1
+  size: 500, 213
+  orig: 500, 213
+  offset: 0, 0
+  index: -1

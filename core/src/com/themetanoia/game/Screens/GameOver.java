@@ -40,15 +40,18 @@ public class GameOver extends Game implements Screen {
     private Texture texture;
     Label highScore,currentscore;
     Label highScoreString,currentscorestring;
-    int score=0;
+    int score=0,level,act,beatscore;
     private FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
 
 
-    public GameOver(Lone_Warrior1 game,Play_State state,int score) {
+    public GameOver(Lone_Warrior1 game,Play_State state,int score,int level, int act,int beatscore) {
         this.game = game;
         this.state=state;
         this.score=score;
+        this.level=level;
+        this.act=act;
+        this.beatscore=beatscore;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         texture=new Texture("gameover.png");
         image=new Image(texture);
@@ -103,6 +106,9 @@ public class GameOver extends Game implements Screen {
         table.row();
         table.add(startbutton).expandX().padTop(100).width(400).height(100).center().padLeft(300);
         stage.addActor(table);
+        if(game.getPrefs().getInteger("score"+level+act)>=beatscore)
+            game.getPrefs().putBoolean("unlock"+level+(++act),true);
+        game.prefs.flush();
     }
 
     public void init(){

@@ -90,7 +90,7 @@ public class Settings extends Game implements Screen {
 
         bstyle=new TextButton.TextButtonStyle();
         bstyle.font=font;
-        bstyle.up=skin1.getDrawable("Leftarrowup");
+        bstyle.up=skin1.getDrawable("Leftarrow");
         bstyle.down=skin1.getDrawable("Leftarrowdown");
         backarrow=new TextButton("",bstyle);
 

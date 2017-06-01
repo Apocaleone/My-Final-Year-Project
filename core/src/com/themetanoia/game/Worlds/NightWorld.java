@@ -42,7 +42,7 @@ public class NightWorld {
         bg=backgroundloader.load("background2.tmx");
         bg2=Lone_Warrior1.map;
         renderer=new OrthogonalTiledMapRenderer(bg,1/Lone_Warrior1.PPM);
-        renderer2=new OrthogonalTiledMapRenderer(bg2,1/Lone_Warrior1.PPM,state.game.batch);
+        renderer2=new OrthogonalTiledMapRenderer(bg2,1/Lone_Warrior1.PPM);
         BodyDef bdef=new BodyDef();
         PolygonShape shape=new PolygonShape();
         FixtureDef fdef=new FixtureDef();

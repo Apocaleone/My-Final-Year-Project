@@ -6,12 +6,14 @@ import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -20,6 +22,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Tools.LevelsManager;
+import com.themetanoia.game.Tools.Tutorials;
 
 /**
  * Created by MITHUN on 28-11-2016.
@@ -34,6 +37,8 @@ public class MenuScreen extends Game implements Screen {
     private TextureAtlas atlas;
     private FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
+    private Image image;
+    private Texture texture;
 
 
     private Lone_Warrior1 game;
@@ -58,9 +63,16 @@ public class MenuScreen extends Game implements Screen {
         skin=new Skin();
         skin.addRegions(atlas);
 
+        texture=new Texture(Gdx.files.internal("paper.png"));
+        image=new Image(texture);
+        Table table1=new Table();
+        table1.center();
+        table1.setFillParent(true);
+
         Table table=new Table();
         table.center();
         table.setFillParent(true);
+        table1.add(image);
 
         Gdx.input.setInputProcessor(stage);
 
@@ -81,7 +93,7 @@ public class MenuScreen extends Game implements Screen {
         testButtonStyle.up= skin.getDrawable("startbutton");
         testButtonStyle.down= skin.getDrawable("startbuttondown");
         testButtonStyle.font=font;
-        testButton= new TextButton("Test",testButtonStyle);
+        testButton= new TextButton("Tutorials",testButtonStyle);
 
         table.add(startbutton).expandX().padBottom(10).width(400).height(100).center();
         table.row();
@@ -89,6 +101,7 @@ public class MenuScreen extends Game implements Screen {
         table.row();
         table.add(testButton).expandX().padBottom(100).width(400).height(100).center();
 
+        stage.addActor(table1);
         stage.addActor(table);
 
 
@@ -125,7 +138,7 @@ public class MenuScreen extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
                 dispose();
-                game.setScreen(new StoryView(game,1,1));
+                game.setScreen(new Tutorials(game));
             }
         });
     }
