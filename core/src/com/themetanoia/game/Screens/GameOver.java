@@ -85,7 +85,6 @@ public class GameOver extends Game implements Screen {
         else{
             score=game.prefs.getInteger("HighScore");
         }
-        game.prefs.flush();
 
         highScoreString=new Label("High Score",new Label.LabelStyle(font1, Color.WHITE));
         highScore=new Label(String.format("%03d",score),new Label.LabelStyle(font1,Color.WHITE));
@@ -106,9 +105,29 @@ public class GameOver extends Game implements Screen {
         table.row();
         table.add(startbutton).expandX().padTop(100).width(400).height(100).center().padLeft(300);
         stage.addActor(table);
-        if(game.getPrefs().getInteger("score"+level+act)>=beatscore)
-            game.getPrefs().putBoolean("unlock"+level+(++act),true);
+        if(game.getPrefs().getInteger("score"+this.level+this.act)>=beatscore){
+            changer();
+            game.getPrefs().putBoolean("unlock"+this.level+(++this.act),true);}
         game.prefs.flush();
+    }
+
+    public void changer(){
+        switch (level){
+            case 1:if(act==3){
+                level += 1;
+                 act *= 0;}
+                  break;
+            case 2:if(act==4){
+                level += 1;
+                act *= 0;}
+                break;
+            case 3:if(act==6){
+                level += 1;
+                act *= 0;}
+                break;
+        }
+
+
     }
 
     public void init(){

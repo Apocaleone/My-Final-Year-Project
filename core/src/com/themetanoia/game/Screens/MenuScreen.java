@@ -3,7 +3,6 @@ package com.themetanoia.game.Screens;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
@@ -19,10 +18,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
-import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Lone_Warrior1;
-import com.themetanoia.game.Tools.LevelsManager;
-import com.themetanoia.game.Tools.Tutorials;
+import com.themetanoia.game.Screens.Levels.Level1;
 
 /**
  * Created by MITHUN on 28-11-2016.
@@ -42,14 +39,12 @@ public class MenuScreen extends Game implements Screen {
 
 
     private Lone_Warrior1 game;
-    public LevelsManager levelsManager;
 
     public MenuScreen(Lone_Warrior1 game){
 
         this.game=game;
 
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
-        levelsManager=new LevelsManager(game);
 
         atlas=new TextureAtlas();
         atlas=game.getAtlas(0);
@@ -117,7 +112,7 @@ public class MenuScreen extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
                 dispose();
-                levelsManager.levelSelector();//game.setScreen(new Play_State(game));
+                game.setScreen(new Level1(game));//game.setScreen(new Play_State(game));
             }
         });
 

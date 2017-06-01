@@ -182,7 +182,8 @@ public class Play_State implements Screen {
 
         gamecam.update();
 
-       //b2dr.render(world, gamecam.combined);
+
+        b2dr.render(world, gamecam.combined);
 
         drawCharacters();
 

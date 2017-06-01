@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Screens.StoryView;
 
 /**
  * Created by MITHOON on 06-04-2017.
@@ -117,29 +118,48 @@ public class Level2 extends Game implements Screen {
         chapter1Style.up= skin.getDrawable("icon");
         chapter1Style.down=skin.getDrawable("icondown");
         chapter1Style.font=font1;
-        chapter1Style.fontColor=Color.BLACK;
-        chapter1= new TextButton("Act 1",chapter1Style);
+        if(game.getPrefs().getBoolean("unlock21")==true){
+            chapter1Style.fontColor=Color.BLACK;
+            chapter1= new TextButton("Act 1",chapter1Style);}
+        else{
+            chapter1Style.fontColor=Color.FIREBRICK;
+            chapter1= new TextButton("Locked",chapter1Style);}
 
         chapter2Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter2Style.up= skin.getDrawable("icon");
         chapter2Style.down=skin.getDrawable("icondown");
         chapter2Style.font=font1;
-        chapter2Style.fontColor=Color.BLACK;
-        chapter2= new TextButton("Act 2",chapter2Style);
+        if(game.getPrefs().getBoolean("unlock22")==true){
+            chapter2Style.fontColor=Color.BLACK;
+            chapter2= new TextButton("Act 2",chapter2Style);}
+        else{
+            chapter2Style.fontColor=Color.FIREBRICK;
+            chapter2= new TextButton("Locked",chapter2Style);}
+
 
         chapter3Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter3Style.up= skin.getDrawable("icon");
         chapter3Style.down=skin.getDrawable("icondown");
         chapter3Style.font=font1;
-        chapter3Style.fontColor=Color.BLACK;
-        chapter3= new TextButton("Act 3",chapter3Style);
+        if(game.getPrefs().getBoolean("unlock23")==true){
+            chapter3Style.fontColor=Color.BLACK;
+            chapter3= new TextButton("Act 3",chapter3Style);}
+        else{
+            chapter3Style.fontColor=Color.FIREBRICK;
+            chapter3= new TextButton("Locked",chapter3Style);}
+
 
         chapter4Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter4Style.up= skin.getDrawable("icon");
         chapter4Style.down=skin.getDrawable("icondown");
         chapter4Style.font=font1;
-        chapter4Style.fontColor=Color.BLACK;
-        chapter4= new TextButton("Act 4",chapter4Style);
+        if(game.getPrefs().getBoolean("unlock24")==true){
+            chapter4Style.fontColor=Color.BLACK;
+            chapter4= new TextButton("Act 4",chapter4Style);}
+        else{
+            chapter4Style.fontColor=Color.FIREBRICK;
+            chapter4= new TextButton("Locked",chapter4Style);}
+
 
         act1=new Label("Act 1",new Label.LabelStyle(font1,Color.WHITE));
         act2=new Label("Act 2",new Label.LabelStyle(font1,Color.WHITE));
@@ -191,8 +211,9 @@ public class Level2 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
-                game.setScreen(new Play_State(game,-0.5f,2,0,20));
+                if(game.getPrefs().getBoolean("unlock21")==true){
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-1f,2,1,2));}
             }
         });
 
@@ -201,8 +222,9 @@ public class Level2 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
-                game.setScreen(new Play_State(game,-1f,2,0,20));
+                if(game.getPrefs().getBoolean("unlock22")==true){
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-1f,2,2,2));}
             }
         });
 
@@ -211,8 +233,9 @@ public class Level2 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
-                game.setScreen(new Play_State(game,-1.5f,2,0,20));
+                if(game.getPrefs().getBoolean("unlock23")==true){
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-1f,2,3,2));}
             }
         });
 
@@ -222,8 +245,9 @@ public class Level2 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
-                game.setScreen(new Play_State(game,-2f,2,0,20));
+                if(game.getPrefs().getBoolean("unlock24")==true){
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-1f,2,4,2));}
             }
         });
     }

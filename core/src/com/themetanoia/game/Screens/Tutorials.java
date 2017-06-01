@@ -1,4 +1,4 @@
-package com.themetanoia.game.Tools;
+package com.themetanoia.game.Screens;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;

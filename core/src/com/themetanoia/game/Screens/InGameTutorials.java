@@ -19,23 +19,22 @@ import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
-import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
 
 /**
- * Created by MITHOON on 06-05-2017.
+ * Created by MITHOON on 01-06-2017.
  */
-public class StoryView extends Game implements Screen {
+public class InGameTutorials extends Game implements Screen {
     private Stage stage,stage1;
     private Viewport viewport;
     private BitmapFont font,font1;
-    private TextButton.TextButtonStyle playbuttonStyle,settingbuttonStyle;
-    public TextButton playbutton,settingbutton;
+    private TextButton.TextButtonStyle playbuttonStyle,skipbuttonStyle;
+    public TextButton playbutton,skipbutton;
     private Skin skin;
-    private TextureAtlas atlas,atlas1;
+    private TextureAtlas atlas,atlas1,atlas2;
     private FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
     private String text;
@@ -46,22 +45,25 @@ public class StoryView extends Game implements Screen {
     Label title;
     int level, act,beatscore;
     float speed;
+    boolean tut=false;
+    private Array<Image> image;
 
 
-    public StoryView(Lone_Warrior1 game,float speed, int level, int act,int beatscore){
+    public InGameTutorials(Lone_Warrior1 game,float speed, int level, int act,int beatscore){
         this.game=game;
         this.level=level;
         this.act=act;
         this.speed=speed;
         this.beatscore=beatscore;
-        FileHandle test=Gdx.files.internal("test1.txt");
-        text=test.readString();
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
 
-        atlas=new TextureAtlas();
-        atlas=game.getAtlas(5);
+        atlas1=new TextureAtlas();
+        atlas1=game.getAtlas(6);
+        atlas2=new TextureAtlas();
+        atlas2=game.getAtlas(5);
 
-        stage=new Stage(viewport,game.batch);
+        stage1=new Stage(viewport,game.batch);
+
 
         generator= new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Variane Script.ttf"));
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
@@ -73,43 +75,41 @@ public class StoryView extends Game implements Screen {
         font1=generator.generateFont(parameter);
         generator.dispose();
         skin=new Skin();
-        skin.addRegions(atlas);
+        skin.addRegions(atlas2);
 
-        Gdx.input.setInputProcessor(stage);
+        Gdx.input.setInputProcessor(stage1);
 
-        story=new Label(text,new Label.LabelStyle(font, Color.BLACK));
-        story.setWrap(true);
-        story.pack();
+        //TUTORIALS
+        image=new Array<Image>();
+        for(int i=0;i<level+1;i++){
+            image.add(new Image(atlas1.findRegion("tutorial"+i)));
+        }
+        Table scrollTable1=new Table();
+        for(int i=0;i<level+1;i++) {
+            scrollTable1.add(image.get(i)).center().padBottom(30);
+            scrollTable1.row();
+        }
+        ScrollPane scrollPane1=new ScrollPane(scrollTable1);
 
-        title=new Label("Chapter 1",new Label.LabelStyle(font1, Color.RED));
+        Table parentTable1=new Table();
+        parentTable1.setFillParent(true);
+        parentTable1.add(scrollPane1).fill().expand();
 
-        playbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
-        playbuttonStyle.up= skin.getDrawable("skipup");
-        playbuttonStyle.down= skin.getDrawable("skipdown");
-        playbuttonStyle.font=font;
-        playbutton= new TextButton(" ",playbuttonStyle);
+        Table screenElements1=new Table();
+        screenElements1.right();
+        screenElements1.setFillParent(true);
 
+        skipbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
+        skipbuttonStyle.up= skin.getDrawable("skipup");
+        skipbuttonStyle.down= skin.getDrawable("skipdown");
+        skipbuttonStyle.font=font;
+        skipbutton= new TextButton(" ",skipbuttonStyle);
 
-        Table screenElements=new Table();
-        screenElements.right();
-        screenElements.setFillParent(true);
+        screenElements1.add(skipbutton).expandX().padBottom(10).width(100).height(100).right();
 
-        Table scrollTable=new Table();
-        scrollTable.add(title).center().padBottom(30);
-        scrollTable.row();
-        scrollTable.add(story).width(1000);
+        stage1.addActor(parentTable1);
+        stage1.addActor(screenElements1);
 
-        ScrollPane scrollPane=new ScrollPane(scrollTable);
-
-        Table parentTable=new Table();
-        parentTable.setFillParent(true);
-        parentTable.add(scrollPane).fill().expand();
-
-        screenElements.add(playbutton).expandX().padBottom(10).width(100).height(100).right();
-
-
-        stage.addActor(parentTable);
-        stage.addActor(screenElements);
 
     }
     @Override
@@ -119,14 +119,14 @@ public class StoryView extends Game implements Screen {
 
     @Override
     public void show() {
-        playbutton.addListener(new InputListener(){           //Button properties!
+        skipbutton.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
-                stage.dispose();
-                game.setScreen(new InGameTutorials(game,(float)-0.5*act,level,act,beatscore));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
+                stage1.dispose();
+                game.setScreen(new Play_State(game,(float)-0.5*act,level,act,beatscore));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
             }
         });
     }
@@ -136,8 +136,8 @@ public class StoryView extends Game implements Screen {
         Gdx.gl.glClearColor(1,0.95f,0.95f,1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
-        stage.act();
-        stage.draw();
+            stage1.act();
+            stage1.draw();
     }
 
     @Override
@@ -145,3 +145,4 @@ public class StoryView extends Game implements Screen {
 
     }
 }
+

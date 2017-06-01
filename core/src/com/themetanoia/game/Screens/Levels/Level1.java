@@ -165,7 +165,7 @@ public class Level1 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new StoryView(game,1,1,0.5f,2));
+                game.setScreen(new StoryView(game,0.5f,1,1,2));
             }
         });
 
@@ -176,7 +176,7 @@ public class Level1 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock12")==true){
                 stage.dispose();
-                game.setScreen(new Play_State(game,-1f,1,2,2));}
+                game.setScreen(new StoryView(game,-1f,1,2,2));}
             }
         });
 
@@ -188,7 +188,7 @@ public class Level1 extends Game implements Screen {
 
                 if(game.getPrefs().getBoolean("unlock13")==true){
                 stage.dispose();
-                 game.setScreen(new Play_State(game,-2f,1,3,20));}
+                 game.setScreen(new StoryView(game,-2f,1,3,2));}
             }
         });
 
