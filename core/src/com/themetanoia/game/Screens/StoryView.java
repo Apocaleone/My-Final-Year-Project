@@ -24,6 +24,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 06-05-2017.
@@ -46,6 +47,7 @@ public class StoryView extends Game implements Screen {
     Label title;
     int level, act,beatscore;
     float speed;
+    private AudioManager audio;
 
 
     public StoryView(Lone_Warrior1 game,float speed, int level, int act,int beatscore){
@@ -57,6 +59,8 @@ public class StoryView extends Game implements Screen {
         FileHandle test=Gdx.files.internal("test1.txt");
         text=test.readString();
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
+
+        audio=new AudioManager(game);
 
         atlas=new TextureAtlas();
         atlas=game.getAtlas(5);
@@ -110,7 +114,9 @@ public class StoryView extends Game implements Screen {
 
         stage.addActor(parentTable);
         stage.addActor(screenElements);
-
+audio.playMusic(0);
+        audio.playMusic(1);
+        audio.music.get(1).setVolume(0.4f);
     }
     @Override
     public void create() {
@@ -125,6 +131,7 @@ public class StoryView extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
+                audio.stopAll();
                 stage.dispose();
                 game.setScreen(new InGameTutorials(game,(float)-0.5*act,level,act,beatscore));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
             }

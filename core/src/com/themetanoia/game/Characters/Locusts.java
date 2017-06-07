@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 27-03-2017.
@@ -22,6 +23,7 @@ public class Locusts extends Enemies {private Body locusts1;//change
 
     private int locustsstate =0,previousstate;//change
     Play_State state;
+    AudioManager audio;
 
 
     public Locusts(Play_State state, float x, float y){
@@ -29,6 +31,7 @@ public class Locusts extends Enemies {private Body locusts1;//change
         this.state=state;
         atlas=new TextureAtlas();
         atlas= state.game.getAtlas(4);
+        audio=new AudioManager(state.game);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)//change
@@ -55,7 +58,10 @@ public class Locusts extends Enemies {private Body locusts1;//change
         if(locustsstate !=-1) {
             setPosition(locusts1.getPosition().x - getWidth() / 2, (locusts1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
             if (locustsstate ==0 && locusts1.getLinearVelocity().x>0)
-                locustsstate =1;
+            {  audio.playSound(6);
+                audio.stopfxMusic(6);
+                audio.playGruntSound(6);
+                locustsstate =1;}
             if (locustsstate ==1 && locusts1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(locusts1);
                 Play_State.enemycounter++;
@@ -64,6 +70,8 @@ public class Locusts extends Enemies {private Body locusts1;//change
             }
             if(locustsstate ==0)
                 locusts1.setLinearVelocity(state.getVelocity(),0);
+            if((locusts1.getPosition().x-Lone_Warrior1.x)<((Lone_Warrior1.V_Width)/Lone_Warrior1.PPM)&&locustsstate==0)
+                audio.playfxMusic(6);
             setRegion(getFrame(dt));
         }
     }

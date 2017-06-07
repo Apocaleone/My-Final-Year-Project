@@ -153,6 +153,7 @@ public class Buttons implements ApplicationListener {
         });
         button1.addListener(new ClickListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                Gdx.input.vibrate(200);
                 if(!b2check&&!b3check&&!b4check)
                 b1check=true;
                 return true;
@@ -186,6 +187,8 @@ public class Buttons implements ApplicationListener {
 
         button2.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                Gdx.input.vibrate(200);
+
                 if(!b1check&&!b3check&&!b4check)
                 b2check=true;
                 return true;
@@ -215,6 +218,8 @@ public class Buttons implements ApplicationListener {
         });
         button3.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                Gdx.input.vibrate(200);
+
                 if(!b2check&&!b1check&&!b4check)
                 b3check=true;
                 return true;
@@ -244,6 +249,7 @@ public class Buttons implements ApplicationListener {
         button4.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("button4 Clicked");
+                Gdx.input.vibrate(200);
                 if(!b2check&&!b3check&&!b1check)
                 b4check=true;
                 return true;

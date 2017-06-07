@@ -82,7 +82,7 @@ public class Tutorials extends Game implements Screen {
         screenElements.right();
         screenElements.setFillParent(true);
 
-        atlas1=game.getAtlas(6);
+        atlas1=game.getAtlas(3);
 
         for(int i=0;i<8;i++){
             image.add(new Image(atlas1.findRegion("tutorial"+i)));

@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 01-03-2017.
@@ -25,6 +26,8 @@ public class Berserker extends Enemies {
     public int berserkerstate=0,previousstate;
     Play_State state;
 
+    private AudioManager audio;
+
 
     public Berserker(Play_State state,float x, float y){
         super(state, x,  y);
@@ -32,6 +35,8 @@ public class Berserker extends Enemies {
         atlas=new TextureAtlas();
         atlas=state.game.getAtlas(4);
         time=0f;
+
+        audio=new AudioManager(state.game);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<4;i++)
@@ -56,8 +61,13 @@ public class Berserker extends Enemies {
     public void update(float dt){
         if(berserkerstate!=-1){
             setPosition(berserker1.getPosition().x-(getWidth()/2)+0.5f,(berserker1.getPosition().y-(getHeight()/2))+28/Lone_Warrior1.PPM);
-            if(berserkerstate==0&&berserker1.getLinearVelocity().x>0)
+            if(berserkerstate==0&&berserker1.getLinearVelocity().x>0){
                 berserkerstate=1;
+                audio.playSound(3);
+
+                audio.playGruntSound(3);
+                audio.stopfxMusic(3);
+            }
             if(berserkerstate==1&&berserker1.getLinearVelocity().x==0){
                 System.out.println("Berserker fallen");
                 Play_State.bodiesToRemove.add(berserker1);
@@ -66,6 +76,8 @@ public class Berserker extends Enemies {
             }
             if(berserkerstate==0)
                 berserker1.setLinearVelocity(state.getVelocity(),0);
+            if((berserker1.getPosition().x-Lone_Warrior1.x)<((Lone_Warrior1.V_Width)/Lone_Warrior1.PPM)&&berserkerstate==0)
+                audio.playfxMusic(3);
        /* else{
         berserkerstate=0;}*/
             setRegion(getFrame(dt));

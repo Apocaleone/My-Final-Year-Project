@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 27-03-2017.
@@ -22,6 +23,7 @@ public class Army extends Enemies {private Body army1;//change
 
     private int armystate =0,previousstate;//change
     Play_State state;
+    private AudioManager audio;
 
 
     public Army(Play_State state, float x, float y){
@@ -29,6 +31,7 @@ public class Army extends Enemies {private Body army1;//change
         this.state=state;
         atlas=new TextureAtlas();
         atlas= state.game.getAtlas(4);
+        audio=new AudioManager(state.game);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<5;i++)//change
@@ -54,8 +57,12 @@ public class Army extends Enemies {private Body army1;//change
 
         if(armystate !=-1) {
             setPosition(army1.getPosition().x - getWidth() / 2, (army1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
-            if (armystate ==0 && army1.getLinearVelocity().x>0)
+            if (armystate ==0 && army1.getLinearVelocity().x>0){
                 armystate =1;
+            audio.playSound(4);
+                audio.stopfxMusic(4);
+                audio.playGruntSound(4);
+            }
             if (armystate ==1 && army1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(army1);
                 Play_State.enemycounter++;
@@ -64,6 +71,8 @@ public class Army extends Enemies {private Body army1;//change
             }
             if(armystate ==0)
                 army1.setLinearVelocity( state.getVelocity(),0);
+            if((army1.getPosition().x-Lone_Warrior1.x)<((Lone_Warrior1.V_Width)/Lone_Warrior1.PPM)&&armystate==0)
+                audio.playfxMusic(4);
             setRegion(getFrame(dt));
         }
     }

@@ -21,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 03-04-2017.
@@ -43,6 +44,7 @@ public class GameOver extends Game implements Screen {
     int score=0,level,act,beatscore;
     private FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
+    public AudioManager audio;
 
 
     public GameOver(Lone_Warrior1 game,Play_State state,int score,int level, int act,int beatscore) {
@@ -55,6 +57,7 @@ public class GameOver extends Game implements Screen {
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         texture=new Texture("gameover.png");
         image=new Image(texture);
+        audio=new AudioManager(game);
 
         atlas=new TextureAtlas();
         atlas=game.getAtlas(0);
@@ -142,6 +145,7 @@ public class GameOver extends Game implements Screen {
     public void show() {
         startbutton.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                audio.playbSound(2);
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){

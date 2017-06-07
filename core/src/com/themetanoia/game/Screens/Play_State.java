@@ -22,6 +22,7 @@ import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Screen_Elements.*;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Tools.AudioManager;
+import com.themetanoia.game.Tools.BloodSplatter;
 import com.themetanoia.game.Tools.MyContactListener;
 import com.themetanoia.game.Tools.Spawner;
 import com.themetanoia.game.Worlds.NightWorld;
@@ -61,7 +62,6 @@ public class Play_State implements Screen {
     public static int enemycounter=0;
     public float stepchange=1/45f;
     public com.themetanoia.game.Screen_Elements.PauseScreen pauseScreen;
-    public Music music;
 
     public AudioManager audio;
 
@@ -69,6 +69,8 @@ public class Play_State implements Screen {
     public FloatCounter testing;
 
     NightWorld night;
+
+    BloodSplatter blood;
 
 
 
@@ -81,8 +83,8 @@ public class Play_State implements Screen {
         this.act =act;
         this.beatscore=beatscore;
         pauseScreen=new com.themetanoia.game.Screen_Elements.PauseScreen(this);
-        music=game.getMusic();
         audio=new AudioManager(game);
+        blood=new BloodSplatter();
 
 
         sR=new ShapeRenderer();
@@ -111,7 +113,10 @@ public class Play_State implements Screen {
         //spearman.defineEnemy();
 
         spawn.spawn();
-       audio.playMusic();
+        blood.splatter();
+       audio.playMusic(0);
+        audio.playMusic(2);
+        audio.music.get(2).setVolume(0.2f);
 
 
         bodiesToRemove=new Array<Body>();
@@ -183,7 +188,7 @@ public class Play_State implements Screen {
         gamecam.update();
 
 
-        b2dr.render(world, gamecam.combined);
+        //b2dr.render(world, gamecam.combined);
 
         drawCharacters();
 
@@ -203,7 +208,7 @@ public class Play_State implements Screen {
         }
 
         if(isGameover()){
-            audio.stopMusic();
+            audio.stopAll();
             bodiesToRemove.add(warrior.herodefeated);
             Lone_Warrior1.x=100/Lone_Warrior1.PPM;
             Lone_Warrior1.y=50/Lone_Warrior1.PPM;

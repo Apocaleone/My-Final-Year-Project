@@ -117,16 +117,18 @@ public class Level3 extends Game implements Screen {
 
         chapter1Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter1Style.up= skin.getDrawable("icon");
+        chapter1Style.down=skin.getDrawable("icondown");
         chapter1Style.font=font1;
         if(game.getPrefs().getBoolean("unlock31")==true){
             chapter1Style.fontColor=Color.BLACK;
-            chapter1= new TextButton("Act 1",chapter2Style);}
+            chapter1= new TextButton("Act 1",chapter1Style);}
         else{
             chapter1Style.fontColor=Color.FIREBRICK;
             chapter1= new TextButton("Locked",chapter1Style);}
 
         chapter2Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter2Style.up= skin.getDrawable("icon");
+        chapter2Style.down=skin.getDrawable("icondown");
         chapter2Style.font=font1;
         if(game.getPrefs().getBoolean("unlock32")==true){
             chapter2Style.fontColor=Color.BLACK;
@@ -137,6 +139,7 @@ public class Level3 extends Game implements Screen {
 
         chapter3Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter3Style.up= skin.getDrawable("icon");
+        chapter3Style.down=skin.getDrawable("icondown");
         chapter3Style.font=font1;
         if(game.getPrefs().getBoolean("unlock33")==true){
             chapter3Style.fontColor=Color.BLACK;
@@ -147,6 +150,7 @@ public class Level3 extends Game implements Screen {
 
         chapter4Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter4Style.up= skin.getDrawable("icon");
+        chapter4Style.down=skin.getDrawable("icondown");
         chapter4Style.font=font1;
         if(game.getPrefs().getBoolean("unlock34")==true){
             chapter4Style.fontColor=Color.BLACK;
@@ -158,6 +162,7 @@ public class Level3 extends Game implements Screen {
 
         chapter5Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter5Style.up= skin.getDrawable("icon");
+        chapter5Style.down=skin.getDrawable("icondown");
         chapter5Style.font=font1;
         if(game.getPrefs().getBoolean("unlock35")==true){
             chapter5Style.fontColor=Color.BLACK;
@@ -169,6 +174,7 @@ public class Level3 extends Game implements Screen {
 
         chapter6Style=new TextButton.TextButtonStyle();            //button 1 properties
         chapter6Style.up= skin.getDrawable("icon");
+        chapter6Style.down=skin.getDrawable("icondown");
         chapter6Style.font=font1;
         if(game.getPrefs().getBoolean("unlock36")==true){
             chapter6Style.fontColor=Color.BLACK;

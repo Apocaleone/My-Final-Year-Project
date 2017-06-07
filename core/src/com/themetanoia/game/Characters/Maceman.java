@@ -50,14 +50,15 @@ public class Maceman extends Enemies {private Body maceman1;
         setBounds(getX(),getY(),200/ Lone_Warrior1.PPM,170/Lone_Warrior1.PPM);
         setRegion(spearmaninit);
         time=0f;
-
     }
 
     public void update(float dt){
 
         if(macemanstate !=-1) {
             if (macemanstate ==0 && maceman1.getLinearVelocity().x>0){
-                audio.playSound(2);
+                audio.stopfxMusic(0);
+                audio.playSound(0);
+                audio.playGruntSound(0);
                 macemanstate =1;}
             if (macemanstate ==1 && maceman1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(maceman1);
@@ -72,6 +73,9 @@ public class Maceman extends Enemies {private Body maceman1;
             if(macemanstate==1){
                 setPosition(maceman1.getPosition().x - getWidth() / 2, (maceman1.getPosition().y - getHeight() / 2)+130/Lone_Warrior1.PPM);
             }
+            if((maceman1.getPosition().x-Lone_Warrior1.x)<((Lone_Warrior1.V_Width)/Lone_Warrior1.PPM)&&macemanstate==0)
+            {
+                audio.playfxMusic(0);}
             setRegion(getFrame(dt));
         }
     }

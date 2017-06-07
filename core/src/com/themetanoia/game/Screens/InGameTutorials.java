@@ -23,6 +23,7 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 01-06-2017.
@@ -46,6 +47,7 @@ public class InGameTutorials extends Game implements Screen {
     int level, act,beatscore;
     float speed;
     boolean tut=false;
+    AudioManager audioManager;
     private Array<Image> image;
 
 
@@ -57,8 +59,10 @@ public class InGameTutorials extends Game implements Screen {
         this.beatscore=beatscore;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
 
+        audioManager=new AudioManager(game);
+
         atlas1=new TextureAtlas();
-        atlas1=game.getAtlas(6);
+        atlas1=game.getAtlas(3);
         atlas2=new TextureAtlas();
         atlas2=game.getAtlas(5);
 
@@ -121,6 +125,7 @@ public class InGameTutorials extends Game implements Screen {
     public void show() {
         skipbutton.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                audioManager.playbSound(0);
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){

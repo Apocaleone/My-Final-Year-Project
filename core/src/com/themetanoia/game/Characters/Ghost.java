@@ -10,6 +10,7 @@ import com.badlogic.gdx.physics.box2d.PolygonShape;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 27-03-2017.
@@ -22,6 +23,7 @@ public class Ghost extends Enemies {private Body ghost1;//change
 
     private int ghoststate =0,previousstate;//change
     Play_State state;
+    AudioManager audio;
 
 
     public Ghost(Play_State state, float x, float y){
@@ -29,6 +31,7 @@ public class Ghost extends Enemies {private Body ghost1;//change
         this.state=state;
         atlas=new TextureAtlas();
         atlas= state.game.getAtlas(4);
+        audio=new AudioManager(state.game);
 
         Array<TextureRegion> frames=new Array<TextureRegion>();
         for(int i=0;i<3;i++)//change
@@ -54,8 +57,12 @@ public class Ghost extends Enemies {private Body ghost1;//change
 
         if(ghoststate !=-1) {
             setPosition(ghost1.getPosition().x - getWidth() / 2, (ghost1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
-            if (ghoststate ==0 && ghost1.getLinearVelocity().x>0)
+            if (ghoststate ==0 && ghost1.getLinearVelocity().x>0){
                 ghoststate =1;
+                audio.playSound(5);
+
+                audio.playGruntSound(5);
+                audio.stopfxMusic(5);}
             if (ghoststate ==1 && ghost1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(ghost1);
                 Play_State.enemycounter++;
@@ -64,6 +71,8 @@ public class Ghost extends Enemies {private Body ghost1;//change
             }
             if(ghoststate ==0)
                 ghost1.setLinearVelocity(state.getVelocity(),0);
+            if((ghost1.getPosition().x-Lone_Warrior1.x)<((Lone_Warrior1.V_Width)/Lone_Warrior1.PPM)&&ghoststate==0)
+                audio.playfxMusic(5);
             setRegion(getFrame(dt));
         }
     }

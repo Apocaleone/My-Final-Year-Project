@@ -58,7 +58,9 @@ public class Tridentman extends Enemies {private Body tridentman1;//change
         if(tridentmanstate !=-1) {
             setPosition(tridentman1.getPosition().x - getWidth() / 2, (tridentman1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
             if (tridentmanstate ==0 && tridentman1.getLinearVelocity().x>0){
-                audio.playSound(1);
+                audio.playSound(7);
+                audio.stopfxMusic(7);
+                audio.playGruntSound(7);
                 tridentmanstate =1;}
             if (tridentmanstate ==1 && tridentman1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(tridentman1);
@@ -68,6 +70,8 @@ public class Tridentman extends Enemies {private Body tridentman1;//change
             }
             if(tridentmanstate ==0)
                 tridentman1.setLinearVelocity(state.getVelocity(),0);
+            if((tridentman1.getPosition().x-Lone_Warrior1.x)<((Lone_Warrior1.V_Width)/Lone_Warrior1.PPM)&&tridentmanstate==0)
+                audio.playfxMusic(7);
             setRegion(getFrame(dt));
         }
     }

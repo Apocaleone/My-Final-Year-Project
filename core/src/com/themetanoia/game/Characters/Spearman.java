@@ -59,7 +59,9 @@ public class Spearman extends Enemies {
 
         if(spearmanstate!=-1) {
             if (spearmanstate==0 && spearman1.getLinearVelocity().x>0){
-                audio.playSound(0);
+                audio.stopfxMusic(2);
+                audio.playSound(2);
+                audio.playGruntSound(2);
                 spearmanstate=1;}
             if (spearmanstate==1 && spearman1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(spearman1);
@@ -73,6 +75,9 @@ public class Spearman extends Enemies {
             if(spearmanstate==1){
                 setPosition(spearman1.getPosition().x - getWidth() / 2, (spearman1.getPosition().y - getHeight() / 2)-25/Lone_Warrior1.PPM);
             }
+            if((spearman1.getPosition().x-Lone_Warrior1.x)<((Lone_Warrior1.V_Width)/Lone_Warrior1.PPM)&&spearmanstate==0){
+                audio.fxmusic.get(2).setVolume(0.3f);
+                audio.playfxMusic(2);}
             setRegion(getFrame(dt));
         }
     }

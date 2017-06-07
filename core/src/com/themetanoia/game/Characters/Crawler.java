@@ -58,7 +58,10 @@ public class Crawler extends Enemies {private Body crawler1;
         if(crawlerstate !=-1) {
             setPosition(crawler1.getPosition().x - getWidth() / 2, (crawler1.getPosition().y - getHeight() / 2)+13/Lone_Warrior1.PPM);
             if (crawlerstate ==0 && crawler1.getLinearVelocity().x>0){
-                audio.playSound(3);
+                System.out.println("Stopping music");
+                audio.stopfxMusic(1);
+                audio.playGruntSound(1);
+                audio.playSound(1);
                 crawlerstate =1;}
             if (crawlerstate ==1 && crawler1.getLinearVelocity().x==0) {
                 Play_State.bodiesToRemove.add(crawler1);
@@ -68,6 +71,8 @@ public class Crawler extends Enemies {private Body crawler1;
             }
             if(crawlerstate ==0)
                 crawler1.setLinearVelocity(state.getVelocity(),0);
+            if((crawler1.getPosition().x-Lone_Warrior1.x)<((Lone_Warrior1.V_Width)/Lone_Warrior1.PPM)&&crawlerstate==0)
+                audio.playfxMusic(1);
             setRegion(getFrame(dt));
         }
     }
