@@ -40,6 +40,9 @@ public class PlayStateAssetmanager {
         manager.load("Music/Enemies/Ghost/ghostapp.ogg", Music.class);
         manager.load("Music/Enemies/Locusts/locustsapp.ogg", Music.class);
         manager.load("Music/Enemies/Tridentman/panting.ogg", Music.class);
+        manager.load("Music/Enemies/Warrior/warriorgrunt.ogg", Music.class);
+
+
 
         manager.load("Music/Enemies/Maceman/Impact2.wav", Sound.class);
         manager.load("Music/Enemies/Crawler/Impact3.wav", Sound.class);

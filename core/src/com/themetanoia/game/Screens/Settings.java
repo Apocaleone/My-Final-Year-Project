@@ -18,6 +18,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 04-05-2017.
@@ -35,6 +36,8 @@ public class Settings extends Game implements Screen {
     private TextureAtlas atlas;
     private FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
+
+    private AudioManager audio;
 
     Lone_Warrior1 game;
 
@@ -58,6 +61,8 @@ public class Settings extends Game implements Screen {
         atlas=game.getAtlas(5);
         skin1=new Skin();
         skin1.addRegions(atlas);
+
+        audio=new AudioManager(game);
 
         Table table=new Table();
         table.center();
@@ -119,6 +124,7 @@ public class Settings extends Game implements Screen {
                 System.out.println("Start Clicked");
                 if(!game.getPrefs().getBoolean("musicoff")){
                     game.getPrefs().putBoolean("musicoff",true);
+                    audio.stopAll();
                     musicswitch.setText("Music Off");
                 }
                 else if(game.getPrefs().getBoolean("musicoff")){

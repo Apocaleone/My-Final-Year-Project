@@ -56,7 +56,11 @@ public class StoryView extends Game implements Screen {
         this.act=act;
         this.speed=speed;
         this.beatscore=beatscore;
-        FileHandle test=Gdx.files.internal("test1.txt");
+        FileHandle test;
+        if(level<3||(level==3&&act==1))
+        { test=Gdx.files.internal("Story/Chapter"+level+act+".txt");}
+        else
+        test=Gdx.files.internal("Story/default.txt");
         text=test.readString();
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
 
@@ -81,11 +85,11 @@ public class StoryView extends Game implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-        story=new Label(text,new Label.LabelStyle(font, Color.BLACK));
+        story=new Label(text,new Label.LabelStyle(font, Color.FIREBRICK));
         story.setWrap(true);
         story.pack();
 
-        title=new Label("Chapter 1",new Label.LabelStyle(font1, Color.RED));
+        title=new Label("ACT "+act,new Label.LabelStyle(font1, Color.WHITE));
 
         playbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
         playbuttonStyle.up= skin.getDrawable("skipup");
@@ -114,7 +118,7 @@ public class StoryView extends Game implements Screen {
 
         stage.addActor(parentTable);
         stage.addActor(screenElements);
-audio.playMusic(0);
+        audio.stopAll();
         audio.playMusic(1);
         audio.music.get(1).setVolume(0.4f);
     }
@@ -131,16 +135,17 @@ audio.playMusic(0);
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
+                audio.playbSound(0);
                 audio.stopAll();
                 stage.dispose();
-                game.setScreen(new InGameTutorials(game,(float)-0.5*act,level,act,beatscore));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
+                game.setScreen(new InGameTutorials(game,speed,level,act,beatscore));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
             }
         });
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1,0.95f,0.95f,1);
+        Gdx.gl.glClearColor(0,0,0,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
         stage.act();

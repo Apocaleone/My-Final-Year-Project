@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -31,7 +32,7 @@ public class Hud implements Disposable,ApplicationListener {
 
     public static int score;
     private float timecount;
-    private int worldTimer;
+    public int worldTimer;
     private Integer Difficulty;
 
     static Label scoreLabel;
@@ -41,28 +42,38 @@ public class Hud implements Disposable,ApplicationListener {
     Label timeLabel;
     Label countDownLable;
 
+    private BitmapFont font;
+    private FreeTypeFontGenerator generator;
+    FreeTypeFontGenerator.FreeTypeFontParameter parameter;
+
     public Hud(SpriteBatch sb)
     {
         score=0;
         Difficulty=1;
         timecount=0;
-        worldTimer=500;
+        worldTimer=300;
 
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         stage=new Stage(viewport,sb);
         Gdx.input.setInputProcessor(stage);
+
+        generator= new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Variane Script.ttf"));
+        parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size=30;
+        font=new BitmapFont();
+        font=generator.generateFont(parameter);
 
 
         Table table=new Table();
         table.top();
         table.setFillParent(true);
 
-        countDownLable=new Label(String.format("%03d",worldTimer),new Label.LabelStyle(new BitmapFont(),Color.WHITE));
-        scoreLabel=new Label(String.format("%06d",score),new Label.LabelStyle(new BitmapFont(), Color.WHITE));//String.format("%06d",score)
-        timeLabel=new Label("TIME",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        level=new Label(String.format("%01d",Difficulty),new Label.LabelStyle(new BitmapFont(), Color.WHITE));//String.format("%01d",Difficulty)
-        levelString=new Label("Level",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
-        scoreString=new Label("Score",new Label.LabelStyle(new BitmapFont(), Color.WHITE));
+        countDownLable=new Label(String.format("%03d",worldTimer),new Label.LabelStyle(font,Color.FIREBRICK));
+        scoreLabel=new Label(String.format("%06d",score),new Label.LabelStyle(font, Color.FIREBRICK));//String.format("%06d",score)
+        timeLabel=new Label("TIME",new Label.LabelStyle(font, Color.FIREBRICK));
+        level=new Label(String.format("%01d",Difficulty),new Label.LabelStyle(font, Color.FIREBRICK));//String.format("%01d",Difficulty)
+        levelString=new Label("Level",new Label.LabelStyle(font, Color.FIREBRICK));
+        scoreString=new Label("Score",new Label.LabelStyle(font, Color.FIREBRICK));
 
 
 

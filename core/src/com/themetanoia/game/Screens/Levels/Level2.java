@@ -24,6 +24,7 @@ import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
 import com.themetanoia.game.Screens.StoryView;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 06-04-2017.
@@ -51,12 +52,15 @@ public class Level2 extends Game implements Screen {
     private Image image;
     private Texture texture;
 
+    private AudioManager audio;
+
     public Level2(Lone_Warrior1 game){
         this.game = game;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         atlas=new TextureAtlas();
         atlas=game.getAtlas(5);
         stage=new Stage(viewport,game.batch);
+        audio=new AudioManager(game);
 
 
         generator= new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Variane Script.ttf"));
@@ -186,6 +190,7 @@ public class Level2 extends Game implements Screen {
     public void show() {
         rightArrow.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                audio.playbSound(0);
                 System.out.println("Button pressed down");
                 return true;
             }
@@ -198,6 +203,8 @@ public class Level2 extends Game implements Screen {
 
         leftArrow.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                audio.playbSound(0);
+
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
@@ -212,8 +219,9 @@ public class Level2 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock21")==true){
+                    audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-1f,2,1,2));}
+                    game.setScreen(new StoryView(game,-1f,2,1,30));}
             }
         });
 
@@ -223,8 +231,9 @@ public class Level2 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock22")==true){
+                    audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-1f,2,2,2));}
+                    game.setScreen(new StoryView(game,-2f,2,2,120));}
             }
         });
 
@@ -234,8 +243,9 @@ public class Level2 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock23")==true){
+                    audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-1f,2,3,2));}
+                    game.setScreen(new StoryView(game,-2.5f,2,3,200));}
             }
         });
 
@@ -247,7 +257,7 @@ public class Level2 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock24")==true){
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-1f,2,4,2));}
+                    game.setScreen(new StoryView(game,-3f,2,4,350));}
             }
         });
     }

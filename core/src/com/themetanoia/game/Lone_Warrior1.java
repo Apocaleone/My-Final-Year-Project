@@ -16,6 +16,7 @@ import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.Array;
 import com.themetanoia.game.Load_Screens.LoadState;
+import com.themetanoia.game.Load_Screens.PlayStateAssetmanager;
 import com.themetanoia.game.Screens.MenuScreen;
 import com.themetanoia.game.Screens.Play_State;
 
@@ -39,73 +40,27 @@ public class Lone_Warrior1 extends Game implements Screen {
 
 	public Preferences prefs;
 
+	public PlayStateAssetmanager assets;
+
+	public LoadState load;
+
 
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();//sprite batch initialized
-		loading=new LoadState();
-		atlas=new Array<TextureAtlas>();
+        assets=new PlayStateAssetmanager();
+	    atlas=new Array<TextureAtlas>();
 		music=new Array<Music>();
 		sound=new Array<Sound>();
 		grunts=new Array<Sound>();
 		bsounds=new Array<Sound>();
 		fxmusic=new Array<Music>();
+		load=new LoadState(this);
 
-		atlas.add(loading.assets.manager.get("MenuButtons.pack",TextureAtlas.class));//0
-		atlas.add(loading.assets.manager.get("Buttons/ButtonAtlas.pack",TextureAtlas.class));//1
-		atlas.add(loading.assets.manager.get("Warrior/Warrior.pack",TextureAtlas.class));//2
-		atlas.add(loading.assets.manager.get("Tutorials/Tutorials.pack", TextureAtlas.class));//3
-		atlas.add(loading.assets.manager.get("Enemies/Enemies.pack",TextureAtlas.class));//4
-		atlas.add(loading.assets.manager.get("Levels/Levels.pack",TextureAtlas.class));//5
+		setScreen(load);
 
-
-		music.add(loading.assets.manager.get("Music/music/Bgmusic.ogg",Music.class));//0
-		music.add(loading.assets.manager.get("Music/music/angel.ogg",Music.class));//1
-		music.add(loading.assets.manager.get("Music/music/drums.ogg",Music.class));//2
-
-		fxmusic.add(loading.assets.manager.get("Music/Enemies/Maceman/Swoosh.ogg", Music.class));//0
-		fxmusic.add(loading.assets.manager.get("Music/Enemies/Crawler/Crawl.ogg", Music.class));//1
-		fxmusic.add(loading.assets.manager.get("Music/Enemies/Spearman/approaching.ogg", Music.class));//2
-		fxmusic.add(loading.assets.manager.get("Music/Enemies/Berserker/berserkerrun.ogg", Music.class));//3
-		fxmusic.add(loading.assets.manager.get("Music/Enemies/Army/armyapp.ogg", Music.class));//4
-		fxmusic.add(loading.assets.manager.get("Music/Enemies/Ghost/ghostapp.ogg", Music.class));//5
-		fxmusic.add(loading.assets.manager.get("Music/Enemies/Locusts/locustsapp.ogg", Music.class));//6
-		fxmusic.add(loading.assets.manager.get("Music/Enemies/Tridentman/panting.ogg", Music.class));//7
-
-
-
-		sound.add(loading.assets.manager.get("Music/Enemies/Maceman/Impact2.wav", Sound.class));//0
-		sound.add(loading.assets.manager.get("Music/Enemies/Crawler/Impact3.wav", Sound.class));//1
-		sound.add(loading.assets.manager.get("Music/Enemies/Spearman/attack.wav", Sound.class));//2
-		sound.add(loading.assets.manager.get("Music/Enemies/Berserker/boom.wav", Sound.class));//3
-		sound.add(loading.assets.manager.get("Music/Enemies/Army/multikick.wav", Sound.class));//4
-		sound.add(loading.assets.manager.get("Music/Enemies/Ghost/electric.wav", Sound.class));//5
-		sound.add(loading.assets.manager.get("Music/Enemies/Locusts/slap.wav", Sound.class));//6
-		sound.add(loading.assets.manager.get("Music/Enemies/Tridentman/Impact1.wav", Sound.class));//7
-
-		grunts.add(loading.assets.manager.get("Music/Enemies/Maceman/macemangrunt.wav", Sound.class));//0
-		grunts.add(loading.assets.manager.get("Music/Enemies/Crawler/crawlergrunt.wav", Sound.class));//1
-		grunts.add(loading.assets.manager.get("Music/Enemies/Spearman/spearmangrunt.wav", Sound.class));//2
-		grunts.add(loading.assets.manager.get("Music/Enemies/Berserker/berserkergrunt.wav", Sound.class));//3
-		grunts.add(loading.assets.manager.get("Music/Enemies/Army/armygrunt.wav", Sound.class));//4
-		grunts.add(loading.assets.manager.get("Music/Enemies/Ghost/ghostgrunt.wav", Sound.class));//5
-		grunts.add(loading.assets.manager.get("Music/Enemies/Locusts/locustsgrunt.wav", Sound.class));//6
-		grunts.add(loading.assets.manager.get("Music/Enemies/Tridentman/tridentmangrunt.wav", Sound.class));//7
-
-		bsounds.add(loading.assets.manager.get("Music/Buttons/click.wav", Sound.class));//0
-		bsounds.add(loading.assets.manager.get("Music/Buttons/level.wav", Sound.class));//1
-		bsounds.add(loading.assets.manager.get("Music/Buttons/menu.wav", Sound.class));//2
-
-
-		prefs=Gdx.app.getPreferences("GameData");
-
-		map=loading.assets.manager.get("bg.tmx");
 		//loading.assets.dispose();
-		setScreen(new MenuScreen(this));//setting the menu screen
-		if(!prefs.getBoolean("blah")){
-			System.out.println("blah");
-		}
 	}
 
 	@Override
@@ -129,6 +84,59 @@ public class Lone_Warrior1 extends Game implements Screen {
 	{
 		return sound.get(i);
 
+	}
+
+	public void assigner(){
+		atlas.add(assets.manager.get("MenuButtons.pack",TextureAtlas.class));//0
+		atlas.add(assets.manager.get("Buttons/ButtonAtlas.pack",TextureAtlas.class));//1
+		atlas.add(assets.manager.get("Warrior/Warrior.pack",TextureAtlas.class));//2
+		atlas.add(assets.manager.get("Tutorials/Tutorials.pack", TextureAtlas.class));//3
+		atlas.add(assets.manager.get("Enemies/Enemies.pack",TextureAtlas.class));//4
+		atlas.add(assets.manager.get("Levels/Levels.pack",TextureAtlas.class));//5
+
+
+		music.add(assets.manager.get("Music/music/Bgmusic.ogg",Music.class));//0
+		music.add(assets.manager.get("Music/music/angel.ogg",Music.class));//1
+		music.add(assets.manager.get("Music/music/drums.ogg",Music.class));//2
+
+		fxmusic.add(assets.manager.get("Music/Enemies/Maceman/Swoosh.ogg", Music.class));//0
+		fxmusic.add(assets.manager.get("Music/Enemies/Crawler/Crawl.ogg", Music.class));//1
+		fxmusic.add(assets.manager.get("Music/Enemies/Spearman/approaching.ogg", Music.class));//2
+		fxmusic.add(assets.manager.get("Music/Enemies/Berserker/berserkerrun.ogg", Music.class));//3
+		fxmusic.add(assets.manager.get("Music/Enemies/Army/armyapp.ogg", Music.class));//4
+		fxmusic.add(assets.manager.get("Music/Enemies/Ghost/ghostapp.ogg", Music.class));//5
+		fxmusic.add(assets.manager.get("Music/Enemies/Locusts/locustsapp.ogg", Music.class));//6
+		fxmusic.add(assets.manager.get("Music/Enemies/Tridentman/panting.ogg", Music.class));//7
+		fxmusic.add(assets.manager.get("Music/Enemies/Warrior/warriorgrunt.ogg", Music.class));//8
+
+
+
+		sound.add(assets.manager.get("Music/Enemies/Maceman/Impact2.wav", Sound.class));//0
+		sound.add(assets.manager.get("Music/Enemies/Crawler/Impact3.wav", Sound.class));//1
+		sound.add(assets.manager.get("Music/Enemies/Spearman/attack.wav", Sound.class));//2
+		sound.add(assets.manager.get("Music/Enemies/Berserker/boom.wav", Sound.class));//3
+		sound.add(assets.manager.get("Music/Enemies/Army/multikick.wav", Sound.class));//4
+		sound.add(assets.manager.get("Music/Enemies/Ghost/electric.wav", Sound.class));//5
+		sound.add(assets.manager.get("Music/Enemies/Locusts/slap.wav", Sound.class));//6
+		sound.add(assets.manager.get("Music/Enemies/Tridentman/Impact1.wav", Sound.class));//7
+
+		grunts.add(assets.manager.get("Music/Enemies/Maceman/macemangrunt.wav", Sound.class));//0
+		grunts.add(assets.manager.get("Music/Enemies/Crawler/crawlergrunt.wav", Sound.class));//1
+		grunts.add(assets.manager.get("Music/Enemies/Spearman/spearmangrunt.wav", Sound.class));//2
+		grunts.add(assets.manager.get("Music/Enemies/Berserker/berserkergrunt.wav", Sound.class));//3
+		grunts.add(assets.manager.get("Music/Enemies/Army/armygrunt.wav", Sound.class));//4
+		grunts.add(assets.manager.get("Music/Enemies/Ghost/ghostgrunt.wav", Sound.class));//5
+		grunts.add(assets.manager.get("Music/Enemies/Locusts/locustsgrunt.wav", Sound.class));//6
+		grunts.add(assets.manager.get("Music/Enemies/Tridentman/tridentmangrunt.wav", Sound.class));//7
+
+		bsounds.add(assets.manager.get("Music/Buttons/click.wav", Sound.class));//0
+		bsounds.add(assets.manager.get("Music/Buttons/level.wav", Sound.class));//1
+		bsounds.add(assets.manager.get("Music/Buttons/menu.wav", Sound.class));//2
+
+
+		prefs=Gdx.app.getPreferences("GameData");
+
+		map=assets.manager.get("bg.tmx");
 	}
 
 

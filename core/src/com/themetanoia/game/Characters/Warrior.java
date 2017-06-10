@@ -14,6 +14,7 @@ import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screens.Play_State;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHUN on 17-10-2016.
@@ -35,6 +36,7 @@ public class Warrior extends Sprite {
     private Play_State state;
     
     private TextureAtlas atlas;
+    private AudioManager audio;
 
 
 
@@ -44,6 +46,8 @@ public class Warrior extends Sprite {
         atlas=state.game.getAtlas(2);
 
         this.world=world;
+
+        audio=new AudioManager(state.game);
 
 
         currentState=Move.Running;
@@ -62,7 +66,7 @@ public class Warrior extends Sprite {
         {
             frames.add(new TextureRegion(atlas.findRegion("highkick"+i)));
         }
-        highkick=new Animation(0.07f,frames);
+        highkick=new Animation(0.04f,frames);
         frames.clear();
         for(int i=0;i<13;i++)
         {
@@ -71,36 +75,36 @@ public class Warrior extends Sprite {
             else
                 frames.add(new TextureRegion(atlas.findRegion("lowkick"+i)));
         }
-        lowkick=new Animation(0.03f,frames);
+        lowkick=new Animation(0.027f,frames);
         frames.clear();
         for(int i=0;i<4;i++)
         {
                 frames.add(new TextureRegion(atlas.findRegion("exorcize"+i)));
         }
-        exorcize=new Animation(0.1f,frames);
+        exorcize=new Animation(0.06f,frames);
         frames.clear();
         for(int i=0;i<7;i++) {
             frames.add(new TextureRegion(atlas.findRegion("groundpunch" + i)));
         }
-        groundpunch=new Animation(0.1f,frames);
+        groundpunch=new Animation(0.05f,frames);
         frames.clear();
         for(int i=0;i<7;i++)
         {
                 frames.add(new TextureRegion(atlas.findRegion("hurricanebreath"+i)));
         }
-        hurricanebreath=new Animation(0.1f,frames);
+        hurricanebreath=new Animation(0.07f,frames);
         frames.clear();
         for(int i=0;i<4;i++)
         {
                 frames.add(new TextureRegion(atlas.findRegion("multikick"+i)));
         }
-        multikick=new Animation(0.1f,frames);
+        multikick=new Animation(0.05f,frames);
         frames.clear();
         for(int i=0;i<7;i++)
         {
                 frames.add(new TextureRegion(atlas.findRegion("powerpunch"+i)));
         }
-        megapunch=new Animation(0.1f,frames);
+        megapunch=new Animation(0.06f,frames);
         frames.clear();
         for(int i=0;i<5;i++)
         {
@@ -162,6 +166,7 @@ public class Warrior extends Sprite {
             setBounds(0,0,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
             setPosition(exorcizeattack.getPosition().x-getWidth()/2, (exorcizeattack.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM);}
         if(posture==-1){
+            audio.playfxMusic(8);
             setBounds(0,0,200/Lone_Warrior1.PPM,200/Lone_Warrior1.PPM);
             setPosition(herodefeated.getPosition().x-getWidth()/2,(herodefeated.getPosition().y-getHeight()/2)+50/Lone_Warrior1.PPM);}
         if(posture==0)

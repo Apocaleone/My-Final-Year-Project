@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -37,7 +38,8 @@ public class Buttons implements ApplicationListener {
     private Play_State state;
     public InputMultiplexer multiplexer;
 
-
+    private FreeTypeFontGenerator generator;
+    FreeTypeFontGenerator.FreeTypeFontParameter parameter;
 
 
 
@@ -50,14 +52,18 @@ public class Buttons implements ApplicationListener {
         atlas=new TextureAtlas();
         atlas=state.game.getAtlas(1);
         font=new BitmapFont();
-        font.setColor(Color.BLACK);
-        font.getData().setScale(3);
+        generator= new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Variane Script.ttf"));
+        parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
+        parameter.size=50;
+        font=generator.generateFont(parameter);
+        generator.dispose();
         skin=new Skin();
         pauseskin=new Skin();
         startskin=new Skin();
         skin.addRegions(atlas);
+        atlas=state.game.getAtlas(0);
         pauseskin.add("pause",new Texture("pausebutton.png"));
-        startskin.add("resume",new Texture("Resumebuttondown.png"));
+        startskin.addRegions(atlas);
 
         multiplexer=new InputMultiplexer();
         multiplexer.addProcessor(stage);
@@ -104,15 +110,15 @@ public class Buttons implements ApplicationListener {
         pauseButton= new TextButton(" ",pauseButtonStyle);
 
         startbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
-        startbuttonStyle.up= startskin.getDrawable("resume");
-        //startbuttonStyle.down= skin.getDrawable("Resumebutton");
+        startbuttonStyle.up= startskin.getDrawable("startbutton");
+        startbuttonStyle.down= startskin.getDrawable("startbuttondown");
         startbuttonStyle.font=font;
-        startbutton= new TextButton(" ",startbuttonStyle);
+        startbutton= new TextButton("Resume",startbuttonStyle);
 
 
         table.top();
         table.setFillParent(true);
-        table.add(pauseButton).expandX().padTop(5).padLeft(1100).width(50).height(30).right();
+        table.add(pauseButton).expandX().padTop(5).padLeft(1150).width(100).height(70).right();
 
         table.row();
         table.row();
@@ -124,7 +130,7 @@ public class Buttons implements ApplicationListener {
 
         resumetable.bottom();
         resumetable.setFillParent(true);
-        resumetable.add(startbutton).expandX().padBottom(100).width(200).height(50).center();
+        resumetable.add(startbutton).expandX().padBottom(100).width(300).height(100).center();
 
         stage.addActor(table);
         resumestage.addActor(resumetable);

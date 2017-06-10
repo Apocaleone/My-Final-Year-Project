@@ -22,8 +22,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Screens.MenuScreen;
 import com.themetanoia.game.Screens.Play_State;
 import com.themetanoia.game.Screens.StoryView;
+import com.themetanoia.game.Tools.AudioManager;
 
 /**
  * Created by MITHOON on 05-04-2017.
@@ -32,8 +34,8 @@ public class Level1 extends Game implements Screen {
     private Stage stage;
     private Viewport viewport;
     private BitmapFont font,font1;
-    private TextButton.TextButtonStyle rightArrowStyle,chapter1Style,chapter2Style,chapter3Style;
-    public TextButton rightArrow,chapter1,chapter2,chapter3;
+    private TextButton.TextButtonStyle rightArrowStyle,chapter1Style,chapter2Style,chapter3Style,menuButtonStyle;
+    public TextButton rightArrow,chapter1,chapter2,chapter3,menuButton;
 
     private Skin skin;
     private TextureAtlas atlas;
@@ -46,12 +48,16 @@ public class Level1 extends Game implements Screen {
     private Image image;
     private Texture texture;
 
+    private AudioManager audio;
+
     public Level1(Lone_Warrior1 game){
         this.game = game;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         atlas=new TextureAtlas();
         atlas=game.getAtlas(5);
         stage=new Stage(viewport,game.batch);
+
+        audio=new AudioManager(game);
 
 
         generator= new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Variane Script.ttf"));
@@ -135,10 +141,30 @@ public class Level1 extends Game implements Screen {
         table2.add(chapter2).expandX().padTop(100).width(120).height(140);
         table2.add(chapter3).expandX().padTop(100).width(120).height(140);
 
+        Table table4=new Table();
+        table4.top();
+        table4.setFillParent(true);
+
+        atlas=game.getAtlas(0);
+
+        skin.addRegions(atlas);
+
+        menuButtonStyle=new TextButton.TextButtonStyle();            //button 1 properties
+        menuButtonStyle.up= skin.getDrawable("startbutton");
+        menuButtonStyle.down=skin.getDrawable("startbuttondown");
+        menuButtonStyle.font=font1;
+        menuButtonStyle.fontColor=Color.WHITE;
+        menuButton= new TextButton("Menu",menuButtonStyle);
+
+        table4.add(menuButton).expandX().height(100).width(300).left();
+
+
+
         stage.addActor(table3);
         stage.addActor(table);
         stage.addActor(table1);
         stage.addActor(table2);
+        stage.addActor(table4);
 
     }
 
@@ -151,6 +177,7 @@ public class Level1 extends Game implements Screen {
     public void show() {
         rightArrow.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                audio.playbSound(0);
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
@@ -159,13 +186,25 @@ public class Level1 extends Game implements Screen {
             }
         });
 
+        menuButton.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                audio.playbSound(0);
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                stage.dispose();
+                game.setScreen(new MenuScreen(game));
+            }
+        });
+
         chapter1.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                audio.playbSound(1);
                 stage.dispose();
-                game.setScreen(new StoryView(game,0.5f,1,1,2));
+                game.setScreen(new StoryView(game,-1f,1,1,20));
             }
         });
 
@@ -175,8 +214,9 @@ public class Level1 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock12")==true){
+                    audio.playbSound(1);
                 stage.dispose();
-                game.setScreen(new StoryView(game,-1f,1,2,2));}
+                game.setScreen(new StoryView(game,-1.5f,1,2,40));}
             }
         });
 
@@ -187,8 +227,9 @@ public class Level1 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
 
                 if(game.getPrefs().getBoolean("unlock13")==true){
+                    audio.playbSound(1);
                 stage.dispose();
-                 game.setScreen(new StoryView(game,-2f,1,3,2));}
+                 game.setScreen(new StoryView(game,-2f,1,3,60));}
             }
         });
 

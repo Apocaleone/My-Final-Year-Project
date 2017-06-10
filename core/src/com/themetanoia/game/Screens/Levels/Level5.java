@@ -22,30 +22,29 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
-import com.themetanoia.game.Screens.Play_State;
 import com.themetanoia.game.Screens.StoryView;
 import com.themetanoia.game.Tools.AudioManager;
 
 /**
- * Created by MITHOON on 06-04-2017.
+ * Created by MITHOON on 11-06-2017.
  */
-public class Level3 extends Game implements Screen {
-
+public class Level5 extends Game implements Screen {
     private Stage stage;
     private Viewport viewport;
     private BitmapFont font,font1;
 
     private TextButton.TextButtonStyle rightArrowStyle,leftArrowStyle;
-    private TextButton.TextButtonStyle chapter1Style,chapter2Style,chapter3Style,chapter4Style,chapter5Style,chapter6Style;
+    private TextButton.TextButtonStyle chapter1Style,chapter2Style,chapter3Style,chapter4Style,chapter5Style,chapter6Style,
+            chapter7Style,chapter8Style,chapter9Style,chapter10Style,chapter11Style,chapter12Style;//change
     public TextButton rightArrow,leftArrow;
-    public TextButton chapter1,chapter2,chapter3,chapter4,chapter5,chapter6;
-
+    public TextButton chapter1,chapter2,chapter3,chapter4,chapter5,chapter6,chapter7,chapter8,chapter9,chapter10,chapter11,chapter12;
+//change
     private Skin skin;
     private TextureAtlas atlas;
     private FreeTypeFontGenerator generator;
 
     private FreeTypeFontGenerator.FreeTypeFontParameter parameter;
-    private Label act1,act2,act3,act4,act5,act6,level;
+    private Label act1,act2,act3,act4,act5,act6,act7,act8,act9,act10,act11,act12,level;//change
 
     private Lone_Warrior1 game;
     public InputMultiplexer multiplexer;
@@ -53,8 +52,9 @@ public class Level3 extends Game implements Screen {
     private Texture texture;
 
     private AudioManager audio;
+    int levelstate=5;
 
-    public Level3(Lone_Warrior1 game){
+    public Level5(Lone_Warrior1 game){
         this.game = game;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         atlas=new TextureAtlas();
@@ -88,7 +88,7 @@ public class Level3 extends Game implements Screen {
 
         Gdx.input.setInputProcessor(stage);
 
-        level=new Label("Level 3",new Label.LabelStyle(font,Color.FIREBRICK));
+        level=new Label("Level "+levelstate,new Label.LabelStyle(font, Color.FIREBRICK));//change
 
         Table table=new Table();
         table.top();
@@ -124,7 +124,7 @@ public class Level3 extends Game implements Screen {
         chapter1Style.up= skin.getDrawable("icon");
         chapter1Style.down=skin.getDrawable("icondown");
         chapter1Style.font=font1;
-        if(game.getPrefs().getBoolean("unlock31")==true){
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"1")==true){//change
             chapter1Style.fontColor=Color.BLACK;
             chapter1= new TextButton("Act 1",chapter1Style);}
         else{
@@ -135,7 +135,7 @@ public class Level3 extends Game implements Screen {
         chapter2Style.up= skin.getDrawable("icon");
         chapter2Style.down=skin.getDrawable("icondown");
         chapter2Style.font=font1;
-        if(game.getPrefs().getBoolean("unlock32")==true){
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"2")==true){
             chapter2Style.fontColor=Color.BLACK;
             chapter2= new TextButton("Act 2",chapter2Style);}
         else{
@@ -146,7 +146,7 @@ public class Level3 extends Game implements Screen {
         chapter3Style.up= skin.getDrawable("icon");
         chapter3Style.down=skin.getDrawable("icondown");
         chapter3Style.font=font1;
-        if(game.getPrefs().getBoolean("unlock33")==true){
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"3")==true){
             chapter3Style.fontColor=Color.BLACK;
             chapter3= new TextButton("Act 3",chapter3Style);}
         else{
@@ -157,7 +157,7 @@ public class Level3 extends Game implements Screen {
         chapter4Style.up= skin.getDrawable("icon");
         chapter4Style.down=skin.getDrawable("icondown");
         chapter4Style.font=font1;
-        if(game.getPrefs().getBoolean("unlock34")==true){
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"4")==true){
             chapter4Style.fontColor=Color.BLACK;
             chapter4= new TextButton("Act 4",chapter4Style);}
         else{
@@ -169,7 +169,7 @@ public class Level3 extends Game implements Screen {
         chapter5Style.up= skin.getDrawable("icon");
         chapter5Style.down=skin.getDrawable("icondown");
         chapter5Style.font=font1;
-        if(game.getPrefs().getBoolean("unlock35")==true){
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"5")==true){
             chapter5Style.fontColor=Color.BLACK;
             chapter5= new TextButton("Act 5",chapter5Style);}
         else{
@@ -181,12 +181,78 @@ public class Level3 extends Game implements Screen {
         chapter6Style.up= skin.getDrawable("icon");
         chapter6Style.down=skin.getDrawable("icondown");
         chapter6Style.font=font1;
-        if(game.getPrefs().getBoolean("unlock36")==true){
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"6")==true){
             chapter6Style.fontColor=Color.BLACK;
             chapter6= new TextButton("Act 6",chapter6Style);}
         else{
             chapter6Style.fontColor=Color.FIREBRICK;
             chapter6= new TextButton("Locked",chapter6Style);}
+
+        chapter7Style=new TextButton.TextButtonStyle();            //button 1 properties
+        chapter7Style.up= skin.getDrawable("icon");
+        chapter7Style.down=skin.getDrawable("icondown");
+        chapter7Style.font=font1;
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"7")==true){
+            chapter7Style.fontColor=Color.BLACK;
+            chapter7= new TextButton("Act 7",chapter7Style);}
+        else{
+            chapter7Style.fontColor=Color.FIREBRICK;
+            chapter7= new TextButton("Locked",chapter7Style);}
+
+        chapter8Style=new TextButton.TextButtonStyle();            //button 1 properties
+        chapter8Style.up= skin.getDrawable("icon");
+        chapter8Style.down=skin.getDrawable("icondown");
+        chapter8Style.font=font1;
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"8")==true){
+            chapter8Style.fontColor=Color.BLACK;
+            chapter8= new TextButton("Act 8",chapter8Style);}
+        else{
+            chapter8Style.fontColor=Color.FIREBRICK;
+            chapter8= new TextButton("Locked",chapter8Style);}
+
+        chapter9Style=new TextButton.TextButtonStyle();            //button 1 properties
+        chapter9Style.up= skin.getDrawable("icon");
+        chapter9Style.down=skin.getDrawable("icondown");
+        chapter9Style.font=font1;
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"9")==true){
+            chapter9Style.fontColor=Color.BLACK;
+            chapter9= new TextButton("Act 9",chapter9Style);}
+        else{
+            chapter9Style.fontColor=Color.FIREBRICK;
+            chapter9= new TextButton("Locked",chapter9Style);}
+
+        chapter10Style=new TextButton.TextButtonStyle();            //button 1 properties
+        chapter10Style.up= skin.getDrawable("icon");
+        chapter10Style.down=skin.getDrawable("icondown");
+        chapter10Style.font=font1;
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"10")==true){
+            chapter10Style.fontColor=Color.BLACK;
+            chapter10= new TextButton("Act 10",chapter10Style);}
+        else{
+            chapter10Style.fontColor=Color.FIREBRICK;
+            chapter10= new TextButton("Locked",chapter10Style);}
+
+        chapter11Style=new TextButton.TextButtonStyle();            //button 1 properties
+        chapter11Style.up= skin.getDrawable("icon");
+        chapter11Style.down=skin.getDrawable("icondown");
+        chapter11Style.font=font1;
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"11")==true){
+            chapter11Style.fontColor=Color.BLACK;
+            chapter11= new TextButton("Act 11",chapter11Style);}
+        else{
+            chapter11Style.fontColor=Color.FIREBRICK;
+            chapter11= new TextButton("Locked",chapter11Style);}
+
+        chapter12Style=new TextButton.TextButtonStyle();            //button 1 properties
+        chapter12Style.up= skin.getDrawable("icon");
+        chapter12Style.down=skin.getDrawable("icondown");
+        chapter12Style.font=font1;
+        if(game.getPrefs().getBoolean("unlock"+levelstate+"12")==true){
+            chapter12Style.fontColor=Color.BLACK;
+            chapter12= new TextButton("Act 12",chapter12Style);}
+        else{
+            chapter12Style.fontColor=Color.FIREBRICK;
+            chapter12= new TextButton("Locked",chapter12Style);}
 
 
         act1=new Label("Act 1",new Label.LabelStyle(font1,Color.WHITE));
@@ -195,6 +261,14 @@ public class Level3 extends Game implements Screen {
         act4=new Label("Act 4",new Label.LabelStyle(font1,Color.WHITE));
         act5=new Label("Act 5",new Label.LabelStyle(font1,Color.WHITE));
         act6=new Label("Act 6",new Label.LabelStyle(font1,Color.WHITE));
+        act7=new Label("Act 7",new Label.LabelStyle(font1,Color.WHITE));
+        act8=new Label("Act 8",new Label.LabelStyle(font1,Color.WHITE));
+        act9=new Label("Act 9",new Label.LabelStyle(font1,Color.WHITE));
+        act10=new Label("Act 10",new Label.LabelStyle(font1,Color.WHITE));
+        act11=new Label("Act 11",new Label.LabelStyle(font1,Color.WHITE));
+        act12=new Label("Act 12",new Label.LabelStyle(font1,Color.WHITE));
+
+
 
         table2.add(chapter1).expandX().padTop(100).width(120).height(140);
         table2.add(chapter2).expandX().padTop(100).width(120).height(140);
@@ -202,7 +276,15 @@ public class Level3 extends Game implements Screen {
         table2.add(chapter4).expandX().padTop(100).width(120).height(140);
         table2.add(chapter5).expandX().padTop(100).width(120).height(140);
         table2.row();
-        table2.add(chapter6).expandX().padTop(10).width(120).height(140);
+        table2.add(chapter6).expandX().width(120).height(140);
+        table2.add(chapter7).expandX().width(120).height(140);
+        table2.add(chapter8).expandX().width(120).height(140);
+        table2.add(chapter9).expandX().width(120).height(140);
+        table2.add(chapter10).expandX().width(120).height(140);
+        table2.row();
+        table2.add(chapter11).expandX().width(120).height(140);
+        table2.add(chapter12).expandX().width(120).height(140);
+
 
 
         stage.addActor(table);
@@ -213,7 +295,7 @@ public class Level3 extends Game implements Screen {
 
     @Override
     public void create() {
-        
+
     }
 
     @Override
@@ -224,7 +306,9 @@ public class Level3 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                game.setScreen(new Level4(game));
+                stage.dispose();
+                game.setScreen(new Level6(game));
+
             }
         });
 
@@ -235,7 +319,7 @@ public class Level3 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 stage.dispose();
-                game.setScreen(new Level2(game));
+                game.setScreen(new Level4(game));
             }
         });
 
@@ -244,10 +328,10 @@ public class Level3 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(game.getPrefs().getBoolean("unlock31")==true){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"1")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-1f,3,1,40));}
+                    game.setScreen(new StoryView(game,-1.5f,levelstate,1,50));}
             }
         });
 
@@ -256,10 +340,10 @@ public class Level3 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(game.getPrefs().getBoolean("unlock32")==true){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"2")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-1.5f,3,2,70));}
+                    game.setScreen(new StoryView(game,-1.7f,levelstate,2,100));}
             }
         });
 
@@ -268,10 +352,10 @@ public class Level3 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(game.getPrefs().getBoolean("unlock33")==true){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"3")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-2f,3,3,140));}
+                    game.setScreen(new StoryView(game,-2f,levelstate,3,150));}
             }
         });
 
@@ -281,10 +365,10 @@ public class Level3 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(game.getPrefs().getBoolean("unlock34")==true){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"4")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-2.5f,3,4,300));}
+                    game.setScreen(new StoryView(game,-2.3f,levelstate,4,240));}
             }
         });
 
@@ -294,10 +378,10 @@ public class Level3 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(game.getPrefs().getBoolean("unlock35")==true){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"5")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-2.4f,3,5,400));}
+                    game.setScreen(new StoryView(game,-2.5f,levelstate,5,300));}
             }
         });
 
@@ -307,12 +391,84 @@ public class Level3 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(game.getPrefs().getBoolean("unlock36")==true){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"6")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-2.7f,3,6,500));}
+                    game.setScreen(new StoryView(game,-2.7f,levelstate,6,350));}
             }
         });
+
+        chapter7.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"7")==true){
+                    audio.playbSound(1);
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-2.9f,levelstate,7,400));}
+            }
+        });
+
+        chapter8.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"8")==true){
+                    audio.playbSound(1);
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-3.1f,levelstate,8,500));}
+            }
+        });
+        chapter9.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"9")==true){
+                    audio.playbSound(1);
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-3.3f,levelstate,9,550));}
+            }
+        });
+
+        chapter10.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"10")==true){
+                    audio.playbSound(1);
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-3.5f,levelstate,10,600));}
+            }
+        });
+
+        chapter11.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"11")==true){
+                    audio.playbSound(1);
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-3.5f,levelstate,11,600));}
+            }
+        });
+
+        chapter12.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button){
+                if(game.getPrefs().getBoolean("unlock"+levelstate+"12")==true){
+                    audio.playbSound(1);
+                    stage.dispose();
+                    game.setScreen(new StoryView(game,-3.5f,levelstate,12,600));}
+            }
+        });
+
     }
 
     @Override

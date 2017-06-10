@@ -39,7 +39,7 @@ public class GameOver extends Game implements Screen {
     private Lone_Warrior1 game;
     private Play_State state;
     private Texture texture;
-    Label highScore,currentscore;
+    Label highScore,currentscore,over;
     Label highScoreString,currentscorestring;
     int score=0,level,act,beatscore;
     private FreeTypeFontGenerator generator;
@@ -47,7 +47,7 @@ public class GameOver extends Game implements Screen {
     public AudioManager audio;
 
 
-    public GameOver(Lone_Warrior1 game,Play_State state,int score,int level, int act,int beatscore) {
+    public GameOver(Lone_Warrior1 game,Play_State state,int score,int level, int act,int beatscore,boolean check) {
         this.game = game;
         this.state=state;
         this.score=score;
@@ -64,7 +64,7 @@ public class GameOver extends Game implements Screen {
         stage=new Stage(viewport,game.batch);
         generator= new FreeTypeFontGenerator(Gdx.files.internal("Fonts/Variane Script.ttf"));
         parameter = new FreeTypeFontGenerator.FreeTypeFontParameter();
-        parameter.size=50;
+        parameter.size=100;
         font=new BitmapFont();
         font1=new BitmapFont();
         font=generator.generateFont(parameter);
@@ -92,13 +92,20 @@ public class GameOver extends Game implements Screen {
         highScoreString=new Label("High Score",new Label.LabelStyle(font1, Color.WHITE));
         highScore=new Label(String.format("%03d",score),new Label.LabelStyle(font1,Color.WHITE));
 
+        if(check==false)
+        over=new Label("Game Over",new Label.LabelStyle(font, Color.FIREBRICK));
+        else
+            over=new Label("Game Completed!",new Label.LabelStyle(font, Color.FOREST));
+
+
+
 
         startbuttonStyle=new TextButton.TextButtonStyle();            //button 1 properties
         startbuttonStyle.up= skin.getDrawable("startbutton");
         startbuttonStyle.down= skin.getDrawable("startbuttondown");
-        startbuttonStyle.font=font;
+        startbuttonStyle.font=font1;
         startbutton= new TextButton("Menu Screen ",startbuttonStyle);
-       table.add(image).expandX().center().padLeft(300);
+       table.add(over).expandX().center().padLeft(300);
         table.row();
         table.add(highScoreString).padTop(40).left().padLeft(100);
         table.add(currentscorestring).padTop(40).right().padRight(100);
@@ -145,7 +152,7 @@ public class GameOver extends Game implements Screen {
     public void show() {
         startbutton.addListener(new InputListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                audio.playbSound(2);
+                audio.playbSound(0);
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){

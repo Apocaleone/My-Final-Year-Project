@@ -4,7 +4,6 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputMultiplexer;
 import com.badlogic.gdx.Screen;
-import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -25,13 +24,11 @@ import com.badlogic.gdx.utils.Array;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
-import com.themetanoia.game.Screens.MenuScreen;
-import com.themetanoia.game.Screens.Play_State;
 
 /**
- * Created by MITHOON on 30-05-2017.
+ * Created by MITHOON on 11-06-2017.
  */
-public class Tutorials extends Game implements Screen {
+public class Credits extends Game implements Screen {
 
     private Stage stage;
     private Viewport viewport;
@@ -51,7 +48,7 @@ public class Tutorials extends Game implements Screen {
     private Array<Texture> texture;
 
 
-    public  Tutorials(Lone_Warrior1 game){
+    public  Credits(Lone_Warrior1 game){
         this.game=game;
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
 
@@ -79,20 +76,15 @@ public class Tutorials extends Game implements Screen {
 
 
         Table screenElements=new Table();
-        screenElements.right();
+        screenElements.left().top();
         screenElements.setFillParent(true);
 
         atlas1=game.getAtlas(3);
 
-        for(int i=0;i<8;i++){
-            image.add(new Image(atlas1.findRegion("tutorial"+i)));
-        }
+        level=new Label("Code, Art, Design, Sound Editing etc..\n\n                          by Mithun",new Label.LabelStyle(font, Color.WHITE));
 
         Table scrollTable=new Table();
-        for(int i=0;i<8;i++){
-        scrollTable.add(image.get(i)).center().padBottom(30);
-        scrollTable.row();
-        }
+        scrollTable.add(level);
 
         ScrollPane scrollPane=new ScrollPane(scrollTable);
 
@@ -100,13 +92,11 @@ public class Tutorials extends Game implements Screen {
         parentTable.setFillParent(true);
         parentTable.add(scrollPane).fill().expand();
 
-        screenElements.add(menuButton).expandX().padBottom(10).width(400).height(100).right();
+        screenElements.add(menuButton).expandX().padBottom(10).width(400).height(100).left().top();
 
 
         stage.addActor(parentTable);
         stage.addActor(screenElements);
-
-
 
     }
     @Override
@@ -161,3 +151,4 @@ public class Tutorials extends Game implements Screen {
 
     }
 }
+

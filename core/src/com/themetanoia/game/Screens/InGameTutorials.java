@@ -50,7 +50,6 @@ public class InGameTutorials extends Game implements Screen {
     AudioManager audioManager;
     private Array<Image> image;
 
-
     public InGameTutorials(Lone_Warrior1 game,float speed, int level, int act,int beatscore){
         this.game=game;
         this.level=level;
@@ -84,11 +83,19 @@ public class InGameTutorials extends Game implements Screen {
         Gdx.input.setInputProcessor(stage1);
 
         //TUTORIALS
+        title=new Label("Objective: Score more than "+ beatscore,new Label.LabelStyle(font1, Color.RED));
+        story=new Label("New Enemy Unlocked!",new Label.LabelStyle(font1, Color.RED));
         image=new Array<Image>();
         for(int i=0;i<level+1;i++){
             image.add(new Image(atlas1.findRegion("tutorial"+i)));
         }
         Table scrollTable1=new Table();
+        scrollTable1.add(title).center().padBottom(5);
+        scrollTable1.row();
+        if(level>1&&act==1){
+            scrollTable1.add(story).center().padBottom(15);
+            scrollTable1.row();
+        }
         for(int i=0;i<level+1;i++) {
             scrollTable1.add(image.get(i)).center().padBottom(30);
             scrollTable1.row();
@@ -131,14 +138,14 @@ public class InGameTutorials extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 System.out.println("Start Clicked");
                 stage1.dispose();
-                game.setScreen(new Play_State(game,(float)-0.5*act,level,act,beatscore));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
+                game.setScreen(new Play_State(game,speed,level,act,beatscore));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
             }
         });
     }
 
     @Override
     public void render(float delta) {
-        Gdx.gl.glClearColor(1,0.95f,0.95f,1);
+        Gdx.gl.glClearColor(0,0,0,0);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
             stage1.act();
