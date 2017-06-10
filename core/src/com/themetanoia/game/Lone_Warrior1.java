@@ -131,8 +131,6 @@ public class Lone_Warrior1 extends Game implements Screen {
 
 		bsounds.add(assets.manager.get("Music/Buttons/click.wav", Sound.class));//0
 		bsounds.add(assets.manager.get("Music/Buttons/level.wav", Sound.class));//1
-		bsounds.add(assets.manager.get("Music/Buttons/menu.wav", Sound.class));//2
-
 
 		prefs=Gdx.app.getPreferences("GameData");
 

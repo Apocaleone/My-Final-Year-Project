@@ -28,6 +28,9 @@ android {
         targetSdkVersion 24
     }
     buildTypes {
+            debug {
+                debuggable true
+            }
         release {
             signingConfig signingConfigs.TheGame
         }

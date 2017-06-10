@@ -64,8 +64,6 @@ public class PlayStateAssetmanager {
 
         manager.load("Music/Buttons/click.wav", Sound.class);
         manager.load("Music/Buttons/level.wav", Sound.class);
-        manager.load("Music/Buttons/menu.wav", Sound.class);
-
 
 
 

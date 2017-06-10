@@ -83,7 +83,7 @@ public class About extends Game implements Screen {
 
         level=new Label("I know the art is a bit crappy but I do intend to update the game at a frequent rate and one of the first major changes would be to the animation, but ofcourse that would come after I " +
                 "finish the story. I have some major plans for this project. This is my very first android application as well as my first developed game so please be gentle on your reviews. Feedback and criticism are ofcourse very welcome. I hope you enjoy the game as much as I enjoyed making this game." +
-                "Updates might not start coming until after a few months though. I have to get a job first and I am afraid that might take some time. I was not the most studious of the lot you see. Anyway, enjoy the game, leave a review, share the app and spread the word. Toodles :)\n By Creator Mithun",new Label.LabelStyle(font, Color.WHITE));
+                "Updates might not start coming until after a few months though. I have to get a job first and I am afraid that might take some time. I was not the most studious of the lot you see. Anyway, enjoy the game, leave a review, rate the app, share the app and spread the word. Tell me if you find any bugs. My emil id is tmvmithun@gmail.com. For sending suggesions. Toodles :)\n By Creator Mithun",new Label.LabelStyle(font, Color.WHITE));
 level.setWrap(true);
         level.pack();
         Table scrollTable=new Table();

@@ -331,6 +331,7 @@ public class Level6 extends Game implements Screen {
         stage.addActor(table);
         stage.addActor(table1);
         stage.addActor(table2);
+        game.prefs.flush();
 
     }
 

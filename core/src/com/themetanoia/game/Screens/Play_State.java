@@ -217,6 +217,7 @@ public class Play_State implements Screen {
             Lone_Warrior1.y=50/Lone_Warrior1.PPM;
             warrior.posture=0;
             game.getPrefs().putInteger("score"+level+act,hud.score);
+            game.prefs.flush();
             game.setScreen(new GameOver(game,this,hud.score,level,act,beatscore,check));
             dispose();
         }

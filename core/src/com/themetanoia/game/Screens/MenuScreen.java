@@ -123,6 +123,8 @@ public class MenuScreen extends Game implements Screen {
         stage.addActor(table1);
         stage.addActor(table);
         audio.playMusic(0);
+        game.prefs.flush();
+
 
 
     }

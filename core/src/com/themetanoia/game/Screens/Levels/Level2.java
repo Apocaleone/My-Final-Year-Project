@@ -179,6 +179,7 @@ public class Level2 extends Game implements Screen {
         stage.addActor(table);
         stage.addActor(table1);
         stage.addActor(table2);
+        game.prefs.flush();
 
     }
     @Override
