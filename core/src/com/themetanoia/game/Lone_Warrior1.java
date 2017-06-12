@@ -19,6 +19,7 @@ import com.themetanoia.game.Load_Screens.LoadState;
 import com.themetanoia.game.Load_Screens.PlayStateAssetmanager;
 import com.themetanoia.game.Screens.MenuScreen;
 import com.themetanoia.game.Screens.Play_State;
+import com.themetanoia.game.Tools.AdHandler;
 
 
 public class Lone_Warrior1 extends Game implements Screen {
@@ -44,8 +45,13 @@ public class Lone_Warrior1 extends Game implements Screen {
 
 	public LoadState load;
 
+	public AdHandler handler;
+	boolean toggle=false;
 
-	
+	public Lone_Warrior1(AdHandler handler) {
+		this.handler = handler;
+	}
+
 	@Override
 	public void create () {
 		batch = new SpriteBatch();//sprite batch initialized
@@ -65,6 +71,8 @@ public class Lone_Warrior1 extends Game implements Screen {
 
 	@Override
 	public void render () {
+		if(Gdx.input.justTouched()){
+		}
 		super.render();//calling the super class for rendering
 
 	}
@@ -85,6 +93,11 @@ public class Lone_Warrior1 extends Game implements Screen {
 		return sound.get(i);
 
 	}
+
+	public void toggleAds(boolean toggle){
+		handler.showAds(toggle);
+	}
+
 
 	public void assigner(){
 		atlas.add(assets.manager.get("MenuButtons.pack",TextureAtlas.class));//0

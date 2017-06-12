@@ -24,7 +24,7 @@ android {
     }
     defaultConfig {
         applicationId "com.themetanoia.game"
-        minSdkVersion 8
+        minSdkVersion 14
         targetSdkVersion 24
     }
     buildTypes {

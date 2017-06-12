@@ -166,6 +166,7 @@ public class Level1 extends Game implements Screen {
         stage.addActor(table2);
         stage.addActor(table4);
         game.prefs.flush();
+        game.toggleAds(true);
 
     }
 
@@ -182,7 +183,7 @@ public class Level1 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
+                dispose();
                 game.setScreen(new Level2(game));
             }
         });
@@ -193,7 +194,7 @@ public class Level1 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
+                dispose();
                 game.setScreen(new MenuScreen(game));
             }
         });
@@ -204,7 +205,7 @@ public class Level1 extends Game implements Screen {
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 audio.playbSound(1);
-                stage.dispose();
+                dispose();
                 game.setScreen(new StoryView(game,-1f,1,1,20));
             }
         });
@@ -216,7 +217,7 @@ public class Level1 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock12")==true){
                     audio.playbSound(1);
-                stage.dispose();
+                dispose();
                 game.setScreen(new StoryView(game,-1.5f,1,2,40));}
             }
         });
@@ -229,7 +230,7 @@ public class Level1 extends Game implements Screen {
 
                 if(game.getPrefs().getBoolean("unlock13")==true){
                     audio.playbSound(1);
-                stage.dispose();
+                dispose();
                  game.setScreen(new StoryView(game,-2f,1,3,60));}
             }
         });
@@ -242,6 +243,11 @@ public class Level1 extends Game implements Screen {
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act();
         stage.draw();
+    }
+    
+    public void dispose(){
+        game.toggleAds(false);
+        stage.dispose();
     }
 
     @Override

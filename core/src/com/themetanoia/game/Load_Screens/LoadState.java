@@ -48,6 +48,7 @@ public class LoadState extends Game implements Screen {
 
     public LoadState(Lone_Warrior1 game){
         this.game=game;
+        game.toggleAds(false);
         viewport=new StretchViewport(Lone_Warrior1.V_Width,Lone_Warrior1.V_Height,new OrthographicCamera());
         stage=new Stage(viewport,game.batch);
         stage1=new Stage(viewport,game.batch);
