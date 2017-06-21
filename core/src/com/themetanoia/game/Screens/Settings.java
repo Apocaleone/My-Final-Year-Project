@@ -29,7 +29,7 @@ public class Settings extends Game implements Screen {
     private Viewport viewport;
     private BitmapFont font;
     private TextButton.TextButtonStyle style;
-    public TextButton musicswitch,soundswitch;
+    public TextButton musicswitch,soundswitch,vibrationswitch;
     private TextButton backarrow;
     private TextButton.TextButtonStyle bstyle;
     private Skin skin,skin1;
@@ -92,6 +92,15 @@ public class Settings extends Game implements Screen {
         else
             soundswitch =new TextButton("Sound Effects On",style);
 
+        style=new TextButton.TextButtonStyle();
+        style.font=font;
+        style.up= skin.getDrawable("startbutton");
+        style.down= skin.getDrawable("startbuttondown");
+        if(game.getPrefs().getBoolean("vibrateoff"))
+            vibrationswitch =new TextButton("Vibration Off",style);
+        else
+            vibrationswitch =new TextButton("Vibration On",style);
+
 
         bstyle=new TextButton.TextButtonStyle();
         bstyle.font=font;
@@ -101,7 +110,9 @@ public class Settings extends Game implements Screen {
 
         table.add(musicswitch).expandX().padBottom(10).width(400).height(100).center();
         table.row();
-        table.add(soundswitch).expandX().padBottom(100).width(400).height(100).center();
+        table.add(soundswitch).expandX().padBottom(10).width(400).height(100).center();
+        table.row();
+        table.add(vibrationswitch).expandX().padBottom(100).width(400).height(100).center();
         table1.add(backarrow).expandX().padLeft(10).width(100).height(100).top().left();
 
         stage.addActor(table);
@@ -121,7 +132,6 @@ public class Settings extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Start Clicked");
                 if(!game.getPrefs().getBoolean("musicoff")){
                     game.getPrefs().putBoolean("musicoff",true);
                     audio.stopAll();
@@ -140,7 +150,6 @@ public class Settings extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
-                System.out.println("Start Clicked");
                 if(!game.getPrefs().getBoolean("Soundoff")){
                     game.getPrefs().putBoolean("Soundoff",true);
                     soundswitch.setText("Sound Effects Off");
@@ -148,6 +157,23 @@ public class Settings extends Game implements Screen {
                 else if(game.getPrefs().getBoolean("Soundoff")){
                     game.getPrefs().putBoolean("Soundoff",false);
                     soundswitch.setText("Sound Effects On");
+                }
+                game.getPrefs().flush();
+            }
+        });
+
+        vibrationswitch.addListener(new InputListener(){           //Button properties!
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
+                return true;
+            }
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                if(!game.getPrefs().getBoolean("vibrateoff")){
+                    game.getPrefs().putBoolean("vibrateoff",true);
+                    vibrationswitch.setText("Vibration Off");
+                }
+                else if(game.getPrefs().getBoolean("vibrateoff")){
+                    game.getPrefs().putBoolean("vibrateoff",false);
+                    vibrationswitch.setText("Vibration On");
                 }
                 game.getPrefs().flush();
             }

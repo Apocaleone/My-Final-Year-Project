@@ -26,16 +26,13 @@ public class MyContactListener implements ContactListener {
 
         //BERSERKER
         if(fb.getUserData()!=null&&fb.getUserData().equals("berserker1")){
-            System.out.println("berserker attacked");
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriormegapunch")){
-                System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                  
                 fb.getBody().applyForceToCenter(220,100,true);
                 Hud.addScore(2);
             }
             else{
-                System.out.println("berserker wins");
                 if(!fa.getUserData().equals("Ground")&&!fa.getUserData().equals("berserker1")){
                     Play_State.bodiesToRemove.add(fa.getBody());
                     Warrior.posture=-1;}
@@ -43,16 +40,13 @@ public class MyContactListener implements ContactListener {
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("berserker1")){
-            System.out.println("berserker attacked");
             if(fb.getUserData()!=null&&fb.getUserData().equals("warriormegapunch")){
-                System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(220,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("berserker wins");
                 if(!fb.getUserData().equals("Ground")&&!fb.getUserData().equals("berserker1")){
                     Play_State.bodiesToRemove.add(fa.getBody());
                     Warrior.posture=-1;}
@@ -62,9 +56,7 @@ public class MyContactListener implements ContactListener {
 
         //SPEARMAN
         if(fb.getUserData()!=null&&fb.getUserData().equals("spearman1")){
-            System.out.println("spearman attacked");
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriorhighkick")){
-                System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(260,100,true);
                  
@@ -72,7 +64,6 @@ public class MyContactListener implements ContactListener {
                 Hud.addScore(2);
             }
             else{
-                System.out.println("spearman wins");
                 //fa.getBody().applyForceToCenter(-200,0,true);
                 if(!fa.getUserData().equals("Ground")&&!fa.getUserData().equals("spearman1")){
                 Play_State.bodiesToRemove.add(fa.getBody());
@@ -81,9 +72,7 @@ public class MyContactListener implements ContactListener {
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("spearman1")){
-            System.out.println("berserker attacked");
             if(fb.getUserData()!=null&&fb.getUserData().equals("warriorhighkick")){
-                System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(260,100,true);
                 //Lone_Warrior1.sound.play();
@@ -91,7 +80,6 @@ public class MyContactListener implements ContactListener {
                 Hud.addScore(2);
             }
             else{
-                System.out.println("berserker wins");
                 //fb.getBody().applyForceToCenter(-200,0,true);
                 if(!fb.getUserData().equals("Ground")&&!fb.getUserData().equals("spearman1")){
                 Play_State.bodiesToRemove.add(fb.getBody());
@@ -102,16 +90,13 @@ public class MyContactListener implements ContactListener {
 
         //CRAWLER
         if(fb.getUserData()!=null&&fb.getUserData().equals("crawler1")){
-            System.out.println("spearman attacked");
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriorgroundpunch")){
-                System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("spearman wins");
                 //fa.getBody().applyForceToCenter(-200,0,true);
                 if(!fa.getUserData().equals("Ground")&&!fa.getUserData().equals("crawler1")){
                     Play_State.bodiesToRemove.add(fa.getBody());
@@ -120,16 +105,13 @@ public class MyContactListener implements ContactListener {
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("crawler1")){
-            System.out.println("berserker attacked");
             if(fb.getUserData()!=null&&fb.getUserData().equals("warriorgroundpunch")){
-                System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("berserker wins");
                 //fb.getBody().applyForceToCenter(-200,0,true);
                 if(!fb.getUserData().equals("Ground")&&!fb.getUserData().equals("crawler1")){
                     Play_State.bodiesToRemove.add(fb.getBody());
@@ -139,16 +121,13 @@ public class MyContactListener implements ContactListener {
 
         //ARMY
         if(fb.getUserData()!=null&&fb.getUserData().equals("army1")){
-            System.out.println("spearman attacked");
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriormultikick")){
-                System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("spearman wins");
                 //fa.getBody().applyForceToCenter(-200,0,true);
                 if(!fa.getUserData().equals("Ground")&&!fa.getUserData().equals("army1")){
                     Play_State.bodiesToRemove.add(fa.getBody());
@@ -157,16 +136,13 @@ public class MyContactListener implements ContactListener {
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("army1")){
-            System.out.println("berserker attacked");
             if(fb.getUserData()!=null&&fb.getUserData().equals("warriormultikick")){
-                System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("berserker wins");
                 //fb.getBody().applyForceToCenter(-200,0,true);
                 if(!fb.getUserData().equals("Ground")&&!fb.getUserData().equals("army1")){
                     Play_State.bodiesToRemove.add(fb.getBody());
@@ -178,17 +154,14 @@ public class MyContactListener implements ContactListener {
 
         //GHOST
         if(fb.getUserData()!=null&&fb.getUserData().equals("ghost1")){
-            System.out.println("spearman attacked");
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriorexorcize")){
-                System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("spearman wins");
-                //fa.getBody().applyForceToCenter(-200,0,true);
+                 //fa.getBody().applyForceToCenter(-200,0,true);
                 if(!fa.getUserData().equals("Ground")&&!fa.getUserData().equals("ghost1")){
                     Play_State.bodiesToRemove.add(fa.getBody());
                     Warrior.posture=-1;}
@@ -196,16 +169,13 @@ public class MyContactListener implements ContactListener {
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("ghost1")){
-            System.out.println("berserker attacked");
             if(fb.getUserData()!=null&&fb.getUserData().equals("warriorexorcize")){
-                System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("berserker wins");
                 //fb.getBody().applyForceToCenter(-200,0,true);
                 if(!fb.getUserData().equals("Ground")&&!fb.getUserData().equals("ghost1")){
                     Play_State.bodiesToRemove.add(fb.getBody());
@@ -216,16 +186,13 @@ public class MyContactListener implements ContactListener {
 
         //LOCUSTS
         if(fb.getUserData()!=null&&fb.getUserData().equals("locusts1")){
-            System.out.println("spearman attacked");
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriorhurricanebreath")){
-                System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("spearman wins");
                 //fa.getBody().applyForceToCenter(-200,0,true);
                 if(!fa.getUserData().equals("Ground")&&!fa.getUserData().equals("locusts1")){
                     Play_State.bodiesToRemove.add(fa.getBody());
@@ -234,16 +201,13 @@ public class MyContactListener implements ContactListener {
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("locusts1")){
-            System.out.println("berserker attacked");
             if(fb.getUserData()!=null&&fb.getUserData().equals("warriorhurricanebreath")){
-                System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("berserker wins");
                 //fb.getBody().applyForceToCenter(-200,0,true);
                 if(!fb.getUserData().equals("Ground")&&!fb.getUserData().equals("locusts1")){
                     Play_State.bodiesToRemove.add(fb.getBody());
@@ -253,9 +217,7 @@ public class MyContactListener implements ContactListener {
 
         //MACEMAN
         if(fb.getUserData()!=null&&fb.getUserData().equals("maceman1")){
-            System.out.println("spearman attacked");
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriorlowkick")){
-                System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
                  
@@ -263,7 +225,6 @@ public class MyContactListener implements ContactListener {
                  
             }
             else{
-                System.out.println("spearman wins");
                 //fa.getBody().applyForceToCenter(-200,0,true);
                 if(!fa.getUserData().equals("Ground")&&!fa.getUserData().equals("maceman1")){
                     Play_State.bodiesToRemove.add(fa.getBody());
@@ -272,16 +233,13 @@ public class MyContactListener implements ContactListener {
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("maceman1")){
-            System.out.println("berserker attacked");
             if(fb.getUserData()!=null&&fb.getUserData().equals("warriorlowkick")){
-                System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("berserker wins");
                 //fb.getBody().applyForceToCenter(-200,0,true);
                 if(!fb.getUserData().equals("Ground")&&!fb.getUserData().equals("maceman1")){
                     Play_State.bodiesToRemove.add(fb.getBody());
@@ -291,16 +249,13 @@ public class MyContactListener implements ContactListener {
 
         //TRIDENTMAN
         if(fb.getUserData()!=null&&fb.getUserData().equals("tridentman1")){
-            System.out.println("spearman attacked");
             if(fa.getUserData()!=null&&fa.getUserData().equals("warriorspinpunch")){
-                System.out.println("spearman lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fb.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("spearman wins");
                 //fa.getBody().applyForceToCenter(-200,0,true);
                 if(!fa.getUserData().equals("Ground")&&!fa.getUserData().equals("tridentman1")){
                     Play_State.bodiesToRemove.add(fa.getBody());
@@ -309,16 +264,13 @@ public class MyContactListener implements ContactListener {
         }
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("tridentman1")){
-            System.out.println("berserker attacked");
             if(fb.getUserData()!=null&&fb.getUserData().equals("warriorspinpunch")){
-                System.out.println("berserker lost!");
                 //Spawner.berserkers.get(0).berserker1.applyForceToCenter(200,100,true);
                 fa.getBody().applyForceToCenter(200,100,true);
                  
                 Hud.addScore(2);
             }
             else{
-                System.out.println("berserker wins");
                 //fb.getBody().applyForceToCenter(-200,0,true);
                 if(!fb.getUserData().equals("Ground")&&!fb.getUserData().equals("tridentman1")){
                     Play_State.bodiesToRemove.add(fb.getBody());
@@ -337,34 +289,32 @@ public class MyContactListener implements ContactListener {
 
         /*if(fa.getUserData()!=null&&fa.getUserData().equals("warrior")){
             if(fb.getUserData()!=null&&fb.getUserData().equals("berserker1")){
-                System.out.println("warrior attacked by enemy");
-                System.out.println("berserker Attacks!");
+                 ("warrior attacked by enemy");
+                 ("berserker Attacks!");
                 Warrior.hero.applyForceToCenter(-500,0,true);
             }
             if (fb.getUserData() != null && fb.getUserData().equals("spearman1")){
-                System.out.println("warrior attacked by spearman1");
+                 ("warrior attacked by spearman1");
                 Warrior.hero.applyForceToCenter(-200,0,true);
 
             }
         }
         if(fb.getUserData()!=null&&fb.getUserData().equals("warrior")){
             if(fa.getUserData()!=null&&fa.getUserData().equals("berserker1")){
-                System.out.println("warrior attacked by enemy");
-                System.out.println("berserker Attacks!");
+                 ("warrior attacked by enemy");
+                 ("berserker Attacks!");
                 Warrior.hero.applyForceToCenter(-500,0,true);
             }
             if (fa.getUserData() != null && fa.getUserData().equals("spearman1")){
-                System.out.println("warrior attacked by spearman1");
+                 ("warrior attacked by spearman1");
                 Warrior.hero.applyForceToCenter(-200,0,true);
 
             }
         }*/
 
         if(fa.getUserData()!=null&&fa.getUserData().equals("warriorreturn")){
-            System.out.println("Warriorreturning");
         }
         if(fb.getUserData()!=null&&fb.getUserData().equals("warriorreturn")){
-            System.out.println("Warriorreturning");
         }
 
 

@@ -291,7 +291,7 @@ public class Level5 extends Game implements Screen {
         stage.addActor(table1);
         stage.addActor(table2);
         game.prefs.flush();
-
+game.toggleAds(true);
     }
 
     @Override
@@ -307,7 +307,7 @@ public class Level5 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
+                dispose();
                 game.setScreen(new Level6(game));
 
             }
@@ -319,7 +319,7 @@ public class Level5 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
+                dispose();
                 game.setScreen(new Level4(game));
             }
         });
@@ -331,8 +331,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"1")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-1.5f,levelstate,1,50));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-1f,levelstate,1,50));}
             }
         });
 
@@ -343,8 +343,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"2")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-1.7f,levelstate,2,100));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-1.3f,levelstate,2,100));}
             }
         });
 
@@ -355,8 +355,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"3")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2f,levelstate,3,150));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-1.5f,levelstate,3,150));}
             }
         });
 
@@ -368,8 +368,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"4")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2.3f,levelstate,4,240));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-1.7f,levelstate,4,170));}
             }
         });
 
@@ -381,8 +381,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"5")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2.5f,levelstate,5,300));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-1.9f,levelstate,5,200));}
             }
         });
 
@@ -394,8 +394,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"6")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2.7f,levelstate,6,350));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-2.2f,levelstate,6,230));}
             }
         });
 
@@ -406,8 +406,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"7")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2.9f,levelstate,7,400));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-2.5f,levelstate,7,270));}
             }
         });
 
@@ -418,8 +418,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"8")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-3.1f,levelstate,8,500));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-2.7f,levelstate,8,330));}
             }
         });
         chapter9.addListener(new InputListener(){           //Button properties!
@@ -429,8 +429,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"9")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-3.3f,levelstate,9,550));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-2.9f,levelstate,9,400));}
             }
         });
 
@@ -441,8 +441,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"10")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,10,600));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-3f,levelstate,10,420));}
             }
         });
 
@@ -453,8 +453,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"11")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,11,600));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-3.1f,levelstate,11,440));}
             }
         });
 
@@ -465,8 +465,8 @@ public class Level5 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"12")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,12,600));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-3.2f,levelstate,12,470));}
             }
         });
 
@@ -479,6 +479,11 @@ public class Level5 extends Game implements Screen {
         stage.act();
         stage.draw();
 
+    }
+
+    public void dispose(){
+        game.toggleAds(false);
+        stage.dispose();
     }
 
     @Override

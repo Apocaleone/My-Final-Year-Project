@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.badlogic.gdx.backends.android.AndroidApplication;
 import com.badlogic.gdx.backends.android.AndroidApplicationConfiguration;
@@ -14,6 +15,7 @@ import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.InterstitialAd;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Tools.AdHandler;
 
@@ -22,6 +24,8 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 	private final int SHOW_ADS=1;
 	private final int HIDE_ADS=0;
 	protected AdView adView;
+	private InterstitialAd interstitialAd;
+
 
 	Handler handler=new Handler(){
 		@Override
@@ -60,7 +64,7 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 		adView.setAdSize(AdSize.SMART_BANNER);
 		adView.setAdUnitId("ca-app-pub-8285187526835305/2712426479");
 		AdRequest.Builder builder=new AdRequest.Builder();
-		builder.addTestDevice("4EB11DDBB2080300236B5251CFF60A6C");
+		//builder.addTestDevice("4EB11DDBB2080300236B5251CFF60A6C");//test
 		RelativeLayout.LayoutParams adParams=new RelativeLayout.LayoutParams(
 				RelativeLayout.LayoutParams.WRAP_CONTENT,
 				RelativeLayout.LayoutParams.WRAP_CONTENT);
@@ -69,10 +73,36 @@ public class AndroidLauncher extends AndroidApplication implements AdHandler {
 		adView.loadAd(builder.build());
 		setContentView(layout);
 
+		setContentView(layout);
+
+				   interstitialAd = new InterstitialAd(this);
+		    interstitialAd.setAdUnitId("ca-app-pub-8285187526835305/7986904077");
+
+
 	}
 
 	@Override
 	public void showAds(boolean show) {
 		handler.sendEmptyMessage(show ? SHOW_ADS : HIDE_ADS);
 	}
+
+	@Override
+	public void showOrLoadInterstital() {
+			   try {
+				      runOnUiThread(new Runnable() {
+					        public void run() {
+						          if (interstitialAd.isLoaded()) {
+							            interstitialAd.show();
+							Toast.makeText(getApplicationContext(), "Sorry for the ads!", Toast.LENGTH_SHORT).show();
+							          }
+						          else {
+							            AdRequest interstitialRequest = new AdRequest.Builder().build();
+							            interstitialAd.loadAd(interstitialRequest);
+							            Toast.makeText(getApplicationContext(), "Sorry for the ads!", Toast.LENGTH_SHORT).show();
+							          }
+						        }
+					      });
+				    } catch (Exception e) {
+				    }
+			  }
 }

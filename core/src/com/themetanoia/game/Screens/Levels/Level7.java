@@ -422,7 +422,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"1")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-1.5f,levelstate,1,50));}
+                    game.setScreen(new StoryView(game,-1f,levelstate,1,50));}
             }
         });
 
@@ -434,7 +434,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"2")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-1.7f,levelstate,2,100));}
+                    game.setScreen(new StoryView(game,-1.3f,levelstate,2,100));}
             }
         });
 
@@ -446,7 +446,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"3")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-2f,levelstate,3,150));}
+                    game.setScreen(new StoryView(game,-1.5f,levelstate,3,150));}
             }
         });
 
@@ -459,7 +459,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"4")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-2.3f,levelstate,4,240));}
+                    game.setScreen(new StoryView(game,-1.7f,levelstate,4,240));}
             }
         });
 
@@ -472,7 +472,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"5")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-2.5f,levelstate,5,300));}
+                    game.setScreen(new StoryView(game,-1.9f,levelstate,5,300));}
             }
         });
 
@@ -485,7 +485,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"6")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-2.7f,levelstate,6,350));}
+                    game.setScreen(new StoryView(game,-2.1f,levelstate,6,350));}
             }
         });
 
@@ -497,7 +497,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"7")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-2.9f,levelstate,7,400));}
+                    game.setScreen(new StoryView(game,-2.3f,levelstate,7,400));}
             }
         });
 
@@ -509,7 +509,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"8")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.1f,levelstate,8,500));}
+                    game.setScreen(new StoryView(game,-2.5f,levelstate,8,500));}
             }
         });
         chapter9.addListener(new InputListener(){           //Button properties!
@@ -520,7 +520,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"9")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.3f,levelstate,9,550));}
+                    game.setScreen(new StoryView(game,-2.7f,levelstate,9,550));}
             }
         });
 
@@ -532,7 +532,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"10")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,10,600));}
+                    game.setScreen(new StoryView(game,-2.9f,levelstate,10,600));}
             }
         });
 
@@ -544,7 +544,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"11")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,11,600));}
+                    game.setScreen(new StoryView(game,-3f,levelstate,11,600));}
             }
         });
 
@@ -556,7 +556,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"12")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,12,600));}
+                    game.setScreen(new StoryView(game,-3.1f,levelstate,12,600));}
             }
         });
 
@@ -568,7 +568,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"13")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,13,600));}
+                    game.setScreen(new StoryView(game,-3.2f,levelstate,13,600));}
             }
         });
 
@@ -580,7 +580,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"14")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,14,600));}
+                    game.setScreen(new StoryView(game,-3.3f,levelstate,14,600));}
             }
         });
 
@@ -592,7 +592,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"15")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,15,600));}
+                    game.setScreen(new StoryView(game,-3.4f,levelstate,15,600));}
             }
         });
 
@@ -616,7 +616,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"17")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,17,600));}
+                    game.setScreen(new StoryView(game,-3.5f,levelstate,17,620));}
             }
         });
 
@@ -628,7 +628,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"18")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,18,600));}
+                    game.setScreen(new StoryView(game,-3.5f,levelstate,18,650));}
             }
         });
 
@@ -640,7 +640,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"19")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,19,600));}
+                    game.setScreen(new StoryView(game,-3.5f,levelstate,19,670));}
             }
         });
 
@@ -652,7 +652,7 @@ public class Level7 extends Game implements Screen {
                 if(game.getPrefs().getBoolean("unlock"+levelstate+"20")==true){
                     audio.playbSound(1);
                     stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,levelstate,20,600));}
+                    game.setScreen(new StoryView(game,-3.5f,levelstate,20,700));}
             }
         });
 

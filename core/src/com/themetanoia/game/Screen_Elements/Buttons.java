@@ -121,12 +121,12 @@ public class Buttons implements ApplicationListener {
         table.add(pauseButton).expandX().padTop(5).padLeft(1150).width(100).height(70).right();
 
         table.row();
+        table.add(button1).expandX().padTop(270).width(300).height(50).left().bottom();
+        table.add(button2).expandX().padTop(270).width(300).height(50).right().bottom();
         table.row();
-        table.add(button1).expandX().padTop(300).width(300).height(50).left().bottom();
-        table.add(button2).expandX().padTop(300).width(300).height(50).right().bottom();
         table.row();
-        table.add(button3).expandX().padTop(30).width(300).height(50).left();
-        table.add(button4).expandX().padTop(30).width(300).height(50).right();
+        table.add(button3).expandX().padTop(20).width(300).height(50).left();
+        table.add(button4).expandX().padTop(20).width(300).height(50).right();
 
         resumetable.bottom();
         resumetable.setFillParent(true);
@@ -153,13 +153,12 @@ public class Buttons implements ApplicationListener {
             }
 
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("Pause button");
                 Play_State.halt=true;
             }
         });
         button1.addListener(new ClickListener(){           //Button properties!
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                Gdx.input.vibrate(200);
+                state.effects.vibrate();
                 if(!b2check&&!b3check&&!b4check)
                 b1check=true;
                 return true;
@@ -185,7 +184,6 @@ public class Buttons implements ApplicationListener {
                     Warrior.groundpunchattack.applyForceToCenter(100,0, true);
                     // }
                 }
-                System.out.println("Star Clicked");
             }
         });
 
@@ -219,7 +217,6 @@ public class Buttons implements ApplicationListener {
                     Warrior.spinpunchattack.applyForceToCenter(100,0, true);
                     // }
                 }
-                System.out.println("Star Clicked");
             }
         });
         button3.addListener(new InputListener(){
@@ -249,12 +246,10 @@ public class Buttons implements ApplicationListener {
                     Warrior.lowkickattack.applyForceToCenter(100,0, true);
                     // }
                 }
-                System.out.println("Star Clicked");
             }
         });
         button4.addListener(new InputListener(){
             public boolean touchDown(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("button4 Clicked");
                 Gdx.input.vibrate(200);
                 if(!b2check&&!b3check&&!b1check)
                 b4check=true;
@@ -280,7 +275,6 @@ public class Buttons implements ApplicationListener {
                     Warrior.highkickattack.applyForceToCenter(100,0, true);
                     // }
                 }
-                System.out.println("Star Clicked");
             }
         });
 
@@ -289,7 +283,6 @@ public class Buttons implements ApplicationListener {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("Start Clicked");
                 Play_State.halt=false;
             }
         });

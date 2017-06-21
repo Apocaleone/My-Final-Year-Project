@@ -136,7 +136,6 @@ public class InGameTutorials extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("Start Clicked");
                 stage1.dispose();
                 game.setScreen(new Play_State(game,speed,level,act,beatscore));//levelsManager.levelSelector();//game.setScreen(new Play_State(game));
             }

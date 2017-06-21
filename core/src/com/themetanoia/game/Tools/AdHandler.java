@@ -5,4 +5,5 @@ package com.themetanoia.game.Tools;
  */
 public interface AdHandler {
     public void showAds(boolean show);
+    public void showOrLoadInterstital();
 }

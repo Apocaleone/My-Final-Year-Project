@@ -134,7 +134,6 @@ public class StoryView extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("Start Clicked");
                 audio.playbSound(0);
                 audio.stopAll();
                 stage.dispose();

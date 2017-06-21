@@ -45,6 +45,7 @@ public class LoadState extends Game implements Screen {
     private String progress;
     private Texture texture;
     private Image image;
+    private Boolean flag=false;
 
     public LoadState(Lone_Warrior1 game){
         this.game=game;
@@ -82,7 +83,7 @@ public class LoadState extends Game implements Screen {
         table1.bottom();
         table1.setFillParent(true);
 
-        Gdx.input.setInputProcessor(stage1);
+
         skin=new Skin();
         skin.addRegions(atlas);
 
@@ -123,6 +124,11 @@ public class LoadState extends Game implements Screen {
     public void update(float delta){
 
         if(game.assets.manager.update()){
+            if(flag==false)
+            {
+                Gdx.input.setInputProcessor(stage1);
+                flag=true;
+            }
             stage1.act();
             stage1.draw();
             /**/

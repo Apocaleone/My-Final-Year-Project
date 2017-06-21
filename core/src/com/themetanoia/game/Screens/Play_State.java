@@ -22,7 +22,7 @@ import com.themetanoia.game.Characters.Warrior;
 import com.themetanoia.game.Screen_Elements.*;
 import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Tools.AudioManager;
-import com.themetanoia.game.Tools.BloodSplatter;
+import com.themetanoia.game.Tools.Effects;
 import com.themetanoia.game.Tools.MyContactListener;
 import com.themetanoia.game.Tools.Spawner;
 import com.themetanoia.game.Worlds.NightWorld;
@@ -70,8 +70,9 @@ public class Play_State implements Screen {
 
     NightWorld night;
 
-    BloodSplatter blood;
+
     boolean check=false;
+    public Effects effects;
 
 
 
@@ -85,7 +86,7 @@ public class Play_State implements Screen {
         this.beatscore=beatscore;
         pauseScreen=new com.themetanoia.game.Screen_Elements.PauseScreen(this);
         audio=new AudioManager(game);
-        blood=new BloodSplatter();
+        effects=new Effects(game);
 
 
         sR=new ShapeRenderer();
@@ -114,7 +115,6 @@ public class Play_State implements Screen {
         //spearman.defineEnemy();
 
         spawn.spawn();
-        blood.splatter();
        audio.playMusic(0);
         audio.playMusic(2);
         audio.music.get(2).setVolume(0.2f);
@@ -156,8 +156,6 @@ public class Play_State implements Screen {
         night.renderer2.setView(bgcam);
         if(enemycounter>=10){
             spawn.spawn();
-            System.out.println("spawning enemies");
-
         }
             forceApplicationFunction();//applies force to each individual character in the game
 
@@ -375,7 +373,6 @@ public class Play_State implements Screen {
             {Lone_Warrior1.x1=warrior.exorcizeattack.getPosition().x;
                 Lone_Warrior1.y1=warrior.exorcizeattack.getPosition().y;}
             Body b=bodiesToRemove.get(i);
-            System.out.println("destroying body");
             world.destroyBody(b);
         }
         bodiesToRemove.clear();

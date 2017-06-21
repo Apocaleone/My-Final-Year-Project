@@ -51,6 +51,8 @@ public class Lone_Warrior1 extends Game implements Screen {
 	public Lone_Warrior1(AdHandler handler) {
 		this.handler = handler;
 	}
+	public Lone_Warrior1(){
+	}
 
 	@Override
 	public void create () {

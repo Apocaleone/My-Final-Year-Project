@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
+import com.badlogic.gdx.math.RandomXS128;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -21,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.utils.viewport.StretchViewport;
 import com.badlogic.gdx.utils.viewport.Viewport;
 import com.themetanoia.game.Lone_Warrior1;
+import com.themetanoia.game.Screens.Levels.Level1;
 import com.themetanoia.game.Tools.AudioManager;
 
 /**
@@ -45,6 +47,7 @@ public class GameOver extends Game implements Screen {
     private FreeTypeFontGenerator generator;
     FreeTypeFontGenerator.FreeTypeFontParameter parameter;
     public AudioManager audio;
+    int a=0;
 
 
     public GameOver(Lone_Warrior1 game,Play_State state,int score,int level, int act,int beatscore,boolean check) {
@@ -58,6 +61,8 @@ public class GameOver extends Game implements Screen {
         texture=new Texture("gameover.png");
         image=new Image(texture);
         audio=new AudioManager(game);
+        RandomXS128 random = new RandomXS128();
+        a =random.nextInt(3);
 
         atlas=new TextureAtlas();
         atlas=game.getAtlas(0);
@@ -104,7 +109,7 @@ public class GameOver extends Game implements Screen {
         startbuttonStyle.up= skin.getDrawable("startbutton");
         startbuttonStyle.down= skin.getDrawable("startbuttondown");
         startbuttonStyle.font=font1;
-        startbutton= new TextButton("Menu Screen ",startbuttonStyle);
+        startbutton= new TextButton("Return",startbuttonStyle);
        table.add(over).expandX().center().padLeft(300);
         table.row();
         table.add(highScoreString).padTop(40).left().padLeft(100);
@@ -156,8 +161,9 @@ public class GameOver extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                System.out.println("Start Clicked");
-                game.setScreen(new MenuScreen(game));
+                if(a==1)
+                game.handler.showOrLoadInterstital();
+                game.setScreen(new Level1(game));
                 dispose();
             }
         });

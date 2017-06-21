@@ -261,7 +261,7 @@ public class Level4 extends Game implements Screen {
         stage.addActor(table1);
         stage.addActor(table2);
         game.prefs.flush();
-
+game.toggleAds(true);
 
     }
 
@@ -278,7 +278,7 @@ public class Level4 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
+                dispose();
                 game.setScreen(new Level5(game));
             }
         });
@@ -289,7 +289,7 @@ public class Level4 extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                stage.dispose();
+                dispose();
                 game.setScreen(new Level3(game));
             }
         });
@@ -301,8 +301,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock41")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-1.5f,4,1,50));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-1f,4,1,50));}
             }
         });
 
@@ -313,8 +313,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock42")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-1.7f,4,2,100));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-1.4f,4,2,100));}
             }
         });
 
@@ -325,8 +325,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock43")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2f,4,3,150));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-1.7f,4,3,130));}
             }
         });
 
@@ -338,8 +338,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock44")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2.3f,4,4,240));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-2f,4,4,200));}
             }
         });
 
@@ -351,8 +351,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock45")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2.5f,4,5,300));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-2.3f,4,5,250));}
             }
         });
 
@@ -364,8 +364,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock46")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2.7f,4,6,350));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-2.5f,4,6,300));}
             }
         });
 
@@ -376,8 +376,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock47")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-2.9f,4,7,400));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-2.7f,4,7,350));}
             }
         });
 
@@ -388,8 +388,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock48")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-3.1f,4,8,500));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-2.9f,4,8,400));}
             }
         });
         chapter9.addListener(new InputListener(){           //Button properties!
@@ -399,8 +399,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock49")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-3.3f,4,9,550));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-3f,4,9,420));}
             }
         });
 
@@ -411,8 +411,8 @@ public class Level4 extends Game implements Screen {
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock410")==true){
                     audio.playbSound(1);
-                    stage.dispose();
-                    game.setScreen(new StoryView(game,-3.5f,4,10,600));}
+                    dispose();
+                    game.setScreen(new StoryView(game,-3.1f,4,10,450));}
             }
         });
 
@@ -425,6 +425,11 @@ public class Level4 extends Game implements Screen {
         stage.act();
         stage.draw();
 
+    }
+
+    public void dispose(){
+        game.toggleAds(false);
+        stage.dispose();
     }
 
     @Override

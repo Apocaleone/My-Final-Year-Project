@@ -234,7 +234,7 @@ game.toggleAds(true);
                 if(game.getPrefs().getBoolean("unlock22")==true){
                     audio.playbSound(1);
                     dispose();
-                    game.setScreen(new StoryView(game,-2f,2,2,120));}
+                    game.setScreen(new StoryView(game,-1.5f,2,2,80));}
             }
         });
 
@@ -246,7 +246,7 @@ game.toggleAds(true);
                 if(game.getPrefs().getBoolean("unlock23")==true){
                     audio.playbSound(1);
                     dispose();
-                    game.setScreen(new StoryView(game,-2.5f,2,3,200));}
+                    game.setScreen(new StoryView(game,-2f,2,3,130));}
             }
         });
 
@@ -258,7 +258,7 @@ game.toggleAds(true);
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
                 if(game.getPrefs().getBoolean("unlock24")==true){
                     dispose();
-                    game.setScreen(new StoryView(game,-3f,2,4,350));}
+                    game.setScreen(new StoryView(game,-2.3f,2,4,170));}
             }
         });
     }
