@@ -27,6 +27,9 @@ import com.themetanoia.game.Tools.MyContactListener;
 import com.themetanoia.game.Tools.Spawner;
 import com.themetanoia.game.Worlds.NightWorld;
 
+import finnstr.libgdx.liquidfun.ParticleSystem;
+import finnstr.libgdx.liquidfun.ParticleSystemDef;
+
 /**
  * Created by MITHUN on 02-10-2016.
  */
@@ -74,6 +77,9 @@ public class Play_State implements Screen {
     boolean check=false;
     public Effects effects;
 
+    private ParticleSystem mParticleSystem;
+
+
 
 
 
@@ -104,6 +110,8 @@ public class Play_State implements Screen {
         //world initialization
         world=new World(new Vector2(0,-9.81f),true);
         world.setContactListener(new MyContactListener());
+        ParticleSystemDef systemDef = new ParticleSystemDef();
+        mParticleSystem = new ParticleSystem(world, systemDef);
         b2dr=new Box2DDebugRenderer();
         night=new NightWorld(world,this);
         //character initialization
@@ -142,7 +150,7 @@ public class Play_State implements Screen {
 
 
     public void update(float dt){
-        world.step(stepchange,6,2);
+        world.step(stepchange,6,2,mParticleSystem.calculateReasonableParticleIterations(stepchange));
         if(Gdx.input.isKeyPressed(Input.Keys.SPACE)){
             halt=true;
         }

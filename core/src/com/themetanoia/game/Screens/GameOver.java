@@ -161,8 +161,8 @@ public class GameOver extends Game implements Screen {
                 return true;
             }
             public void touchUp(InputEvent event, float x, float y, int pointer, int button){
-                if(a==1)
-                game.handler.showOrLoadInterstital();
+                //if(a==1)
+                //game.handler.showOrLoadInterstital();
                 game.setScreen(new Level1(game));
                 dispose();
             }

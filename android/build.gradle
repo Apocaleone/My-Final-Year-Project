@@ -139,4 +139,5 @@ idea {
     }
 }
 dependencies {
+    compile files('libs/gdx-liquidfun.jar')
 }

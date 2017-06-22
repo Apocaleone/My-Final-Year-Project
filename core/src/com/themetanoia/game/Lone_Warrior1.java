@@ -20,6 +20,7 @@ import com.themetanoia.game.Load_Screens.PlayStateAssetmanager;
 import com.themetanoia.game.Screens.MenuScreen;
 import com.themetanoia.game.Screens.Play_State;
 import com.themetanoia.game.Tools.AdHandler;
+import com.themetanoia.game.Tools.LiquidfunTest;
 
 
 public class Lone_Warrior1 extends Game implements Screen {
@@ -66,6 +67,9 @@ public class Lone_Warrior1 extends Game implements Screen {
 		fxmusic=new Array<Music>();
 		load=new LoadState(this);
 
+
+
+		//setScreen(new LiquidfunTest());
 		setScreen(load);
 
 		//loading.assets.dispose();
@@ -97,7 +101,8 @@ public class Lone_Warrior1 extends Game implements Screen {
 	}
 
 	public void toggleAds(boolean toggle){
-		handler.showAds(toggle);
+
+		//handler.showAds(toggle);
 	}
 
 

@@ -14,6 +14,10 @@ import com.themetanoia.game.Lone_Warrior1;
 import com.themetanoia.game.Screen_Elements.Hud;
 import com.themetanoia.game.Screens.Play_State;
 
+import finnstr.libgdx.liquidfun.ParticleBodyContact;
+import finnstr.libgdx.liquidfun.ParticleContact;
+import finnstr.libgdx.liquidfun.ParticleSystem;
+
 /**
  * Created by MITHUN on 13-01-2017.
  */
@@ -323,6 +327,26 @@ public class MyContactListener implements ContactListener {
 
     @Override
     public void endContact(Contact contact) {
+
+    }
+
+    @Override
+    public void beginParticleBodyContact(ParticleSystem particleSystem, ParticleBodyContact particleBodyContact) {
+
+    }
+
+    @Override
+    public void endParticleBodyContact(Fixture fixture, ParticleSystem particleSystem, int i) {
+
+    }
+
+    @Override
+    public void beginParticleContact(ParticleSystem particleSystem, ParticleContact particleContact) {
+
+    }
+
+    @Override
+    public void endParticleContact(ParticleSystem particleSystem, int i, int i1) {
 
     }
 
